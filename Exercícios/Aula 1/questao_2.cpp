@@ -1,3 +1,5 @@
+// Qual o valor de y no final do programa? Tente primeiro descobrir e depois verifique no computador o resultado. A seguir, escreva um /* comentário */ em cada comando de atribuição explicando o que ele faz e o valor da variável à esquerda do '=' após sua execução.
+
 #include <stdio.h>
 // #include <cstdio>
 
