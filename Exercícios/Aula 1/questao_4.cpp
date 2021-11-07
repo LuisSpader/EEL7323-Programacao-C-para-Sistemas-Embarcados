@@ -6,7 +6,8 @@ int main()
 {
   int n = 100;
   int matriz[100][100];
-  int *p = &(matriz[0][0]); // ponteiro para o loop -> aponta para o início da matriz
+  int *p;
+  p = &(matriz[0][0]); // ponteiro para o loop -> aponta para o início da matriz
 
   for (int i = 0; i < (n * n); i++)
   {
