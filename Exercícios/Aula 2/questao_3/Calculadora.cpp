@@ -19,6 +19,7 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 
 #include "Calculadora.h" // incluindo headers
 
+// INICIALIZA CLASSE COM VALORES RESET -> para quê?
 Calculadora::Calculadora()
 {
   op = 'X';

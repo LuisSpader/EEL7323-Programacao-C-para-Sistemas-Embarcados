@@ -13,7 +13,7 @@
 */
 
 #include <string>
-using namespace std;
+using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
 
 class Calculadora
 {
