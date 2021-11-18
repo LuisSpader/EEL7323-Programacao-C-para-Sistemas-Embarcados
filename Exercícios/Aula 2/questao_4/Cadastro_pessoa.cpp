@@ -20,7 +20,7 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 #include "Cadastro_pessoa.h"
 
 // inicia classe -> para quê?
-Cadastro_pessoa()
+Cadastro_pessoa::Cadastro_pessoa()
 {
   nome = "";
   idade = 0;

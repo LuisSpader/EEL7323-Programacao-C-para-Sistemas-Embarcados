@@ -25,21 +25,29 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 // int getIdade();
 // int getPeso();
 
-void main()
+int main()
 {
   // BUFFERS
   string buffer_nome;
-  int buffer_peso, buffer_idade;
+  int buffer_num;
 
   Cadastro_pessoa pessoa1;
 
   cout << "Digite seu nome: " << endl;
+  cin >> buffer_nome;
+  pessoa1.setNome(buffer_nome);
 
-  pessoa1.setNome(cin);
-  // cin >> Cadastro_pessoa.nome;
+  cout << "Digite sua idade: " << endl;
+  cin >> buffer_num;
+  pessoa1.setIdade(buffer_num);
 
-  // cout << "Digite seu nome: " << endl;
-  // cin >> Cadastro_pessoa.nome;
+  cout << "Digite seu peso: " << endl;
+  cin >> buffer_num;
+  pessoa1.setPeso(buffer_num);
 
   cout << "Nome: " << pessoa1.getNome() << endl;
+  cout << "Idade: " << pessoa1.getIdade() << endl;
+  cout << "Peso: " << pessoa1.getPeso() << endl;
+
+  return 0;
 }
