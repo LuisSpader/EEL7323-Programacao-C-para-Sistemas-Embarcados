@@ -31,11 +31,7 @@ Cadastro_pessoa::Cadastro_pessoa()
 // Métodos SET -> Classe::método(tipo_var identificacão_qualquer)
 void Cadastro_pessoa::setNome(string newName)
 {
-  // cout << "Digite seu nome: " << endl;
   nome = newName;
-
-  // cin >> buffer_nome;
-  // pessoa1.setNome(buffer_nome);
 }
 
 void Cadastro_pessoa::setIdade(int newIdade)
@@ -46,7 +42,6 @@ void Cadastro_pessoa::setIdade(int newIdade)
 void Cadastro_pessoa::setPeso(int newPeso)
 {
   peso = newPeso;
-  // dob.setDate
 }
 
 // Métodos GET
