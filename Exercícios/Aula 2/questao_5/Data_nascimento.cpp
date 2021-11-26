@@ -15,10 +15,14 @@
   classe Pessoa > classe Data_nascimento 
 
 */
+// TO-DO:
+// limite ano (actual date), tem que pegar ano do sistema ou internet
+// limite mês <= 12
+// limite dia (depende do mês)
 
-#include<cstring>
+#include <cstring>
 #include <list>
-#include <iostream> // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
+#include <iostream>  // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
 #include <string.h>  // Para trabalhar com strings
 #include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
@@ -31,45 +35,70 @@ Data_nascimento::Data_nascimento()
   dia, mes, ano = 0;
   date = "";
 
-  cout << "Digite sua data de nascimento (xx/xx/xxxx): ";
+  // cout << "Digite sua data de nascimento (xx/xx/xxxx): ";
 };
 
 // ------------------- Logic Functions -------------------
 
-bool isNumber(const string& str)
+// Função: Verifica se é número
+bool isNumber(const string &str)
 {
-    for (char const &c : str) {
-        if (std::isdigit(c) == 0) return false;
-    }
-    return true;
+  for (char const &c : str)
+  {
+    if (std::isdigit(c) == 0)
+      return false;
+  }
+  return true;
 }
 
 // ------------------- SET -------------------
-void Data_nascimento::setDate (string buffer) {
-  if (buffer.length() > 10){
-    cout << "Digits limit exceeded! \n"; 
+void Data_nascimento::setDate(string buffer)
+{
+  if (buffer.length() > 10)
+  {
+    cout << "Digits limit exceeded! \n";
     exit(EXIT_FAILURE);
   }
   string temp;
-  
-  date =  buffer.substr(0,2) + "/" + buffer.substr(3,2) + "/" + buffer.substr(6,4);
 
-  temp = buffer.substr(0,2);
-  if (isNumber(temp) == true) {dia = std::stoi(temp);} 
-  else {cout << "Invalid Date\n"; exit(EXIT_FAILURE);}  
+  date = buffer.substr(0, 2) + "/" + buffer.substr(3, 2) + "/" + buffer.substr(6, 4);
 
-  temp = buffer.substr(3,2);
-  if (isNumber(temp) == true) {mes = std::stoi(temp);} 
-  else {cout << "Invalid Date\n"; exit(EXIT_FAILURE);}
+  // DIA
+  temp = buffer.substr(0, 2);
+  if (isNumber(temp) == true)
+  {
+    dia = std::stoi(temp);
+  }
+  else
+  {
+    cout << "Invalid Date\n";
+    exit(EXIT_FAILURE);
+  }
 
-  temp = buffer.substr(6,4);
-  if (isNumber(temp) == true) {ano = std::stoi(temp);} 
-  else {cout << "Invalid Date\n"; exit(EXIT_FAILURE);}
+  // MÊS
+  temp = buffer.substr(3, 2);
+  if (isNumber(temp) == true)
+  {
+    mes = std::stoi(temp);
+  }
+  else
+  {
+    cout << "Invalid Date\n";
+    exit(EXIT_FAILURE);
+  }
 
-
+  //ANO
+  temp = buffer.substr(6, 4);
+  if (isNumber(temp) == true)
+  {
+    ano = std::stoi(temp);
+  }
+  else
+  {
+    cout << "Invalid Date\n";
+    exit(EXIT_FAILURE);
+  }
 };
-
-
 
 void Data_nascimento::getDate()
 {
@@ -77,18 +106,17 @@ void Data_nascimento::getDate()
   // cout << "Sua data de nascimento eh: " << dia << "/" << mes << "/" << ano << endl;
 }
 
-int main()
-{
-  // BUFFERS
-  string string_buffer;
+// int main()
+// {
+//   // BUFFERS
+//   string string_buffer;
 
-  Data_nascimento pessoa1; //declara objeto
+//   Data_nascimento pessoa1; //declara objeto
 
-  cin >> string_buffer;
-  pessoa1.setDate(string_buffer);
-  
-  pessoa1.getDate();
+//   cin >> string_buffer;
+//   pessoa1.setDate(string_buffer);
 
-  
-  return 0;
-}
+//   pessoa1.getDate();
+
+//   return 0;
+// }

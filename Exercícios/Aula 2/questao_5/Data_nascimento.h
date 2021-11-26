@@ -1,9 +1,6 @@
 /* File Data_nascimento.h
-
   Luis Antonio Spader Simon <luisspaders@gmail.com> 
-
   Curso: Engenharia Eletrônica - Graduação - CTC - UFSC 
-  
   2021
 
   Descricao: Definicao dos "headers" (interface) para a classe.cpp
@@ -13,7 +10,6 @@
   dia, mês, ano
 
   classe Pessoa > classe Data_nascimento 
-
 */
 #include <list>
 #include <string>
@@ -27,13 +23,12 @@ class Data_nascimento
 
 public:
   Data_nascimento(); // inicia classe
-  
+
   // ------------------- Write -------------------
   // void Data_nascimento::AskDate();
 
   // ------------------- SET -------------------
   void setDate(string buffer);
-  
-  void getDate();
 
+  void getDate();
 };

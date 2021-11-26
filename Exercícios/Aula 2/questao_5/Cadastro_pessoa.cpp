@@ -11,26 +11,33 @@
   Descricao: Definicao das funcoes membro para os "headers" declarados na classe.h
 
 */
-
+//---------------------------- LIBRARIES ------------------------ //
+#include <string.h> // Para trabalhar com strings
 #include <iostream> // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
 // #include <string.h>  // Para trabalhar com strings
 #include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
 
+//---------------------------- MY LIBRARIES ------------------------ //
+// #include "Data_nascimento.h"
 #include "Cadastro_pessoa.h"
 
-// inicia classe -> para quê?
+// Construtor: inicia classe -> para quê? Para quando vc quer inicializar coisas da classe
 Cadastro_pessoa::Cadastro_pessoa()
 {
   nome = "";
   idade = 0;
   peso = 0;
-};
+}
 
-// SET
+// Métodos SET -> Classe::método(tipo_var identificacão_qualquer)
 void Cadastro_pessoa::setNome(string newName)
 {
+  // cout << "Digite seu nome: " << endl;
   nome = newName;
+
+  // cin >> buffer_nome;
+  // pessoa1.setNome(buffer_nome);
 }
 
 void Cadastro_pessoa::setIdade(int newIdade)
@@ -41,9 +48,10 @@ void Cadastro_pessoa::setIdade(int newIdade)
 void Cadastro_pessoa::setPeso(int newPeso)
 {
   peso = newPeso;
+  // dob.setDate
 }
 
-// GET
+// Métodos GET
 string Cadastro_pessoa::getNome()
 {
   return nome;
@@ -57,32 +65,4 @@ int Cadastro_pessoa::getIdade()
 int Cadastro_pessoa::getPeso()
 {
   return peso;
-}
-
-
-int main()
-{
-  // BUFFERS
-  string buffer_nome;
-  int buffer_num;
-
-  Cadastro_pessoa pessoa1;
-
-  cout << "Digite seu nome: " << endl;
-  cin >> buffer_nome;
-  pessoa1.setNome(buffer_nome);
-
-  cout << "Digite sua idade: " << endl;
-  cin >> buffer_num;
-  pessoa1.setIdade(buffer_num);
-
-  cout << "Digite seu peso: " << endl;
-  cin >> buffer_num;
-  pessoa1.setPeso(buffer_num);
-
-  cout << "Nome: " << pessoa1.getNome() << endl;
-  cout << "Idade: " << pessoa1.getIdade() << endl;
-  cout << "Peso: " << pessoa1.getPeso() << endl;
-
-  return 0;
 }
