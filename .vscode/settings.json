@@ -44,7 +44,8 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp",
-    "list": "cpp"
+    "list": "cpp",
+    "class_aluno.h": "c"
   },
   "cmake.configureOnOpen": false
 }
