@@ -21,45 +21,45 @@ void class_Turma::get_Consulta_aluno(int matricula)
 {
   for (int i = 0; i < N_ALUNOS; i++)
   {
-    if (class_Aluno[i].getMatricula() == matricula)
+    if (aluno[i].getMatricula() == matricula)
     {
-      cout << "Matrícula: " << class_Aluno[i].getMatricula() << endl;
-      cout << "Nota 1: " << class_Aluno[i].getNota1() << endl;
-      cout << "Nota 2: " << class_Aluno[i].getNota2() << endl;
-      cout << "Média Final: " << class_Aluno[i].getMedia() << endl;
+      cout << "Matricula: " << aluno[i].getMatricula() << endl;
+      cout << "Nota 1: " << aluno[i].getNota1() << endl;
+      cout << "Nota 2: " << aluno[i].getNota2() << endl;
+      cout << "Media Final: " << aluno[i].getMedia() << endl;
       break;
     }
     else if (i = (N_ALUNOS - 1))
     {
-      cout << "Matrícula não encontrada" << endl;
+      cout << "Matricula não encontrada" << endl;
     }
   }
 }
 void class_Turma::get_Listagem_alunos()
 {
-  cout << "Matrícula || Nota 1 || Nota 2 || Média Final" << endl;
+  cout << "Matricula || Nota 1 || Nota 2 || Media Final" << endl;
 
   for (int i = 0; i < N_ALUNOS; i++)
   {
-    cout << class_Aluno[i].getMatricula() << " || ";
-    cout << class_Aluno[i].getNota1() << " || ";
-    cout << class_Aluno[i].getNota2() << " || ";
-    cout << class_Aluno[i].getMedia() << endl;
+    cout << aluno[i].getMatricula() << " || ";
+    cout << aluno[i].getNota1() << " || ";
+    cout << aluno[i].getNota2() << " || ";
+    cout << aluno[i].getMedia() << endl;
   }
 }
 void class_Turma::set_NovoAluno(int NewMatricula, float NewNota1, float NewNota2)
 {
   for (int i = 0; i < N_ALUNOS; i++)
   {
-    if (class_Aluno[i].getMatricula() == matricula)
+    if (aluno[i].getMatricula() == NewMatricula)
     {
-      cout << "Matrícula já existente" << endl;
+      cout << "Matricula já existente" << endl;
     }
     else if (i = (N_ALUNOS - 1))
     {
-      class_Aluno[i].setMatricula(NewMatricula);
-      class_Aluno[i].setNota1(NewNota1);
-      class_Aluno[i].setNota2(NewNota2);
+      aluno[i].setMatricula(NewMatricula);
+      aluno[i].setNota1(NewNota1);
+      aluno[i].setNota2(NewNota2);
     }
   }
 }
@@ -68,15 +68,15 @@ void class_Turma::Altera_dados_aluno(int matricula, float NewNota1, float NewNot
 {
   for (int i = 0; i < N_ALUNOS; i++)
   {
-    if (class_Aluno[i].getMatricula() == matricula)
+    if (aluno[i].getMatricula() == matricula)
     {
-      class_Aluno[i].setNota1(NewNota1);
-      class_Aluno[i].setNota2(NewNota2);
+      aluno[i].setNota1(NewNota1);
+      aluno[i].setNota2(NewNota2);
       break;
     }
     else if (i = (N_ALUNOS - 1))
     {
-      cout << "Matrícula não encontrada" << endl;
+      cout << "Matricula não encontrada" << endl;
     }
   }
 } // o número de matrícula não pode ser alterado
@@ -84,30 +84,15 @@ void class_Turma::Exclui_aluno(int matricula)
 {
   for (int i = 0; i < N_ALUNOS; i++)
   {
-    if (matricula == class_Aluno[i].getMatricula())
+    if (matricula == aluno[i].getMatricula())
     {
-      class_Aluno[i].setMatricula(0);
-      class_Aluno[i].setNota1(0);
-      class_Aluno[i].setNota2(0);
+      aluno[i].setMatricula(0);
+      aluno[i].setNota1(0);
+      aluno[i].setNota2(0);
     }
     else if (i = (N_ALUNOS - 1))
     {
-      cout << "Matrícula não encontrada" << endl;
+      cout << "Matricula não encontrada" << endl;
     }
   }
-}
-
-// ============== MAIN =========== //
-
-int main()
-{
-  int buffer;
-  cout << "=========== Programa Turma " << N_ALUNOS << " alunos ===========" << endl;
-  cout << "Digite a operação desejada:" << endl;
-  cout << "1 - Cadastro Novo Aluno" << endl;
-  cout << "2 - Consulta Aluno" << endl;
-  cout << "3 - Listagem Alunos" << endl;
-  cout << "4 - Alterar dados Aluno" << endl;
-  cout << "5 - Excluir Aluno" << endl;
-  cin >> buffer;
 }

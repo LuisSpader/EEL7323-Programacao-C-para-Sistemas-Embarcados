@@ -26,7 +26,7 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 //---------------------------- CONSTANTS ------------------------ //
 #define N_ALUNOS 20
 
-class classe_Turma
+class class_Turma
 {
 private:
   class_Aluno aluno[N_ALUNOS];
@@ -35,9 +35,9 @@ public:
   // classe_Turma();  // Construtor: inicia objeto
   // ~classe_Turma(); // Destrutor: destroi objeto
 
-  void get_Consulta_aluno();
+  void get_Consulta_aluno(int matricula);
   void get_Listagem_alunos();
-  void set_NovoAluno();
+  void set_NovoAluno(int NewMatricula, float NewNota1, float NewNota2);
+  void Altera_dados_aluno(int matricula, float NewNota1, float NewNota2); // o número de matrícula não pode ser alterado
   void Exclui_aluno(int matricula);
-  void Altera_dados_aluno(int matricula); // o número de matrícula não pode ser alterado
 };
