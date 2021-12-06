@@ -45,7 +45,8 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "list": "cpp",
-    "class_aluno.h": "c"
+    "class_aluno.h": "c",
+    "iomanip": "cpp"
   },
   "cmake.configureOnOpen": false
 }

@@ -11,9 +11,11 @@ private:
   int dia, mes, ano;
 
 public:
-  Calendar(int d, int m, int a); // construtor
+  // Calendar(int d, int mo, int a); // construtor
+  Calendar(string date_buffer); // construtor
 
-  void Calendar::setCalendar(int d, int m, int a);
-  void Calendar::readCalendar();
-  void Calendar::advance();
+  void setStringToDate(string date_buffer);
+  void setCalendar(int d, int mo, int a);
+  void readCalendar();
+  void advance();
 };
