@@ -27,7 +27,8 @@ int main()
 
   while (continuar == true) // enquanto encerraPrograma = false;
   {
-    cout << "=========== Programa Turma || " << N_ALUNOS << " alunos ===========" << endl;
+    cout << "=========== Programa Turma ===========" << endl;
+    cout << "Capacidade: " << N_ALUNOS << " alunos; Vagas: " << turma.vagas << endl;
     cout << "Digite a operacao desejada:" << endl;
     cout << "1 - Cadastro Novo Aluno" << endl;
     cout << "2 - Consulta Aluno" << endl;
@@ -100,6 +101,6 @@ int main()
       break;
     }
     }
-    return 0;
   }
+  return 0;
 }

@@ -8,7 +8,7 @@
 
   Descricao: Definicao das funcoes membro para os "headers" declarados na classe.h
 
-  main > turma[n_alunos] > aluno(nota[n_notas], media_final, matricula)
+  main > turma[n_matriculados] > aluno(nota[n_notas], media_final, matricula)
   * Numéro de matrícula deve ser único
   * Métodos: consulta_aluno, listagem_alunos(mostra todos os campos), exclusão_aluno, altera_dados_aluno(exceto matrícula)
 */
@@ -24,7 +24,7 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 #include "class_Aluno.cpp"
 
 //---------------------------- CONSTANTS ------------------------ //
-#define N_ALUNOS 20
+#define N_ALUNOS 3
 
 class class_Turma
 {
@@ -32,8 +32,9 @@ private:
   class_Aluno aluno[N_ALUNOS];
 
 public:
-  // classe_Turma();  // Construtor: inicia objeto
-  // ~classe_Turma(); // Destrutor: destroi objeto
+  int n_matriculados, vagas;
+  class_Turma(); // Construtor: inicia objeto
+  // ~class_Turma(); // Destrutor: destroi objeto
 
   void get_Consulta_aluno(int matricula);
   void get_Listagem_alunos();
