@@ -36,7 +36,7 @@ private: // private: só será acessado pelos métodos da própria classe
 
 public: // public: aqui qualquer classe acessa
   // funções SET
-  void setMatricula(int newMatricula); //* Numéro de matrícula deve ser único
+  void setMatricula(int newMatricula); //* Número de matrícula deve ser único
   void setNota1(float newNota);
   void setNota2(float newNota);
 

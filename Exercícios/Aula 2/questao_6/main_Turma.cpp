@@ -27,6 +27,7 @@ int main()
 
   while (continuar == true) // enquanto encerraPrograma = false;
   {
+    // cout << "--------------------------------------- \n \n " << endl;
     cout << "=========== Programa Turma ===========" << endl;
     cout << "Capacidade: " << N_ALUNOS << " alunos; Vagas: " << turma.vagas << endl;
     cout << "Digite a operacao desejada:" << endl;

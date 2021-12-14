@@ -29,9 +29,8 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 class class_Turma
 {
 private:
-  class_Aluno aluno[N_ALUNOS];
-
 public:
+  class_Aluno aluno[N_ALUNOS];
   int n_matriculados, vagas;
   class_Turma(); // Construtor: inicia objeto
   // ~class_Turma(); // Destrutor: destroi objeto
