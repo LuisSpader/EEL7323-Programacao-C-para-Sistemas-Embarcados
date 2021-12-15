@@ -1,4 +1,4 @@
-/* File class_Turma.cpp
+/* File class_Sensor.h
 
   Luis Antonio Spader Simon <luisspaders@gmail.com>
   Curso: Engenharia Eletrônica - Graduação - CTC - UFSC
@@ -8,36 +8,44 @@
 
   Descricao: Definicao das funcoes membro para os "headers" declarados na classe.h
 
-  main > turma[n_matriculados] > aluno(nota[n_notas], media_final, matricula)
+  main > turma[n_alunos] > aluno(nota[n_notas], media_final, id_sensor)
   * Numéro de matrícula deve ser único
   * Métodos: consulta_aluno, listagem_alunos(mostra todos os campos), exclusão_aluno, altera_dados_aluno(exceto matrícula)
 */
+// dúvidas: vetores, como alterar dados do objeto, como deletar objeto
 
-//---------------------------- LIBRARIES ------------------------ //
-#include <string.h> // Para trabalhar com strings
-#include <iostream> // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
-// #include <string.h>  // Para trabalhar com strings
-#include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+// ===================== LIBRARIES & CLASSES ===================== //
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
+#include <iostream>  // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
+#include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+#include <string.h>  // Para trabalhar com strings
 
-//---------------------------- MY LIBRARIES ------------------------ //
-#include "class_Aluno.cpp"
+// #include "Cadastro_pessoa.cpp" //Nome, idade, peso || Data_nascimento dob
 
-//---------------------------- CONSTANTS ------------------------ //
-#define N_ALUNOS 3
+// ===================== CONSTANTS ===================== //
 
-class class_Turma
+#define n_notas = 2;
+
+class class_Sensor
 {
-private:
-public:
-  class_Aluno aluno[N_ALUNOS];
-  int n_matriculados, vagas;
-  class_Turma(); // Construtor: inicia objeto
-  // ~class_Turma(); // Destrutor: destroi objeto
+private: // private: só será acessado pelos métodos da própria classe
+  // float nota[n_notas];
+  float nota1, nota2;
+  float media_final;
+  int id_sensor;
 
-  void get_Consulta_aluno(int matricula);
-  void get_Listagem_alunos();
-  void set_NovoAluno(int NewMatricula, float NewNota1, float NewNota2);
-  void Altera_dados_aluno(int matricula, float NewNota1, float NewNota2); // o número de matrícula não pode ser alterado
-  void Exclui_aluno(int matricula);
+public: // public: aqui qualquer classe acessa
+  // funções SET
+  void setId(int newId); //* Número de matrícula deve ser único
+  void setNota1(float newNota);
+  void setNota2(float newNota);
+
+  // funções GET
+  float getNota1();
+  float getNota2();
+  int getId();
+  float getMedia();
+
+  class_Sensor();  // declara construtor
+  ~class_Sensor(); // declara destrutor
 };

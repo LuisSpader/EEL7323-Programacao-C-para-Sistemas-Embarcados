@@ -46,7 +46,8 @@
     "typeinfo": "cpp",
     "list": "cpp",
     "class_aluno.h": "c",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "ctime": "cpp"
   },
   "cmake.configureOnOpen": false
 }

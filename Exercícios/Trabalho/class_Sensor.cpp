@@ -1,4 +1,4 @@
-/* File class_Turma.cpp
+/* File class_Sensor.cpp
 
   Luis Antonio Spader Simon <luisspaders@gmail.com>
   Curso: Engenharia Eletrônica - Graduação - CTC - UFSC
@@ -8,7 +8,7 @@
 
   Descricao: Definicao das funcoes membro para os "headers" declarados na classe.h
 
-  main > turma[n_matriculados] > aluno(nota[n_notas], media_final, matricula)
+  main > turma[n_alunos] > aluno(nota[n_notas], media_final, id_sensor)
   * Numéro de matrícula deve ser único
   * Métodos: consulta_aluno, listagem_alunos(mostra todos os campos), exclusão_aluno, altera_dados_aluno(exceto matrícula)
 */
@@ -21,23 +21,59 @@
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
 
 //---------------------------- MY LIBRARIES ------------------------ //
-#include "class_Aluno.cpp"
+// #include "Data_nascimento.h"
+#include "class_Sensor.h"
+// #include <Cadastro_pessoa.cpp>
 
-//---------------------------- CONSTANTS ------------------------ //
-#define N_ALUNOS 3
-
-class class_Turma
+// Construtor: inicia classe -> para quê? Para quando vc quer inicializar coisas da classe com algum valor, se n pode ter qualquervalor aleatório ali dependendo do compilador
+class_Sensor::class_Sensor()
 {
-private:
-public:
-  class_Aluno aluno[N_ALUNOS];
-  int n_matriculados, vagas;
-  class_Turma(); // Construtor: inicia objeto
-  // ~class_Turma(); // Destrutor: destroi objeto
+  id_sensor = 0;
+  valor = 0;
+  nota2 = 0;
+}
 
-  void get_Consulta_aluno(int matricula);
-  void get_Listagem_alunos();
-  void set_NovoAluno(int NewMatricula, float NewNota1, float NewNota2);
-  void Altera_dados_aluno(int matricula, float NewNota1, float NewNota2); // o número de matrícula não pode ser alterado
-  void Exclui_aluno(int matricula);
-};
+class_Sensor::~class_Sensor()
+{
+}
+
+void class_Sensor::setId(int newId)
+{ //* Numéro de matrícula deve ser único
+  id_sensor = newId;
+}
+
+void class_Sensor::setNota1(float newNota)
+{
+  if ((newNota >= 0) && (newNota <= 100))
+    nota1 = newNota;
+  else
+    cout << "Nota inválida: valor válido entre 0 e 100" << endl;
+}
+
+void class_Sensor::setNota2(float newNota)
+{
+  if ((newNota >= 0) && (newNota <= 100))
+    nota2 = newNota;
+  else
+    cout << "Nota inválida: valor válido entre 0 e 100" << endl;
+}
+
+int class_Sensor::getId()
+{
+  return id_sensor;
+}
+
+float class_Sensor::getNota1()
+{
+  return nota1;
+}
+
+float class_Sensor::getNota2()
+{
+  return nota2;
+}
+
+float class_Sensor::getMedia()
+{
+  return (nota1 + nota2) / 2;
+}
