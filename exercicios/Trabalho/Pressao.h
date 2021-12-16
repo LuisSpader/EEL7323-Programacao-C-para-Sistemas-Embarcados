@@ -23,7 +23,7 @@ public:
   void setID_pressao(int);
   float getValor_pressao();
   void setValor_pressao(float);
-  void readSensor(); // funcao virtual pura
+  void readSensor();
 
   Pressao();
   ClockCalendar dataHora;

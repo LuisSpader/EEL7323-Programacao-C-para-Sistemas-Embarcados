@@ -23,7 +23,7 @@ public:
   void setID_temp(int);
   float getValor_temp();
   void setValor_temp(float);
-  void readSensor(); // funcao virtual pura
+  void readSensor();
 
   Temperatura();
   ClockCalendar dataHora;
