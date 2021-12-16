@@ -22,9 +22,10 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 
 // construtor da classe
 // Calendar::Calendar(string date_buffer)
+// Calendar::Calendar(string buffer_date)
 Calendar::Calendar()
 {
-  setStringToDate("00/00/00");
+  setStringToDate("00/00/0000");
 }
 
 // ------------------- Logic Functions ------------------- //
@@ -112,10 +113,10 @@ void Calendar::setCalendar(int d, int mo, int a)
 
 void Calendar::readCalendar()
 {
-  cout << "Data (dia/mes/ano): "
-       << setw(2) << setfill('0') << dia << "/"
-       << setw(2) << setfill('0') << mes << "/"
-       << setw(4) << setfill('0') << ano << endl;
+  cout //<< "Data (dia/mes/ano): "
+      << setw(2) << setfill('0') << dia << "/"
+      << setw(2) << setfill('0') << mes << "/"
+      << setw(4) << setfill('0') << ano;
 }
 void Calendar::advance()
 {

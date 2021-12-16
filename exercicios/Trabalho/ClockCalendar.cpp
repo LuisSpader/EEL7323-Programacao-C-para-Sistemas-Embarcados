@@ -10,21 +10,40 @@
 
 // ClockCalendar::ClockCalendar(int h, int m, int s, bool pm, string date_buffer) : Clock(h, m, s, pm), Calendar(date_buffer)
 // ClockCalendar::ClockCalendar(string hour_buffer, int pm, string date_buffer) : Clock(hour_buffer, pm), Calendar(date_buffer)
+// ClockCalendar::ClockCalendar(string buffer_time)
 ClockCalendar::ClockCalendar()
 {
-  // was_pm = false;
-  // o jeito abaixo também funcionaria, porém aí temos que tirar do cabeçalho deste construtor a parte a seguir: ": Clock(h, s, m, pm), Calendar(d, mo, a)"
+  // // Www Mmm dd hh:mm:ss yyyy
+  // string buffer_d, buffer_h;
+  // buffer_d = (buffer_time.substr(4, 2));
+  // buffer_h = (buffer_time.substr(0, 2));
+
   Clock();    // assim já iniciamos com um valor dado de hora
   Calendar(); // assim já iniciamos com um valor dado de data
 }
 
-void ClockCalendar::setClock()
+void ClockCalendar::setClock_timelib()
 {
-  string buffer;
-  buffer = time(0); // Www Mmm dd hh:mm:ss yyyy
+  // string buffer;
+  // buffer = time(0); // Www Mmm dd hh:mm:ss yyyy
   // Calendar::setStringToDate(buffer.substr(0, 2));
+
+  time_t now = time(0);
+  // struct tm *horariolocal;
+  tm *ltm = localtime(&now);
+  // time(&t);
+  // horariolocal = localtime(&t);
+
+  hr = ltm->tm_hour;
+  min = ltm->tm_min;
+  sec = ltm->tm_sec;
+
+  dia = ltm->tm_mday;
+  mes = ltm->tm_mon;
+  ano = ltm->tm_year;
+
   Calendar::setStringToDate("15/12/2021");
-  Clock::setStringToTime("18:15:00", 0);
+  // Clock::setStringToTime("18:15:00", 0);
 }
 
 void ClockCalendar::advance()

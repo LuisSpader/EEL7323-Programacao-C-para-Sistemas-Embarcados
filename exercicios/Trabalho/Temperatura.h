@@ -24,10 +24,10 @@ protected:
   // void readSensor(int ID, float leitura);
 
 public:
-  int getID();
-  void setID(int);
+  int getID_temp();
+  void setID_temp(int);
   float getValor_temp();
-  void setValor(float);
+  void setValor_temp(float);
   void readSensor(); // funcao virtual pura
 
   Temperatura();

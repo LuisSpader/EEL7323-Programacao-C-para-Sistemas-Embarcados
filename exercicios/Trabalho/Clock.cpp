@@ -26,6 +26,7 @@ protected:
 public:
       // Clock(int h, int m, int s, int pm); // construtor
       // Clock(string hour_buffer, int pm); // construtor
+      // Clock(string buffer_h); // construtor
       Clock(); // construtor
 
       // void setClock(int h, int m, int s, int pm);
@@ -35,6 +36,7 @@ public:
 };
 
 // Clock::Clock(int h, int m, int s, int pm)
+// Clock::Clock(string buffer_h)
 Clock::Clock()
 {
       // setClock(h, m, s, pm);
@@ -130,8 +132,8 @@ void Clock::readClock()
 
       cout << setw(2) << setfill('0') << hr << ":"
            << setw(2) << setfill('0') << min << ":"
-           << setw(2) << setfill('0') << sec
-           << (is_pm ? " pm" : " am") << endl;
+           << setw(2) << setfill('0') << sec;
+      //      << (is_pm ? " pm" : " am");
 }
 
 void Clock::advance()

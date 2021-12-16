@@ -7,12 +7,13 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 
 class Calendar
 {
-private:
+protected:
   int dia, mes, ano;
 
 public:
   // Calendar(int d, int mo, int a); // construtor
   // Calendar(string date_buffer); // construtor
+  // Calendar(string buffer_date); // construtor
   Calendar(); // construtor
 
   void setStringToDate(string date_buffer);

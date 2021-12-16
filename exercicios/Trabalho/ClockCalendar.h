@@ -22,7 +22,7 @@ public:
   // ClockCalendar(int h, int m, int s, bool pm, string date_buffer);
   // ClockCalendar(string hour_buffer, int pm, string date_buffer);
   ClockCalendar();
-  void setClock();
+  void setClock_timelib();
 
   void advance();
 };

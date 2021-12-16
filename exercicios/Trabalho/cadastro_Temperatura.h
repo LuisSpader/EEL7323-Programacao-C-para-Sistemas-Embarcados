@@ -19,7 +19,7 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 #include "Temperatura.cpp"
 
 //---------------------------- CONSTANTS ------------------------ //
-#define N_TEMPERATURA 3
+#define N_TEMPERATURA 2
 
 class cadastro_Temperatura
 {
@@ -28,15 +28,16 @@ private:
 
 public:
   int vagas;
-  Temperatura temperatura[N_TEMPERATURA];
+  Temperatura vtemperatura[N_TEMPERATURA];
   cadastro_Temperatura(); // Construtor: inicia objeto
                           // ~cadastro_Temperatura(); // Destrutor: destroi objeto
 
-  void set_ID(int NewID);
+  void set_new_ID(int NewID);
 
   void set_NewLeitura(int check_id);
 
   void get_Consulta_temperatura(int temp1, int temp2);
+  void get_Lista_IDs();
   void get_Listagem_temperaturas();
   void Altera_temperatura(int check_id, float temp1, float temp2); // o número de matrícula não pode ser alterado
   void Exclui_temperatura(int check_id, float check_temp, bool apaga_todos);
