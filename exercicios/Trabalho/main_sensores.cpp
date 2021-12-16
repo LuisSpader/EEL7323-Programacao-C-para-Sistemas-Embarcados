@@ -14,14 +14,39 @@
     - [ ]  Listar todas as pressões
 */
 #include <iostream>
-#include <stdlib.h> // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
-#include <string.h> // Para trabalhar com strings
-#include "cadastro_Temperatura.cpp"
+#include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+#include <string.h>  // Para trabalhar com strings
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
+#include "cadastro_Temperatura.cpp"
+#include "cadastro_Pressao.cpp"
 
 int main()
 {
-  interface_temp();
+  int b_switch_sensor;
+  while (true)
+  {
+    cout << " =================== Programa de Sensores =================== " << endl;
+    cout << " Selecione o tipo de sensor com que deseja trabalhar" << endl;
 
+    cout << " 1 - Temperatura" << endl;
+    cout << " 2 - Pressao" << endl;
+    cin >> b_switch_sensor;
+
+    switch (b_switch_sensor)
+    {
+    case 1: // TEMPERATURA
+      /* code */
+      interface_temp();
+      break;
+    case 2: // PRESSAO
+      interface_pressao();
+      break;
+
+    default:
+      cout << "Opcao invalida, tente novamente" << endl;
+
+      break;
+    }
+  }
   return 0;
 }

@@ -1,4 +1,4 @@
-/* File cadastro_Temperatura.cpp
+/* File cadastro_Pressao.cpp
 
   Luis Antonio Spader Simon <luisspaders@gmail.com>
   Curso: Engenharia Eletrônica - Graduação - CTC - UFSC
@@ -8,20 +8,20 @@
 */
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
 
-#include "cadastro_Temperatura.h"
+#include "cadastro_Pressao.h"
 #include <iomanip> // para usar setfill() e setw()
 
 // Construtor
-cadastro_Temperatura::cadastro_Temperatura()
+cadastro_Pressao::cadastro_Pressao()
 {
   // n_leituras = 0;
   // temp_valida = false;
-  vagas = N_TEMPERATURA;
+  vagas = N_PRESSAO;
 }
 
 // ============== MÉTODOS DA CLASSE =========== //
 
-void cadastro_Temperatura::set_new_ID(int NewID)
+void cadastro_Pressao::set_new_ID(int NewID)
 {
 
   if (NewID <= 0) // NewID > 0
@@ -31,9 +31,9 @@ void cadastro_Temperatura::set_new_ID(int NewID)
     cout << "---------------------------------------------------------------\n";
     return;
   }
-  for (int i = 0; i < N_TEMPERATURA + 1; i++)
+  for (int i = 0; i < N_PRESSAO + 1; i++)
   {
-    if (vtemperatura[i].getID_temp() == NewID) // verifica id repetido
+    if (vpressao[i].getID_pressao() == NewID) // verifica id repetido
     {
       cout << "---------------------------------------------------------------\n";
       cout << "                   Este ID ja existe!" << endl;
@@ -42,16 +42,16 @@ void cadastro_Temperatura::set_new_ID(int NewID)
     }
     else
     {
-      if (vtemperatura[i].getID_temp() == 0) // quando temperatura = 0 = vazio
+      if (vpressao[i].getID_pressao() == 0) // quando pressao = 0 = vazio
       {
-        vtemperatura[i].setID_temp(NewID);
+        vpressao[i].setID_pressao(NewID);
         cout << "---------------------------------------------------------------\n";
         cout << "             Sensor de ID: " << NewID << " registrado!" << endl;
         cout << "---------------------------------------------------------------\n";
         return;
         // break;
       }
-      else if (i == N_TEMPERATURA)
+      else if (i == N_PRESSAO)
       {
         cout << "---------------------------------------------------------------\n";
 
@@ -63,7 +63,7 @@ void cadastro_Temperatura::set_new_ID(int NewID)
   }
 }
 
-void cadastro_Temperatura::set_NewLeitura(int check_id)
+void cadastro_Pressao::set_NewLeitura(int check_id)
 {
   if (vagas == 0) // VETOR CHEIO
   {
@@ -76,33 +76,33 @@ void cadastro_Temperatura::set_NewLeitura(int check_id)
   }
 
   // CASO O ID SEJA VÁLIDO O LOOP ANTERIOR NÃO DARÁ 'EXIT' na função (id válida) E O QUE ESTÁ ABAIXO SERÁ EXECUTADO
-  for (int i = 0; i < N_TEMPERATURA; i++)
-  {                                               // loop de checagem id válido (já existente em alguma linha)
-    if (vtemperatura[i].getID_temp() == check_id) // se achamos algum ID igual ao check_id, entao podemos cadastrar uma nova leitura
-    //  porém essa nova leitura pode ser uma linha que já tem o ID mas não tem a temperatura (= -300)
+  for (int i = 0; i < N_PRESSAO; i++)
+  {                                              // loop de checagem id válido (já existente em alguma linha)
+    if (vpressao[i].getID_pressao() == check_id) // se achamos algum ID igual ao check_id, entao podemos cadastrar uma nova leitura
+    //  porém essa nova leitura pode ser uma linha que já tem o ID mas não tem a pressao (= -300)
     //  ou a nova leitura sera em uma linha onde nao temos NENHUM ID
     {
-      // aí aqui fazemos o loop para procurar registros vazios (temperatura = -300) com o ID passado que já foi validado no 'if' anterior
-      for (int i = 0; i < N_TEMPERATURA; i++)
+      // aí aqui fazemos o loop para procurar registros vazios (pressao = -300) com o ID passado que já foi validado no 'if' anterior
+      for (int i = 0; i < N_PRESSAO; i++)
       {
-        if ((vtemperatura[i].getID_temp() == 0 || vtemperatura[i].getID_temp() == check_id) & vtemperatura[i].getValor_temp() == -300) // QUANDO ACHARMOS LUGAR VAZIO (temperatura = -300) => CADASTRO DE NOVA LEITURA
+        if ((vpressao[i].getID_pressao() == 0 || vpressao[i].getID_pressao() == check_id) & vpressao[i].getValor_pressao() == -300) // QUANDO ACHARMOS LUGAR VAZIO (pressao = -300) => CADASTRO DE NOVA LEITURA
         {
-          vtemperatura[i].setID_temp(check_id);
-          vtemperatura[i].readSensor();
+          vpressao[i].setID_pressao(check_id);
+          vpressao[i].readSensor();
           --vagas;
 
           cout << "---------------------------------------------------------------\n";
           cout << "Registro efetuado: \n";
           cout << "    ID    |      Data     |     Hora     |   Valor" << endl;
-          cout << setw(8) << setfill('0') << vtemperatura[i].getID_temp() << "  |  "; // ID
-          vtemperatura[i].dataHora.readCalendar();                                    // Data
+          cout << setw(8) << setfill('0') << vpressao[i].getID_pressao() << "  |  "; // ID
+          vpressao[i].dataHora.readCalendar();                                       // Data
           cout << "   |   ";
-          vtemperatura[i].dataHora.readClock(); // Hora
+          vpressao[i].dataHora.readClock(); // Hora
           cout << "   |  ";
-          cout << vtemperatura[i].getValor_temp() << endl; // Valor
+          cout << vpressao[i].getValor_pressao() << endl; // Valor
           cout << "---------------------------------------------------------------\n \n";
 
-          // cout << "ID: " << vtemperatura[i].getID_temp() << "; Valor: " << vtemperatura[i].getValor_temp() << endl;
+          // cout << "ID: " << vpressao[i].getID_pressao() << "; Valor: " << vpressao[i].getValor_pressao() << endl;
           return;
         }
       }
@@ -114,45 +114,45 @@ void cadastro_Temperatura::set_NewLeitura(int check_id)
   cout << "---------------------------------------------------------------\n \n";
 }
 
-void cadastro_Temperatura::get_Lista_IDs()
+void cadastro_Pressao::get_Lista_IDs()
 {
   cout << "---------------------------------------------------------------\n";
-  for (int i = 0; i < N_TEMPERATURA; i++)
+  for (int i = 0; i < N_PRESSAO; i++)
   {
 
-    cout << "ID[" << i << "] - " << vtemperatura[i].getID_temp() << endl;
+    cout << "ID[" << i << "] - " << vpressao[i].getID_pressao() << endl;
     cout << "---------------------------------------------------------------\n";
   }
 }
 
-void cadastro_Temperatura::get_Consulta_temperatura(int temp1, int temp2)
+void cadastro_Pressao::get_Consulta_pressao(int temp1, int temp2)
 {
   bool temp_valida = false;
 
   cout << "---------------------------------------------------------------\n";
-  for (int i = 0; i < N_TEMPERATURA; i++)
+  for (int i = 0; i < N_PRESSAO; i++)
   {
-    if ((vtemperatura[i].getValor_temp() > temp1) & (vtemperatura[i].getValor_temp() < temp2))
+    if ((vpressao[i].getValor_pressao() > temp1) & (vpressao[i].getValor_pressao() < temp2))
     {
       cout << "    ID    |      Data     |     Hora     |   Valor" << endl;
-      cout << setw(8) << setfill('0') << vtemperatura[i].getID_temp() << "  |  "; // ID
-      vtemperatura[i].dataHora.readCalendar();                                    // Data
+      cout << setw(8) << setfill('0') << vpressao[i].getID_pressao() << "  |  "; // ID
+      vpressao[i].dataHora.readCalendar();                                       // Data
       cout << "   |   ";
-      vtemperatura[i].dataHora.readClock(); // Hora
+      vpressao[i].dataHora.readClock(); // Hora
       cout << "   |  ";
-      cout << vtemperatura[i].getValor_temp() << endl; // Valor
+      cout << vpressao[i].getValor_pressao() << endl; // Valor
       cout << "---------------------------------------------------------------\n";
 
       temp_valida = true;
     }
   }
-  if (temp_valida = true) // quando teve pelo menos 1 vtemperatura no intervalo
+  if (temp_valida = true) // quando teve pelo menos 1 vpressao no intervalo
   {
     cout << "---------------------------------------------------------------\n";
     // terminamos impressao
     temp_valida = false; // resetamos variavel
   }
-  else // quando nao teve nenhuma vtemperatura no intervalo
+  else // quando nao teve nenhuma vpressao no intervalo
   {
     cout << " Nao ha temperaturas registradas no intervalo entre " << temp1 << "ºC e " << temp2 << "ºC " << endl; // mensagem ao usuario
     cout << "---------------------------------------------------------------\n";
@@ -160,9 +160,9 @@ void cadastro_Temperatura::get_Consulta_temperatura(int temp1, int temp2)
   }
 }
 
-void cadastro_Temperatura::get_Listagem_temperaturas()
+void cadastro_Pressao::get_Listagem_pressao()
 {
-  if (vagas == N_TEMPERATURA)
+  if (vagas == N_PRESSAO)
   {
     cout << "---------------------------------------------------------------\n";
     cout << "   Nao ha leituras registradas" << endl; // se a turma está vazia, para por aqui
@@ -174,25 +174,25 @@ void cadastro_Temperatura::get_Listagem_temperaturas()
     cout << "---------------------------------------------------------------\n";
     cout << "    ID    |      Data     |     Hora     |   Valor" << endl;
 
-    for (int i = 0; i < N_TEMPERATURA; i++)
+    for (int i = 0; i < N_PRESSAO; i++)
     {
-      if (vtemperatura[i].getID_temp() > -300)
+      if (vpressao[i].getID_pressao() > -300)
       {
-        cout << setw(8) << setfill('0') << vtemperatura[i].getID_temp() << "  |  "; // ID
-        vtemperatura[i].dataHora.readCalendar();                                    // Data
+        cout << setw(8) << setfill('0') << vpressao[i].getID_pressao() << "  |  "; // ID
+        vpressao[i].dataHora.readCalendar();                                       // Data
         cout << "   |   ";
-        vtemperatura[i].dataHora.readClock(); // Hora
+        vpressao[i].dataHora.readClock(); // Hora
         cout << "   |  ";
-        cout << vtemperatura[i].getValor_temp() << endl; // Valor
+        cout << vpressao[i].getValor_pressao() << endl; // Valor
       }
     }
   }
   cout << "---------------------------------------------------------------\n";
 }
 
-void cadastro_Temperatura::Exclui_temperatura(int check_id, float check_temp, bool apaga_todos)
+void cadastro_Pressao::Exclui_pressao(int check_id, float check_pressao, bool apaga_todos)
 {
-  if (vagas == N_TEMPERATURA) // SEM REGISTROS
+  if (vagas == N_PRESSAO) // SEM REGISTROS
   {
     cout << "---------------------------------------------------------------\n";
     cout << "            Nao ha leitura registrada para excluir" << endl;
@@ -203,15 +203,15 @@ void cadastro_Temperatura::Exclui_temperatura(int check_id, float check_temp, bo
 
   // if (apaga_todos == true) // quando apagamos todos
   // {
-  // for (int i = 0; i < N_TEMPERATURA; i++)
+  // for (int i = 0; i < N_PRESSAO; i++)
   // {
-  //   if ((vtemperatura[i].getID_temp() == check_id))
+  //   if ((vpressao[i].getID_pressao() == check_id))
   //   {
   //     cout << "-------------------------------------\n";
-  //     cout << "Temperatura " << check_temp << "de check_id " << vtemperatura[i].getID_temp() << " excluida" << endl;
+  //     cout << "Pressao " << check_pressao << "de check_id " << vpressao[i].getID_pressao() << " excluida" << endl;
   //     cout << "-------------------------------------\n";
-  //     vtemperatura[i].setID_temp(0);
-  //     vtemperatura[i].setValor_temp(0);
+  //     vpressao[i].setID_pressao(0);
+  //     vpressao[i].setValor_pressao(0);
   //     ++vagas;
   //   }
   // }
@@ -219,29 +219,29 @@ void cadastro_Temperatura::Exclui_temperatura(int check_id, float check_temp, bo
   // else // quando vamos apagar só 1
   // {
 
-  for (int i = 0; i < N_TEMPERATURA; i++)
+  for (int i = 0; i < N_PRESSAO; i++)
   {
     // ENCONTRA ID E TEMPERATURA
-    if ((vtemperatura[0].getValor_temp() > (check_temp - 0.01)) & (vtemperatura[0].getValor_temp() < (check_temp + 0.01)) & (vtemperatura[0].getID_temp() == check_id))
+    if ((vpressao[0].getValor_pressao() > (check_pressao - 0.01)) & (vpressao[0].getValor_pressao() < (check_pressao + 0.01)) & (vpressao[0].getID_pressao() == check_id))
     {
       cout << "---------------------------------------------------------------\n";
       cout << "                     Registro excluido:" << endl;
-      cout << "ID: " << vtemperatura[0].getID_temp() << "; Temperatura: " << vtemperatura[0].getValor_temp() << endl;
+      cout << "ID: " << vpressao[0].getID_pressao() << "; Pressao: " << vpressao[0].getValor_pressao() << endl;
       cout << "---------------------------------------------------------------\n";
-      vtemperatura[0].setID_temp(0);
-      vtemperatura[0].setValor_temp(0);
+      vpressao[0].setID_pressao(0);
+      vpressao[0].setValor_pressao(0);
       ++vagas;
       return;
     }
-    cout << vtemperatura[0].getValor_temp();
-    cout << vtemperatura[0].getID_temp();
+    cout << vpressao[0].getValor_pressao();
+    cout << vpressao[0].getID_pressao();
     // return;
     // }
-    // else if (i = (N_TEMPERATURA - 1)) // se chegou aqui não achou nenhuma, logo ID não existe
+    // else if (i = (N_PRESSAO - 1)) // se chegou aqui não achou nenhuma, logo ID não existe
     // {
     cout << "---------------------------------------------------------------\n";
     cout << "                 Registro nao encontrado! " << endl;
-    cout << "ID: " << check_id << "; Temperatura: " << check_temp << endl;
+    cout << "ID: " << check_id << "; Pressao: " << check_pressao << endl;
     cout << "---------------------------------------------------------------\n";
     //   return;
     // }
@@ -249,19 +249,18 @@ void cadastro_Temperatura::Exclui_temperatura(int check_id, float check_temp, bo
   }
 }
 
-void interface_temp()
+void interface_pressao()
 {
 
   bool continuar = true;
   int b_id, b_switch;
-  float b_temp1, b_temp2;
-  cadastro_Temperatura temperatura;
+  float b_pressao1, b_pressao2;
+  cadastro_Pressao pressao;
 
   while (continuar == true)
   {
-    cout << "---------------------- Temperatura ----------------------------\n";
-
-    cout << "Capacidade: " << N_TEMPERATURA << " registros; Leituras disponiveis para registro: " << temperatura.vagas << endl;
+    cout << "------------------------- Pressao -------------------------------\n";
+    cout << "Capacidade: " << N_PRESSAO << " registros; Leituras disponiveis para registro: " << pressao.vagas << endl;
 
     cout << "1 - Cadastro de Sensor" << endl;
     cout << "2 - Registro Leitura do Sensor" << endl;
@@ -276,12 +275,12 @@ void interface_temp()
 
     switch (b_switch)
     {
-      // --------------- Temperatura ---------------
+      // --------------- Pressao ---------------
     case 1: // 1 - Cadastro de Sensor
     {
       cout << "Digite o numero de identificacao (ID): ";
       cin >> b_id;
-      temperatura.set_new_ID(b_id);
+      pressao.set_new_ID(b_id);
       break;
     }
 
@@ -289,9 +288,9 @@ void interface_temp()
     {
       cout << "Digite o numero de identificacao (ID): ";
       cin >> b_id;
-      temperatura.set_NewLeitura(b_id);
+      pressao.set_NewLeitura(b_id);
       break;
-      // o valor de leitura já é realizado na classe 'Temperatura' que fornece um rand para o método setValor da classe 'Sensor'
+      // o valor de leitura já é realizado na classe 'Pressao' que fornece um rand para o método setValor da classe 'Sensor'
       // a data tbm gera automatico -> pega do sistema operacional
     }
 
@@ -300,24 +299,24 @@ void interface_temp()
       cout << "Digite o numero de identificacao (ID): ";
       cin >> b_id;
 
-      cout << "Digite os limites do intervalo de temperatura (temp1 a temp2) em graus Celsius" << endl;
-      cout << "Temperatura 1: ";
-      cin >> b_temp1;
-      cout << "Temperatura 2: ";
-      cin >> b_temp2;
+      cout << "Digite os limites do intervalo de pressao (temp1 a temp2) em graus Celsius" << endl;
+      cout << "Pressao 1: ";
+      cin >> b_pressao1;
+      cout << "Pressao 2: ";
+      cin >> b_pressao2;
 
-      temperatura.get_Consulta_temperatura(b_temp1, b_temp2);
+      pressao.get_Consulta_pressao(b_pressao1, b_pressao2);
       break;
     }
 
     case 4: // 4 - Listar IDs
     {
-      temperatura.get_Lista_IDs();
+      pressao.get_Lista_IDs();
       break;
     }
     case 5: // 4 - Listar todas as leituras de 1 ID
     {
-      temperatura.get_Listagem_temperaturas();
+      pressao.get_Listagem_pressao();
       break;
     }
 
@@ -327,33 +326,33 @@ void interface_temp()
       cout << "Digite o numero de identificacao (ID): ";
       cin >> b_id;
 
-      cout << "Digite a temperatura que deseja excluir: ";
-      cin >> b_temp1;
-      temperatura.Exclui_temperatura(b_id, b_temp1, false);
-
       // cout << "Qual dos registros voce deseja excluir:" << endl;
-      // for (int i = 0; i < N_TEMPERATURA; i++)
+      // for (int i = 0; i < N_PRESSAO; i++)
       // {
-      //   if (temperatura.vtemperatura[i].getValor_temp() > (-273.15))
+      //   if (pressao.vpressao[i].getValor_pressao() > (-273.15))
       //   {
-      //     cout << i << " - " << vtemperatura[i].getValor_temp() << endl;
+      //     cout << i << " - " << vpressao[i].getValor_pressao() << endl;
       //   }
       // }
-      // cout << "Voce deseja excluir um ou todos os registros?\n";
-      // cout << "1 - Apenas um registro do sensor" << endl;
-      // cout << "2 - Todos os registros do sensor" << endl;
-      // cin >> b_temp2;
+      cout << "Voce deseja excluir um ou todos os registros?\n";
+      cout << "1 - Apenas um registro do sensor" << endl;
+      cout << "2 - Todos os registros do sensor" << endl;
+      cin >> b_pressao2;
 
-      // if (b_temp2 == 2)
+      cout << "Digite a pressao que deseja excluir: ";
+      cin >> b_pressao1;
+      pressao.Exclui_pressao(b_id, b_pressao1, false);
+
+      // if (b_pressao2 == 2)
       // {
-      //   temperatura.Exclui_temperatura(b_temp1, 0, true);
+      //   pressao.Exclui_pressao(b_pressao1, 0, true);
       //   break;
       // }
       // else
       // {
-      //   cout << "Digite a temperatura que deseja excluir: ";
-      //   cin >> b_temp1;
-      //   temperatura.Exclui_temperatura(b_temp1, b_temp1, false);
+      //   cout << "Digite a pressao que deseja excluir: ";
+      //   cin >> b_pressao1;
+      //   pressao.Exclui_pressao(b_pressao1, b_pressao1, false);
       break;
       // }
     }
@@ -362,6 +361,7 @@ void interface_temp()
     {
       continuar = false;
     }
+
     default:
     {
       cout << "Opcao invalida, tente novamente" << endl;

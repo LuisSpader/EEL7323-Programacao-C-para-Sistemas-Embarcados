@@ -1,7 +1,7 @@
 /*
  * file: Pressao.h
  *
- * Descricao: Classe Pressao utilizada para realizar a leitura do sensor de temperatura, e data data/hora da leitura realizada.
+ * Descricao: Classe Pressao utilizada para realizar a leitura do sensor de Pressao, e data data/hora da leitura realizada.
  *
  * Autor: Eduardo Augusto Bezerra
  * Data: 09/12/2021
@@ -11,13 +11,20 @@
  *
  */
 
-#include "Sensor.cpp"
-#include "ClockCalendar.cpp"
+// #include "Sensor.cpp"
+// #include "ClockCalendar.cpp"
 
-class Pressao : public Sensor
+class Pressao : virtual public Sensor
 {
-  ClockCalendar dataHora;
 
 protected:
-  void readSensor();
+public:
+  int getID_pressao();
+  void setID_pressao(int);
+  float getValor_pressao();
+  void setValor_pressao(float);
+  void readSensor(); // funcao virtual pura
+
+  Pressao();
+  ClockCalendar dataHora;
 };

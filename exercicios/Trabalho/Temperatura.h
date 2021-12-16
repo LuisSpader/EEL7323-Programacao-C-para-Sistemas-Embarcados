@@ -14,15 +14,10 @@
 #include "Sensor.cpp"
 #include "ClockCalendar.cpp"
 
-class Temperatura : public Sensor
-// class Temperatura
+class Temperatura : virtual public Sensor
 {
-  // int ID;
-  // float leitura;
 
 protected:
-  // void readSensor(int ID, float leitura);
-
 public:
   int getID_temp();
   void setID_temp(int);
