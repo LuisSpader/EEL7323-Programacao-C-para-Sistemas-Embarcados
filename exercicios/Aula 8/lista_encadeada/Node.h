@@ -20,13 +20,13 @@
 class Node
 {
 
-  int val;
-  Node *next;
+  int val;    // valor que o nodo armazena
+  Node *next; // ponteiro para próximo Nodo
 
 public:
-  Node(int dat, Node *nxt);
-  int getVal();
-  Node *getNext();
-  void setVal(int dat);
-  void setNext(Node *nxt);
+  Node(int dat, Node *nxt); // construtor do Nodo
+  int getVal();             // Retorna valor salvo no Nodo
+  Node *getNext();          // retorna valor do ponteiro
+  void setVal(int dat);     // atualiza valor do Nodo
+  void setNext(Node *nxt);  // atualiza ponteiro
 };

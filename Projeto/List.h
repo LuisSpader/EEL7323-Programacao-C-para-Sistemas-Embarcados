@@ -25,6 +25,12 @@
    Data da ultima alteracao: 8 de outubro de 2015.
 
 */
+// Fila: 2 eventos:
+// •O ar-condicionado foi ajustado devido à variações na temperatura externa.
+// •Um dos botões de ajuste foi pressionado, quando o usuário informou que não estava satisfeito com a temperatura atual.
+// Na ocorrência de cada um desses eventos, deverá ser incluído um novo nodo na fila contendo:
+// ID do controlador (cada equipamento possui um ID único);
+// data/hora do evento (usar o clock/calendar desenvolvido anteriormente).
 
 #include "Node.cpp"
 
@@ -36,11 +42,18 @@ class List
 public:
   List(); // construtor -> ao construir cria objeto 'Node': head = 0;
   ~List();
-  void insertBeforeFirst(int dat);
-  void insertAfterLast(int dat);
+
+  void create_first_Node(int new_ID, int new_temp, bool new_automatico_ou_botao);
+
+  void insertBeforeFirst(int new_ID, int new_temp, bool new_automatico_ou_botao);
+  void insertAfterLast(int new_ID, int new_temp, bool new_automatico_ou_botao);
+
   int readFirst();
   int removeFirst();
-  void insertionSort(int value);
-  int removeNode(int dat);
+
+  void insertionSort(int new_ID, int new_temp, bool new_automatico_ou_botao);
+  int removeNode(int temp);
   void listAll();
+
+  void List::setID(int newID);
 };

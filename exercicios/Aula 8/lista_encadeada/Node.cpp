@@ -18,7 +18,6 @@
 #include "Node.h"
 
 // Constructor - initializes the node
-//
 Node::Node(int dat, Node *nxt)
 {
   val = dat;
@@ -26,28 +25,24 @@ Node::Node(int dat, Node *nxt)
 }
 
 // getVal returns the integer value stored in the node
-//
 int Node::getVal()
 {
   return val;
 }
 
 // getNext returns a pointer for the next node in the linked list
-//
 Node *Node::getNext()
 {
   return next;
 }
 
 // setVal stores the integer value in the node
-//
 void Node::setVal(int dat)
 {
   val = dat;
 }
 
 // setNext stores the pointer to the next node in the list in the "next" field
-//
 void Node::setNext(Node *nxt)
 {
   next = nxt;

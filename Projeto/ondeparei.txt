@@ -1,0 +1,28 @@
+06/02/2022
+O que fiz:
+  Alterei o nó para possuir
+    ID
+    temperatura
+    se a alteração foi automatica ou não (bool)
+    ponteiro para próximo nodo
+
+O que devo fazer:
+  Parei na classe List
+  Se ao invés de alterar a classe list, eu criar uma classe 'log de operacoes', como irei registrar a hora numa lista?
+  Creio eu que a melhor abordagem seja alterar a classe 'List' para conter uma variável do tipo ClockCalendar
+
+---------------------------------------------
+PERGUNTAS PARA SE FAZER AO PROFESSOR
+1- De onde pegaremos as horas? elas serão inicializadas de que forma?
+2- Como funcionará o ID? 
+  como será gerado?
+  como faremos a 'troca' no controle, para alterar a temperatura de 1 dispositivo e não do outro
+3- Tensorflow
+  a - já armazena variável de temperatura atual?
+  b - já possui sistema de controle?
+
+
+==================================================
+XX/02/2022
+O que fiz:
+O que devo fazer:
