@@ -6,25 +6,17 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 // #include <cstring>
 // #include <list>
 
-#include "Clock.cpp"
-#include "Calendar.cpp"
+#include "ClockCalendar.cpp"
 
-using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
-
-class ClockCalendar : public Clock, public Calendar
+class Controle
 {
 private:
   bool was_pm;
+  ClockCalendar data_horario;
 
 public:
-  // friend string friend_getClockCalendar();
+  friend class Node; // assim 'Node' acessa este único objeto que está
+  friend string getClockCalendar();
 
-  // Construtor: inicia classe
-  // ClockCalendar(int h, int s, int m, bool pm, int d, int mo, int a);
-  // ClockCalendar(int h, int m, int s, bool pm, string date_buffer);
-  // ClockCalendar(string hour_buffer, int pm, string date_buffer);
-  ClockCalendar();
-  void setClock_timelib();
-
-  void advance();
+  // dentro da classe 'Controle' Controle();
 };

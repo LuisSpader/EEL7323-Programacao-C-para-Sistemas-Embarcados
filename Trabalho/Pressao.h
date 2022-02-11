@@ -12,7 +12,7 @@
  */
 
 // #include "Sensor.cpp"
-// #include "ClockCalendar.cpp"
+#include "ClockCalendar.cpp"
 
 class Pressao : virtual public Sensor
 {

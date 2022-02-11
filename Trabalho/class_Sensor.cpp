@@ -29,7 +29,7 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 class_Sensor::class_Sensor()
 {
   id_sensor = 0;
-  valor = 0;
+  nota1 = 0;
   nota2 = 0;
 }
 

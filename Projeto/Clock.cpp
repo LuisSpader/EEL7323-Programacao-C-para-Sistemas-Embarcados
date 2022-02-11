@@ -128,12 +128,9 @@ void Clock::setStringToTime(string hour_buffer, int pm)
 
 void Clock::readClock()
 {
-      // cout << "Hora (hora:min:segundo): " << hr << ":" << min << ":" << sec << (is_pm ? " pm" : " am") << endl;
-
       cout << setw(2) << setfill('0') << hr << ":"
            << setw(2) << setfill('0') << min << ":"
            << setw(2) << setfill('0') << sec;
-      //      << (is_pm ? " pm" : " am");
 }
 
 void Clock::advance()

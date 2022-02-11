@@ -19,8 +19,8 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 
 Pressao::Pressao()
 {
-  setValor(-300);
-  setID(0);
+  setValor_pressao(-300);
+  setID_pressao(0);
 }
 
 // Aqui está a implementação para a Função Virtual Pura (função sem declaração) herdada da classe 'Sensor'
@@ -31,27 +31,27 @@ void Pressao::readSensor()
   dataHora.setClock_timelib();
 
   // Simulacao de leitura de sensor
-  setValor(static_cast<float>(rand()) / static_cast<float>(RAND_MAX));
+  setValor_pressao(static_cast<float>(rand()) / static_cast<float>(RAND_MAX));
 }
 
 // SET
 void Pressao::setID_pressao(int newID)
 {
-  setID(newID);
+  setID_pressao(newID);
 }
 
 void Pressao::setValor_pressao(float newValor)
 {
-  setValor(newValor);
+  setValor_pressao(newValor);
 }
 
 // GET
 int Pressao::getID_pressao()
 {
-  return getID();
+  return getID_pressao();
 }
 
 float Pressao::getValor_pressao()
 {
-  return getValor();
+  return getValor_pressao();
 }

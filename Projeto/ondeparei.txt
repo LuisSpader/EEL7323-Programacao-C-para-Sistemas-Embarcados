@@ -20,9 +20,29 @@ PERGUNTAS PARA SE FAZER AO PROFESSOR
 3- Tensorflow
   a - já armazena variável de temperatura atual?
   b - já possui sistema de controle?
+4- Como fazer a classe 'Node' pegar as variáveis de um objeto do tipo ClockCalendar que seria único e que estaria no 'main' ou em outra classe. Ex:
+  Classe controle{ 
+    ClockCalendar data_horario;
+    friend class Node; 
+    }
+  Classe Node{ string Node::friend_getClockCalendar() #acessa horario}
 
 
 ==================================================
 XX/02/2022
 O que fiz:
 O que devo fazer:
+==================================================
+Log de operações
+a) Ler ID e registrar com o log
+b) Data e hora (Clock Calendar)
+  ? Como será sincronizada a hora? de onde pegaríamos a informação
+    Poderia haver um 'setClock' manual
+
+==================================================
+Classe controle
+  a) irá ter objeto ClockCalendar único -> dentro do OS do controlador em alguma classe...
+    - Nó terá construtor que ao ser inicializada acessará as variáveis de ClockCalendar e atribuirá à apena 1 variável do tipo 'string' com todas as informações necessárias do ClockCalendar (do nó). Assim cada nó terá suas variáveis internas de hora,minuto,segundo, data ..
+    - Para o nó acessar os métodos ele será 'friend' de ClockCalendar, assim cada vez que for criado um objeto do tipo nó, NÃO SERÁ CRIADO NENHUM OBJETO NOVO DE ClockCalendar (o que aconteceria caso fosse utilizada herança ou polimorfismo)
+
+    ST placas com RTC Real Time Clock (sistema de relógio)

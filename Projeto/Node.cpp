@@ -27,9 +27,36 @@ Node::Node(int new_ID,
   temp = new_temp;
   automatico_ou_botao = new_automatico_ou_botao;
   next = nxt;
+
+  data_hora = getClockCalendar();
 }
 
 // --------- GET ---------
+string Node::getClockCalendar()
+// string Node::getClockCalendar(Controle *p)
+// string Node::getClockCalendar()
+{
+  // Controle *p;
+  int h, m, s, d, m, a;
+  // h = p->hr;
+  // m = p->min;
+  // s = p->sec;
+
+  // d = p->dia;
+  // m = p->mes;
+  // a = p->ano;
+
+  h = hr;
+  m = min;
+  s = sec;
+
+  d = dia;
+  m = mes;
+  a = ano;
+
+  // obj_data_horario.readClock();
+}
+
 int Node::get_ID()
 {
   return ID;
