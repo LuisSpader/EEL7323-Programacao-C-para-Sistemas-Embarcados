@@ -8,31 +8,22 @@
 #include <ctime> // para usar time()
 #include "ClockCalendar.h"
 
-// ClockCalendar::ClockCalendar(int h, int m, int s, bool pm, string date_buffer) : Clock(h, m, s, pm), Calendar(date_buffer)
-// ClockCalendar::ClockCalendar(string hour_buffer, int pm, string date_buffer) : Clock(hour_buffer, pm), Calendar(date_buffer)
-// ClockCalendar::ClockCalendar(string buffer_time)
+#include "hardware/rtc.h"
+#include "pico/stdlib.h"
+#include "pico/util/datetime.h"
+
 ClockCalendar::ClockCalendar()
 {
-  // // Www Mmm dd hh:mm:ss yyyy
-  // string buffer_d, buffer_h;
-  // buffer_d = (buffer_time.substr(4, 2));
-  // buffer_h = (buffer_time.substr(0, 2));
 
   Clock();    // assim já iniciamos com um valor dado de hora
   Calendar(); // assim já iniciamos com um valor dado de data
 }
 
-void ClockCalendar::setClock_timelib()
+void ClockCalendar::setClockCalendar_timelib()
 {
-  // string buffer;
-  // buffer = time(0); // Www Mmm dd hh:mm:ss yyyy
-  // Calendar::setStringToDate(buffer.substr(0, 2));
 
   time_t now = time(0);
-  // struct tm *horariolocal;
   tm *ltm = localtime(&now);
-  // time(&t);
-  // horariolocal = localtime(&t);
 
   hr = ltm->tm_hour;
   min = ltm->tm_min;
@@ -43,7 +34,6 @@ void ClockCalendar::setClock_timelib()
   ano = ltm->tm_year;
 
   Calendar::setStringToDate("15/12/2021");
-  // Clock::setStringToTime("18:15:00", 0);
 }
 
 void ClockCalendar::advance()

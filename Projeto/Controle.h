@@ -12,11 +12,11 @@ class Controle
 {
 private:
   bool was_pm;
-  ClockCalendar data_horario;
+  // ClockCalendar data_horario;
 
 public:
   friend class Node; // assim 'Node' acessa este único objeto que está
-  friend string getClockCalendar();
+  // friend string getClockCalendar();
 
   // dentro da classe 'Controle' Controle();
 };

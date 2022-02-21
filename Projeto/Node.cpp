@@ -28,7 +28,8 @@ Node::Node(int new_ID,
   automatico_ou_botao = new_automatico_ou_botao;
   next = nxt;
 
-  data_hora = getClockCalendar();
+  // data_hora = getClockCalendar();
+  // data_hora = clock_calendar.getClockCalendarString();
 }
 
 // --------- GET ---------

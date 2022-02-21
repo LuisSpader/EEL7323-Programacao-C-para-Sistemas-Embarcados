@@ -27,6 +27,7 @@ class Node : virtual public ClockCalendar
 
   string data_hora; // aqui será armazenada toda a informação de data e hora;
   // ClockCalendar horario_data; // INSERIR CLOCK CALENDAR -> analisar como a hora será inicializada/sincronizada // salvar objetos com dados já dentro do nó (para o acesso ao ClockCalendar ser só durante o evento, mas não durante a transmissão dos logs)
+  ClockCalendar clock_calendar;
 
   Node *next; // ponteiro para próximo Nodo
 
