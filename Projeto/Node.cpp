@@ -16,6 +16,41 @@
 */
 
 #include "Node.h"
+#include "headers.h"
+#include <string.h>
+#include "ClockCalendar.h"
+
+class Node : virtual public ClockCalendar
+{
+  int ID;                   // nodo armazenará ID do aparelho para log de eventos
+  int temp;                 // valor que o nodo armazena -> temperatura
+  bool automatico_ou_botao; // para sabermos se a mudanca foi automatica ou devido à requisição do usuario (pressionou botão): 1 = automatico | 0= botão
+
+  string data_hora; // aqui será armazenada toda a informação de data e hora;
+  // ClockCalendar horario_data; // INSERIR CLOCK CALENDAR -> analisar como a hora será inicializada/sincronizada // salvar objetos com dados já dentro do nó (para o acesso ao ClockCalendar ser só durante o evento, mas não durante a transmissão dos logs)
+  ClockCalendar clock_calendar;
+
+  Node *next; // ponteiro para próximo Nodo
+
+public:
+  Node(int new_ID, int new_temp, bool new_automatico_ou_botao, Node *nxt); // construtor do Nodo
+
+  string getClockCalendar();
+
+  // --------- GET ---------
+  int get_ID(); // Retorna valor salvo no Nodo
+  int get_temp();
+  int get_automatico_ou_botao();
+  int get_All_Data();
+  Node *getNext(); // retorna valor do ponteiro
+
+  // --------- SET ---------
+  void set_ID(int new_ID); // atualiza ID do Nodo
+  void set_temp(int new_temp);
+  void set_automatico_ou_botao(bool new_automatico_ou_botao);
+
+  void setNext(Node *nxt); // atualiza ponteiro
+};
 
 // Constructor - initializes the node
 Node::Node(int new_ID,
@@ -27,15 +62,10 @@ Node::Node(int new_ID,
   temp = new_temp;
   automatico_ou_botao = new_automatico_ou_botao;
   next = nxt;
-
-  // data_hora = getClockCalendar();
-  // data_hora = clock_calendar.getClockCalendarString();
 }
 
 // --------- GET ---------
 string Node::getClockCalendar()
-// string Node::getClockCalendar(Controle *p)
-// string Node::getClockCalendar()
 {
   // Controle *p;
   int h, m, s, d, m, a;
@@ -54,8 +84,6 @@ string Node::getClockCalendar()
   d = dia;
   m = mes;
   a = ano;
-
-  // obj_data_horario.readClock();
 }
 
 int Node::get_ID()

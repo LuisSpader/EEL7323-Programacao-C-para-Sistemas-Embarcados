@@ -30,17 +30,36 @@
 // ID do controlador (cada equipamento possui um ID único);
 // data/hora do evento (usar o clock/calendar desenvolvido anteriormente).
 
-#include "List.h"
+// #include "List.h"
+#include "Node.cpp"
+
+class List
+{
+
+  Node *head;
+
+public:
+  List(); // construtor -> ao construir cria objeto 'Node': head = 0;
+  ~List();
+
+  void create_first_Node(int new_ID, int new_temp, bool new_automatico_ou_botao);
+
+  void insertBeforeFirst(int new_ID, int new_temp, bool new_automatico_ou_botao);
+  void insertAfterLast(int new_ID, int new_temp, bool new_automatico_ou_botao);
+
+  int readFirst();
+  int removeFirst();
+
+  void insertionSort(int new_ID, int new_temp, bool new_automatico_ou_botao);
+  int removeNode(int temp);
+  void listAll();
+
+  void List::setID(int newID);
+};
 
 List::List()
 {
   head = 0; // a classe Node possui 2 argumentos, aqui estamos igualando ambos a 0?
-  // 'head' é um ponteiro do tipo 'Node', logo faz o ponteiro apontar para o endereço '0...'
-  //   Node::Node(int 0, Node *0)
-  // {
-  //   val = 0;
-  //   next = 0;
-  // }
 }
 
 List::~List()

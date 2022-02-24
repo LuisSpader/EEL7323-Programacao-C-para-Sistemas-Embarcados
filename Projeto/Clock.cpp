@@ -24,22 +24,14 @@ protected:
       bool is_pm;
 
 public:
-      // Clock(int h, int m, int s, int pm); // construtor
-      // Clock(string hour_buffer, int pm); // construtor
-      // Clock(string buffer_h); // construtor
       Clock(); // construtor
-
-      // void setClock(int h, int m, int s, int pm);
       void setStringToTime(string hour_buffer, int pm);
       void readClock(); //
       void advance();
 };
 
-// Clock::Clock(int h, int m, int s, int pm)
-// Clock::Clock(string buffer_h)
 Clock::Clock()
 {
-      // setClock(h, m, s, pm);
       setStringToTime("00:00:00", 0);
 }
 
@@ -100,8 +92,6 @@ void Clock::setStringToTime(string hour_buffer, int pm)
       }
 
       is_pm = (pm ? true : false);
-
-      // setClock(hr, min, sec);
 }
 
 // void Clock::setClock(int h, int m, int s, int pm)
