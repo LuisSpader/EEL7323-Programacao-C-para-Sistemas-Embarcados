@@ -62,6 +62,7 @@ Node::Node(int new_ID,
   temp = new_temp;
   automatico_ou_botao = new_automatico_ou_botao;
   next = nxt;
+  data_hora = clock_calendar.str_data_hora;
 }
 
 // --------- GET ---------

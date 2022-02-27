@@ -1,28 +1,28 @@
 //---------------------------- LIBRARIES ------------------------ //
-#include <string.h> // Para trabalhar com strings
-#include <iostream> // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
+#include <string.h>
+#include <iostream>
 // #include <string.h>  // Para trabalhar com strings
-#include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
-using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
-#include <iomanip>   // para usar setfill() e setw()
+#include <stdlib.h>
+using namespace std;
+#include <iomanip>
 
-//---------------------------- Functions ------------------------ //
-// mes, dia, ano
-#include "Calendar.h"
+class Calendar
+{
+protected:
+  int dia, mes, ano;
+
+public:
+  stringstream str_data;
+
+  Calendar(); // construtor
+  void setStringToDate(string date_buffer);
+  void setCalendar(int d, int mo, int a);
+  void readCalendar();
+  void setCalendarString();
+  void advance();
+};
 
 // ------------------- Construtor ------------------- //
-
-// void Calendar::Calendar(int d, int mo, int a)
-// { // construtor da classe
-//   dia = d;
-//   mes = mo;
-//   ano = a;
-//   // date = "";
-// }
-
-// construtor da classe
-// Calendar::Calendar(string date_buffer)
-// Calendar::Calendar(string buffer_date)
 Calendar::Calendar()
 {
   setStringToDate("00/00/0000");
@@ -30,7 +30,7 @@ Calendar::Calendar()
 
 // ------------------- Logic Functions ------------------- //
 
-// // Função: Verifica se é número
+// Função: Verifica se é número
 // bool isNumber(const string &str)
 // {
 //   for (char const &c : str)
@@ -42,7 +42,6 @@ Calendar::Calendar()
 // }
 
 // ------------------- SET -------------------
-
 void Calendar::setStringToDate(string date_buffer)
 {
   string temp;
@@ -118,6 +117,15 @@ void Calendar::readCalendar()
       << setw(2) << setfill('0') << mes << "/"
       << setw(4) << setfill('0') << ano;
 }
+
+void Calendar::setCalendarString()
+{
+  str_data //<< "Data (dia/mes/ano): "
+      << setw(2) << setfill('0') << dia << "/"
+      << setw(2) << setfill('0') << mes << "/"
+      << setw(4) << setfill('0') << ano;
+}
+
 void Calendar::advance()
 {
   if (dia >= 30)

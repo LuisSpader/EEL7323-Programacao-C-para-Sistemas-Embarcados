@@ -1,26 +1,40 @@
 // #include <iostream>  // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
 // #include <stdlib.h>  // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
-// using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
+// using namespace std; // Esse comando é utilizado de forma a evitar a isndicação std:: antes de usar o comando cout, etc...
 
-// #include <string.h>  // Para trabalhar com strings
+// #include "hardware/rtc.h"
+// #include "pico/stdlib.h"
+// #include "pico/util/datetime.h"
+
+#include <string.h>
 // #include <cstring>
 // #include <list>
 #include <ctime> // para usar time()
-#include "ClockCalendar.h"
+//-----------------
+#include "Clock.cpp"
+#include "Calendar.cpp"
 
-#include "hardware/rtc.h"
-#include "pico/stdlib.h"
-#include "pico/util/datetime.h"
+using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
+
+class ClockCalendar : public Clock, public Calendar
+{
+private:
+  bool was_pm;
+
+public:
+  string str_data_hora;
+
+  ClockCalendar();
+  void setClockCalendar_timelib();
+  void setClockCalendarString();
+
+  void advance();
+};
 
 ClockCalendar::ClockCalendar()
 {
-
   Clock();    // assim já iniciamos com um valor dado de hora
   Calendar(); // assim já iniciamos com um valor dado de data
-}
-
-void ClockCalendar::setClockCalendar_timelib()
-{
 
   time_t now = time(0);
   tm *ltm = localtime(&now);
@@ -31,8 +45,15 @@ void ClockCalendar::setClockCalendar_timelib()
 
   dia = ltm->tm_mday;
   mes = ltm->tm_mon;
-  ano = ltm->tm_year;
+  ano = (ltm->tm_year) + 1900;
 
+  Calendar::setCalendarString();
+  Clock::setClockString();
+  setClockCalendarString();
+}
+
+void ClockCalendar::setClockCalendar_timelib()
+{
   Calendar::setStringToDate("15/12/2021");
 }
 
@@ -47,4 +68,12 @@ void ClockCalendar::advance()
   {
     Calendar::advance();
   }
+}
+
+void ClockCalendar::setClockCalendarString()
+{
+  stringstream buffer;
+  buffer << str_data.str() << " - " << str_hora.str();
+  str_data_hora = buffer.str();
+  // return str_data_hora.str();
 }

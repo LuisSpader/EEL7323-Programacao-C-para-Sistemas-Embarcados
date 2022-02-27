@@ -10,6 +10,7 @@
  * Linha de comando: g++ -o xxx xxx.cpp
  *
  */
+#include <string.h>
 #include <iomanip>
 #include <stdlib.h> // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
 #include <iostream> // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
@@ -24,9 +25,11 @@ protected:
       bool is_pm;
 
 public:
+      stringstream str_hora;
       Clock(); // construtor
       void setStringToTime(string hour_buffer, int pm);
       void readClock(); //
+      void setClockString();
       void advance();
 };
 
@@ -93,29 +96,6 @@ void Clock::setStringToTime(string hour_buffer, int pm)
 
       is_pm = (pm ? true : false);
 }
-
-// void Clock::setClock(int h, int m, int s, int pm)
-// {
-//       hr = h;
-//       min = m;
-//       sec = s;
-//       is_pm = (pm ? true : false);
-//       // switch (pm)
-//       // {
-//       // case 0:
-//       //       is_pm = false;
-//       //       break;
-
-//       // case 'pm':
-//       //       is_pm = true;
-//       //       break;
-
-//       // default:
-//       //       cout << "Invalid am-pm";
-//       //       break;
-//       // }
-// }
-
 void Clock::readClock()
 {
       cout << setw(2) << setfill('0') << hr << ":"
@@ -123,6 +103,12 @@ void Clock::readClock()
            << setw(2) << setfill('0') << sec;
 }
 
+void Clock::setClockString()
+{
+      str_hora << setw(2) << setfill('0') << hr << ":"
+               << setw(2) << setfill('0') << min << ":"
+               << setw(2) << setfill('0') << sec;
+}
 void Clock::advance()
 {
       sec++;
