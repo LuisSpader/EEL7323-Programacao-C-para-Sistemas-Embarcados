@@ -18,9 +18,10 @@
 #include "Node.h"
 #include "headers.h"
 #include <string.h>
-#include "ClockCalendar.h"
 
-class Node : virtual public ClockCalendar
+#include "ClockCalendar.cpp"
+
+class Node
 {
   int ID;                   // nodo armazenará ID do aparelho para log de eventos
   int temp;                 // valor que o nodo armazena -> temperatura
@@ -41,7 +42,9 @@ public:
   int get_ID(); // Retorna valor salvo no Nodo
   int get_temp();
   int get_automatico_ou_botao();
-  int get_All_Data();
+  string get_DataHora();
+  void get_All_Data();
+  string get_All_DataString();
   Node *getNext(); // retorna valor do ponteiro
 
   // --------- SET ---------
@@ -61,31 +64,11 @@ Node::Node(int new_ID,
   ID = new_ID;
   temp = new_temp;
   automatico_ou_botao = new_automatico_ou_botao;
-  next = nxt;
   data_hora = clock_calendar.str_data_hora;
+  next = nxt;
 }
 
 // --------- GET ---------
-string Node::getClockCalendar()
-{
-  // Controle *p;
-  int h, m, s, d, m, a;
-  // h = p->hr;
-  // m = p->min;
-  // s = p->sec;
-
-  // d = p->dia;
-  // m = p->mes;
-  // a = p->ano;
-
-  h = hr;
-  m = min;
-  s = sec;
-
-  d = dia;
-  m = mes;
-  a = ano;
-}
 
 int Node::get_ID()
 {
@@ -97,16 +80,31 @@ int Node::get_temp()
   return temp;
 }
 
+string Node::get_DataHora()
+{
+  return data_hora;
+}
+
 int Node::get_automatico_ou_botao()
 {
   return automatico_ou_botao;
 }
 
-int Node::get_All_Data()
+void Node::get_All_Data()
 {
+  get_DataHora();
   get_ID();
   get_temp();
   get_automatico_ou_botao();
+}
+
+string Node::get_All_DataString()
+{
+  stringstream buffer;
+  string buffer_string;
+  buffer << data_hora << " | " << ID << " | " << temp << " | " << automatico_ou_botao << " | " << endl;
+  buffer_string = buffer.str();
+  return buffer_string;
 }
 
 // getNext returns a pointer for the next node in the linked list

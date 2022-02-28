@@ -36,7 +36,7 @@
 class List
 {
 
-  Node *head;
+  Node *head; // ponteiro com tamanho de endereço de um 'Node'
 
 public:
   List(); // construtor -> ao construir cria objeto 'Node': head = 0;
@@ -77,6 +77,10 @@ List::~List()
 void List::create_first_Node(int new_ID, int new_temp, bool new_automatico_ou_botao)
 {
   head = new Node(new_ID, new_temp, new_automatico_ou_botao, head);
+  // aqui criamos um novo nó: new Node(...)
+  // e
+  // salvamos o endereço deste novo 'Node' criado na variável de ponteiro 'head'
+  // a próxima vez que for criado um novo Node, este apontará para o endereço armazenado anteriormente na variável head
 }
 
 void List::insertBeforeFirst(int new_ID, int new_temp, bool new_automatico_ou_botao)
@@ -91,19 +95,29 @@ void List::insertBeforeFirst(int new_ID, int new_temp, bool new_automatico_ou_bo
 void List::insertAfterLast(int new_ID, int new_temp, bool new_automatico_ou_botao)
 {
   // declara 2 ponteiros do tipo 'Node' e os mesmos serão iguais a outra 'Node' chamado 'head', caso já exista algum 'nodo': head não apontará para o endereço 0
-  Node *p = head;
-  Node *q = head;
+  Node *A = head;
+  Node *B = head;
 
   if (head == 0)                                                  // verifica se lista está vazia
     create_first_Node(new_ID, new_temp, new_automatico_ou_botao); // se lista está vazia, cria um novo Nodo
   else                                                            // se lista não está vazia
   {
-    while (q != 0)
+    while (B != 0) // se B for o 'último' da lista, apontará para '0'
+    // caso contrário ainda estamos no meio da lista
     {
-      p = q;
-      q = p->getNext();
-    }
-    p->setNext(new Node(new_ID, new_temp, new_automatico_ou_botao, 0)); // o CONTEÚDO para onde o ponteiro aponta, será modificado com o valor deste novo 'Node'
+      A = B;            // A recebe o valor de 'B'. Mas B é um ponteiro logo esse valor é um endereço
+      B = A->getNext(); // B recebe o endereço contido no objeto para o qual A aponta no momento
+      // exemplo:
+      // B = &nó_1 (aponta para nó_1)
+      // A = B (também aponta para nó_1)
+      // B = A->getNext(); (B apomta para quem nó_1 apontava, logo: nó_2)
+    } // quando chegar no último nó (nó_N), B = 0
+
+        A->setNext(new Node(new_ID, new_temp, new_automatico_ou_botao, 0));
+    // criamos um novo nó que apontará para '0' (final da lista)
+    // porém precisamos alterar o 'antigo último nó da lista' aponte para o 'novo último nó'
+    // e quem é o 'antigo último nó'? é o nó_N que tanto A quanto B finalizarm o loop apontando, então podemos usar os ponteiros para alterar o conteúdo deste último nó
+    // A-> setNext(novo nó) = nó_N::setNext(novo nó) = B-> setNext(novo nó)
   }
 }
 
@@ -133,8 +147,8 @@ int List::removeFirst()
 void List::insertionSort(int new_ID, int new_temp, bool new_automatico_ou_botao)
 {
   // função para inserir 'Nodo' em ordem crescente de seu valor 'value'
-  Node *p = head;
-  Node *q = head;
+  Node *A = head;
+  Node *B = head;
 
   if (head == 0)
   {
@@ -147,61 +161,61 @@ void List::insertionSort(int new_ID, int new_temp, bool new_automatico_ou_botao)
   {
     int pint;
     int auxint;
-    pint = q->get_ID(); // pint = 0 || aqui pegamos o valor de 'temp' do Nodo 'head'
+    pint = B->get_ID(); // pint = 0 || aqui pegamos o valor de 'temp' do Nodo 'head'
     auxint = pint;      // auxint = 0
 
     // LOOP ENQUANTO EXISTIR NODO VÁLIDO COM VALOR MAIOR DO QUE 'value'
-    while ((q != 0) && (auxint < new_temp))
-    // (q != 0): verifica se existe 'nodo' já criado, ou seja, não aponta para '0' = existe endereço de memória para o nodo 'head'
+    while ((B != 0) && (auxint < new_temp))
+    // (B != 0): verifica se existe 'nodo' já criado, ou seja, não aponta para '0' = existe endereço de memória para o nodo 'head'
     // (auxint < value): verifica se o campo 'temp' do primeiro nodo 'head' é menor do que o 'value' passado como argumento da funcao (que é o campo 'temp' do novo Nodo )
 
     {
-      p = q;
-      q = p->getNext(); // aqui o ponteiro 'q' aponta não mais para 'head', mas sim para onde o campo 'next' do nodo 'head' aponta, que é o próximo nodo da lista
-      if (q != 0)
+      A = B;
+      B = A->getNext(); // aqui o ponteiro 'B' aponta não mais para 'head', mas sim para onde o campo 'next' do nodo 'head' aponta, que é o próximo nodo da lista
+      if (B != 0)
       {
         // 1:15:00 https://www.youtube.com/watch?v=3F8q6RLikfE&list=PL35tBJQqzeIv7PIItr-Xt2Wkk9E-W_-YS&index=19&t=93s
-        pint = q->get_ID(); // pint agora recebe o valor do próximo nodo e não mais do nodo 'head'. Ele receberá o valor '5'
+        pint = B->get_ID(); // pint agora recebe o valor do próximo nodo e não mais do nodo 'head'. Ele receberá o valor '5'
         auxint = pint;
       }
     }
     // --------------------------------------------------------------------------------------------------------------
 
-    if (p == q)                                                           // verifica se os ponteiros apontam para o mesmo lugar (lista vazia: campo 'next' do nodo 'head' apontaria para '0')
+    if (A == B)                                                           // verifica se os ponteiros apontam para o mesmo lugar (lista vazia: campo 'next' do nodo 'head' apontaria para '0')
       create_first_Node(new_ID, new_temp, new_automatico_ou_botao);       // inclui novo nodo
     else                                                                  // caso lista não esteja vazia
-      p->setNext(new Node(new_ID, new_temp, new_automatico_ou_botao, q)); // inclui novo nodo
+      A->setNext(new Node(new_ID, new_temp, new_automatico_ou_botao, B)); // inclui novo nodo
   }
 }
 
 int List::removeNode(int temp)
 {
-  Node *p = head;
-  Node *q = head;
+  Node *A = head;
+  Node *B = head;
   int result;
 
   if (head == 0)
     result = 0;
   else
   {
-    while ((q != 0) && (q->get_ID() != temp))
+    while ((B != 0) && (B->get_ID() != temp))
     { // Error!! the addresses will always be different!
-      p = q;
-      q = p->getNext();
+      A = B;
+      B = A->getNext();
     }
-    if (q != 0)
+    if (B != 0)
     {
-      if (q == head)
+      if (B == head)
       { // it is the first node
-        result = q->get_ID();
-        head = q->getNext();
-        delete q;
+        result = B->get_ID();
+        head = B->getNext();
+        delete B;
       }
       else
       { // the node is in the middle
-        result = q->get_ID();
-        p->setNext(q->getNext());
-        delete q;
+        result = B->get_ID();
+        A->setNext(B->getNext());
+        delete B;
       }
     }
     else

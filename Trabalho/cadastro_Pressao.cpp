@@ -27,7 +27,7 @@ void cadastro_Pressao::set_new_ID(int NewID)
   if (NewID <= 0) // NewID > 0
   {
     cout << "---------------------------------------------------------------\n";
-    cout << "Valor deve ser um inteiro maior que zero!" << endl;
+    cout << "        Valor deve ser um inteiro maior que zero!" << endl;
     cout << "---------------------------------------------------------------\n";
     return;
   }
@@ -54,7 +54,6 @@ void cadastro_Pressao::set_new_ID(int NewID)
       else if (i == N_PRESSAO)
       {
         cout << "---------------------------------------------------------------\n";
-
         cout << "           Nao ha espaco para novos IDs" << endl;
         cout << "---------------------------------------------------------------\n";
         return;
@@ -109,8 +108,7 @@ void cadastro_Pressao::set_NewLeitura(int check_id)
     }
   } // caso nao dado exit (return;) irá chegar até aqui. Isso só ocorre se a nao achou nenhuma ID compatível
   cout << "---------------------------------------------------------------\n";
-  cout << "                   ID nao encontrada!"
-       << endl;
+  cout << "                   ID nao encontrada!" << endl;
   cout << "---------------------------------------------------------------\n \n";
 }
 
