@@ -15,12 +15,11 @@
 
 */
 
-#include "Node.h"
-#include "headers.h"
 #include <string.h>
-#include "Sensor_Temperatura_DHT11.cpp"
-
+// #include "Node.h"
+#include "headers.h"
 #include "ClockCalendar.cpp"
+#include "Sensor_Temperatura_DHT11.cpp"
 
 class Node
 {
