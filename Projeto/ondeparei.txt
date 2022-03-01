@@ -9,17 +9,16 @@ O que fiz:
 O que devo fazer:
   Criação Fila no embarcado:
     Classe nó deve automaticamente gerar/pegar todos os dados internos (temperatura, ID, automatico_ou_botao, data_hora):
-      ID: não sei como será gerado ou pego este valor
-      Temperatura + automatico_ou_botao:
-      - classes de leitura da temperatura: classe Sensor_Temperatura_DHT11
-      - Classe botões     >> Node::Node(int new_ID=??, int new_temp = (List obj.getLastTemp + 1), bool new_automatico_ou_botao = 0, Node *nxt) ---> assim a temperatura_atual = (temp_antiga + 1)
+      - ID: não sei como será gerado ou pego este valor
+      - Temperatura + automatico_ou_botao:
+        - classes de leitura da temperatura: classe Sensor_Temperatura_DHT11
+        - Classe botões     >> Node::Node(int new_ID=??, int new_temp = (List obj.getLastTemp + 1), bool new_automatico_ou_botao = 0, Node *nxt) ---> assim a temperatura_atual = (temp_antiga + 1)
           - Criar função 'getLastTemp()' na classe 'List'
-      - Classe Tensorflow >> Node::Node(int new_ID=??, int new_temp =tf.temp, bool new_automatico_ou_botao = 1, Node *nxt)
+        - Classe Tensorflow >> Node::Node(int new_ID=??, int new_temp =tf.temp, bool new_automatico_ou_botao = 1, Node *nxt)
   Recebimento fila no computador:
     
 ---------------------------------------------
 PERGUNTAS PARA SE FAZER AO PROFESSOR
-1- De onde pegaremos as horas? elas serão inicializadas de que forma?
 2- Como funcionará o ID? 
   como será gerado?
   como faremos a 'troca' no controle, para alterar a temperatura de 1 dispositivo e não do outro

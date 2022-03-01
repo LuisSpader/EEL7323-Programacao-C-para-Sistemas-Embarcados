@@ -18,13 +18,14 @@
 #include "Node.h"
 #include "headers.h"
 #include <string.h>
+#include "Sensor_Temperatura_DHT11.cpp"
 
 #include "ClockCalendar.cpp"
 
 class Node
 {
   int ID;                   // nodo armazenará ID do aparelho para log de eventos
-  int temp;                 // valor que o nodo armazena -> temperatura
+  int temp_ext, temp_int;   // valor que o nodo armazena -> temperatura
   bool automatico_ou_botao; // para sabermos se a mudanca foi automatica ou devido à requisição do usuario (pressionou botão): 1 = automatico | 0= botão
 
   string data_hora; // aqui será armazenada toda a informação de data e hora;
@@ -38,36 +39,59 @@ public:
 
   string getClockCalendar();
 
+  // --------- SET ---------
+  void set_ID(int new_ID); // atualiza ID do Nodo
+  void set_temp_ext(int new_temp);
+  void set_automatico_ou_botao(bool new_automatico_ou_botao);
+  void setNext(Node *nxt); // atualiza ponteiro
+
   // --------- GET ---------
   int get_ID(); // Retorna valor salvo no Nodo
-  int get_temp();
-  int get_automatico_ou_botao();
+  // temperatura
+  int get_temp_ext();
+  int get_new_temp_int();
+
+  int get_automatico_ou_botao(); // acionamento pelo tensorflow ou botao
   string get_DataHora();
   void get_All_Data();
   string get_All_DataString();
   Node *getNext(); // retorna valor do ponteiro
-
-  // --------- SET ---------
-  void set_ID(int new_ID); // atualiza ID do Nodo
-  void set_temp(int new_temp);
-  void set_automatico_ou_botao(bool new_automatico_ou_botao);
-
-  void setNext(Node *nxt); // atualiza ponteiro
 };
 
 // Constructor - initializes the node
-Node::Node(int new_ID,
-           int new_temp,
-           bool new_automatico_ou_botao,
-           Node *nxt)
-{
+Node::Node(int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node *nxt)
+{ // externos
   ID = new_ID;
-  temp = new_temp;
+  temp_int = new_temp_int;
   automatico_ou_botao = new_automatico_ou_botao;
-  data_hora = clock_calendar.str_data_hora;
   next = nxt;
+  // internos ao nó
+  set_temp_ext();
+  data_hora = clock_calendar.str_data_hora;
 }
 
+// --------- SET ---------
+void Node::set_ID(int new_ID)
+{
+  ID = new_ID;
+}
+
+void Node::set_temp_ext()
+{
+  // temp_ext = new_temp;
+  temp_ext = Sensor_Temperatura_DHT11.getTemp();
+}
+
+void Node::set_automatico_ou_botao(bool new_automatico_ou_botao)
+{
+  automatico_ou_botao = new_automatico_ou_botao;
+}
+
+// setNext stores the pointer to the next node in the list in the "next" field
+void Node::setNext(Node *nxt)
+{
+  next = nxt;
+}
 // --------- GET ---------
 
 int Node::get_ID()
@@ -75,9 +99,14 @@ int Node::get_ID()
   return ID;
 }
 
-int Node::get_temp()
+int Node::get_temp_ext()
 {
-  return temp;
+  return temp_ext;
+}
+
+int Node::get_new_temp_int()
+{
+  return temp_int;
 }
 
 string Node::get_DataHora()
@@ -94,7 +123,8 @@ void Node::get_All_Data()
 {
   get_DataHora();
   get_ID();
-  get_temp();
+  get_temp_ext();
+  get_new_temp_int();
   get_automatico_ou_botao();
 }
 
@@ -102,7 +132,7 @@ string Node::get_All_DataString()
 {
   stringstream buffer;
   string buffer_string;
-  buffer << data_hora << " | " << ID << " | " << temp << " | " << automatico_ou_botao << " | " << endl;
+  buffer << data_hora << " | " << ID << " | " << temp_ext << " | " << automatico_ou_botao << " | " << endl;
   buffer_string = buffer.str();
   return buffer_string;
 }
@@ -111,26 +141,4 @@ string Node::get_All_DataString()
 Node *Node::getNext()
 {
   return next;
-}
-
-// --------- SET ---------
-void Node::set_ID(int new_ID)
-{
-  ID = new_ID;
-}
-
-void Node::set_temp(int new_temp)
-{
-  temp = new_temp;
-}
-
-void Node::set_automatico_ou_botao(bool new_automatico_ou_botao)
-{
-  automatico_ou_botao = new_automatico_ou_botao;
-}
-
-// setNext stores the pointer to the next node in the list in the "next" field
-void Node::setNext(Node *nxt)
-{
-  next = nxt;
 }
