@@ -11,7 +11,9 @@
 
 */
 
-#include "List.cpp"
+// #include "List.cpp"
+#include "List_temp_fixa.cpp"
+
 
 int main()
 {

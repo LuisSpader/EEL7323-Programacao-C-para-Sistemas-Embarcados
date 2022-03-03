@@ -11,7 +11,8 @@
 
 */
 
-#include "List.cpp"
+// #include "List.cpp"
+#include "List_temp_fixa.cpp"
 
 int main()
 {
@@ -19,17 +20,8 @@ int main()
   List lista1, lista2; // aqui já inicia os construtores das listas, que estão definidos para zerar os Nodos
   int saida;
 
-  lista1.insertBeforeFirst(5, 27, false); // inclui '5' antes do primeiro -> 5,head
-  //   void List::insertBeforeFirst(int dat = 5)
-  // {
-  //   head = new Node(dat = 5, head= 0); // ?? pq o 'new' aloca espaço de forma dinâmica??
-  // } // ?? o 'new' retorna o endereço de onde o novo 'nodo' foi criado
-  // ----
-  //   Node::Node(int dat = 5, Node *nxt = head = 0)
-  // {
-  //   val = dat = 5;
-  //   next = nxt = 0 (aponta para 0);
-  // }
+  lista1.insertBeforeFirst(5, 27, false); // inclui '5' antes do primeiro -> 5,head //new_ID, new_temp, new_automatico_ou_botao
+
   lista1.insertBeforeFirst(0, 26, false); // inclui '0' antes do '5' -> 0,5,head
   lista1.insertAfterLast(10, 28, false);  // inclui '10' após o '5'  -> 0,5,head,10
 

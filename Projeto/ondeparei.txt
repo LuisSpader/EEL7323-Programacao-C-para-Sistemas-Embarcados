@@ -51,3 +51,14 @@ Classe controle
     - Para o nó acessar os métodos ele será 'friend' de ClockCalendar, assim cada vez que for criado um objeto do tipo nó, NÃO SERÁ CRIADO NENHUM OBJETO NOVO DE ClockCalendar (o que aconteceria caso fosse utilizada herança ou polimorfismo)
 
     ST placas com RTC Real Time Clock (sistema de relógio)
+==================================================    
+Nó:
+  - temp externa fixa
+  - nova temperatura: ?
+Fila:
+  - função Liga (nó com temp específica)
+  - função Desliga (nó com temp específica)
+  - função para pegar lista inteira e apagá-la
+Menu:
+  - inserção de 'nós' -> 'List'
+  - solicitação do log: pega de 'List'

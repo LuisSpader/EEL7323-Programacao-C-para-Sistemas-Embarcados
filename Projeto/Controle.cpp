@@ -9,6 +9,25 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 
 #include "ClockCalendar.cpp"
 
+#include <string.h> // Para trabalhar com strings
+// #include <cstring>
+// #include <list>
+
+#include "ClockCalendar.cpp"
+
+class Controle
+{
+private:
+  bool was_pm;
+  // ClockCalendar data_horario;
+
+public:
+  friend class Node; // assim 'Node' acessa este único objeto que está
+  // friend string getClockCalendar();
+
+  // dentro da classe 'Controle' Controle();
+};
+
 Controle::Controle()
 {
   data_horario.setClock_timelib(); // tem que trocar pra pegar de algum outro jeito
