@@ -5,6 +5,7 @@
 #include <stdlib.h>
 using namespace std;
 #include <iomanip>
+#include <tuple>
 
 class Calendar
 {
@@ -15,7 +16,7 @@ public:
   stringstream str_data;
 
   Calendar(); // construtor
-  void setStringToDate(string date_buffer);
+  tuple<int, int, int> setStringToDate(string date_buffer);
   void setCalendar(int d, int mo, int a);
   void readCalendar();
   void setCalendarString();
@@ -25,7 +26,10 @@ public:
 // ------------------- Construtor ------------------- //
 Calendar::Calendar()
 {
-  setStringToDate("00/00/0000");
+  tuple<int, int, int> buffer;
+  buffer = setStringToDate("00/00/0000");
+  // setCalendar(b_dia, b_mes, b_ano);
+  setCalendar(get<0>(buffer), get<1>(buffer), get<2>(buffer));
 }
 
 // ------------------- Logic Functions ------------------- //
@@ -42,9 +46,10 @@ Calendar::Calendar()
 // }
 
 // ------------------- SET -------------------
-void Calendar::setStringToDate(string date_buffer)
+tuple<int, int, int> Calendar::setStringToDate(string date_buffer)
 {
   string temp;
+  int b_dia, b_mes, b_ano;
 
   if (date_buffer.length() > 10)
   {
@@ -56,7 +61,7 @@ void Calendar::setStringToDate(string date_buffer)
   temp = date_buffer.substr(0, 2);
   if (isNumber(temp) == true)
   {
-    dia = std::stoi(temp);
+    b_dia = std::stoi(temp);
   }
   else
   {
@@ -68,7 +73,7 @@ void Calendar::setStringToDate(string date_buffer)
   temp = date_buffer.substr(3, 2);
   if (isNumber(temp) == true)
   {
-    mes = std::stoi(temp);
+    b_mes = std::stoi(temp);
   }
   else
   {
@@ -80,7 +85,7 @@ void Calendar::setStringToDate(string date_buffer)
   temp = date_buffer.substr(6, 4);
   if (isNumber(temp) == true)
   {
-    ano = std::stoi(temp);
+    b_ano = std::stoi(temp);
   }
   else
   {
@@ -88,8 +93,7 @@ void Calendar::setStringToDate(string date_buffer)
     exit(EXIT_FAILURE);
   }
   // date = date_buffer.substr(0, 2) + "/" + date_buffer.substr(3, 2) + "/" + date_buffer.substr(6, 4);
-
-  setCalendar(dia, mes, ano);
+  return make_tuple(b_dia, b_mes, b_ano);
 }
 
 void Calendar::setCalendar(int d, int mo, int a)

@@ -14,6 +14,7 @@
 #include <iomanip>
 #include <stdlib.h> // This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
 #include <iostream> // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
+#include <tuple>
 
 using namespace std;
 // #include <iostream>  // Este arquivo específico inclui declarações básicas da biblioteca de E/S do C++
@@ -27,7 +28,8 @@ protected:
 public:
       stringstream str_hora;
       Clock(); // construtor
-      void setStringToTime(string hour_buffer, int pm);
+      void setTime(int hour, int minute, int second);
+      tuple<int, int, int> setStringToTime(string hour_buffer, int pm);
       void readClock(); //
       void setClockString();
       void advance();
@@ -35,7 +37,10 @@ public:
 
 Clock::Clock()
 {
-      setStringToTime("00:00:00", 0);
+      tuple<int, int, int> buffer;
+      buffer = setStringToTime("00:00:00", 0);
+      setTime(get<0>(buffer), get<1>(buffer), get<2>(buffer));
+      // setStringToTime("00:00:00", 0);
 }
 
 // Função: Verifica se é número
@@ -48,9 +53,18 @@ bool isNumber(const string &str)
       }
       return true;
 }
-void Clock::setStringToTime(string hour_buffer, int pm)
+
+void Clock::setTime(int hour, int minute, int second)
+{
+      hr = hour;
+      min = minute;
+      sec = second;
+}
+
+tuple<int, int, int> Clock::setStringToTime(string hour_buffer, int pm)
 {
       string temp;
+      int b_seg, b_min, b_hora;
 
       if (hour_buffer.length() > 8)
       {
@@ -62,7 +76,7 @@ void Clock::setStringToTime(string hour_buffer, int pm)
       temp = hour_buffer.substr(0, 2);
       if (isNumber(temp) == true)
       {
-            hr = std::stoi(temp);
+            b_hora = std::stoi(temp);
       }
       else
       {
@@ -74,7 +88,7 @@ void Clock::setStringToTime(string hour_buffer, int pm)
       temp = hour_buffer.substr(3, 2);
       if (isNumber(temp) == true)
       {
-            min = std::stoi(temp);
+            b_min = std::stoi(temp);
       }
       else
       {
@@ -86,7 +100,7 @@ void Clock::setStringToTime(string hour_buffer, int pm)
       temp = hour_buffer.substr(6, 4);
       if (isNumber(temp) == true)
       {
-            sec = std::stoi(temp);
+            b_seg = std::stoi(temp);
       }
       else
       {
@@ -95,7 +109,9 @@ void Clock::setStringToTime(string hour_buffer, int pm)
       }
 
       is_pm = (pm ? true : false);
+      return make_tuple(b_hora, b_min, b_seg);
 }
+
 void Clock::readClock()
 {
       cout << setw(2) << setfill('0') << hr << ":"

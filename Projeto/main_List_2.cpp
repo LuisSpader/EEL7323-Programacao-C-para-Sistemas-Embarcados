@@ -1,7 +1,7 @@
 /*
    File main.cpp
 
-   Test program for Node and List classes.
+   Test program for Node and List_temp_fixa classes.
 
    Eduardo Augusto Bezerra <eduardo.bezerra@ufsc.br>
    Departamento de Engenharia Eletrica
@@ -11,25 +11,33 @@
 
 */
 
-// #include "List.cpp"
+// #include "List_temp_fixa.cpp"
 #include "List_temp_fixa.cpp"
 
 int main()
 {
 
-  List lista1, lista2; // aqui já inicia os construtores das listas, que estão definidos para zerar os Nodos
+  List_temp_fixa lista1(18250065), lista2(18250066);
   int saida;
 
-  lista1.insertBeforeFirst(5, 27, false); // inclui '5' antes do primeiro -> 5,head //new_ID, new_temp, new_automatico_ou_botao
+  lista1.insertAfterLast(27, false);
 
-  lista1.insertBeforeFirst(0, 26, false); // inclui '0' antes do '5' -> 0,5,head
-  lista1.insertAfterLast(10, 28, false);  // inclui '10' após o '5'  -> 0,5,head,10
+  // In Unix you can use usleep. In Windows there is Sleep.
+  // #include <unistd.h>
+  // unsigned int microseconds;
+  // usleep(microseconds);
+
+  lista1.insertAfterLast(26, false);
+  lista1.insertBeforeFirst(28, false);
 
   cout << "Primeiro nodo contem: " << lista1.readFirst() << endl;
 
-  lista1.insertionSort(4, 20, false); // inclui '4' entre 0 e 5  -> 0,4,5,10
+  // lista1.insertionSort(20, false); // inclui '4' entre 0 e 5  -> 0,4,5,10
+  lista1.Desligar();
 
   lista1.listAll();
+
+  lista1.listInterval("01/01/2022", "02/04/2022", "08:00:00", "20:48:00");
 
   cout << "Digite F para finalizar o programa" << endl;
 

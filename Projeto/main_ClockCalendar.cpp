@@ -15,5 +15,26 @@ int main()
 
   ClockCalendar obj_data_horario;
 
-  cout << obj_data_horario.str_data_hora;
+  cout << "Data: " << obj_data_horario.data << endl;
+  if (obj_data_horario.Data1EhMENORqueData2(obj_data_horario.data, "02/02/2022") == true)
+  {
+    cout << "true";
+  }
+  else
+  {
+    cout << "false";
+  }
+  cout << "-----" << endl;
+
+  string hora_teste = "22:24:37";
+  cout << "Hora: " << obj_data_horario.hora << " eh menor que " << hora_teste << endl;
+  if (obj_data_horario.Hora1EhMENORqueHora2(obj_data_horario.hora, hora_teste) == true)
+  {
+    cout << "true";
+  }
+  else
+  {
+    cout << "false";
+  }
+  cout << "-----" << endl;
 };

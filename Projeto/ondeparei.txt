@@ -53,12 +53,18 @@ Classe controle
     ST placas com RTC Real Time Clock (sistema de relógio)
 ==================================================    
 Nó:
-  - temp externa fixa
-  - nova temperatura: ?
+  - temp externa fixa - OK
+  - nova temperatura: ? - OK
 Fila:
-  - função Liga (nó com temp específica)
-  - função Desliga (nó com temp específica)
-  - função para pegar lista inteira e apagá-la
-Menu:
-  - inserção de 'nós' -> 'List'
+  - função Liga (nó com temp específica) - OK
+  - função Desliga (nó com temp específica) - OK
+  - função para pegar lista inteira e apagá-la - OK (desconstrutor)
+
+Interface PC:
+  - inserção de 'nós' -> 'List' - OK
   - solicitação do log: pega de 'List'
+
+Log:
+  - listar todos os eventos ocorridos em um determinado intervalo de datas; - OK
+  - obter  o  tempo  total  (em  horas  e  minutos)  que  o  sistema  manteve  o  ar-condicionado alimentado, em um determinado intervalo de datas. 
+    - fazer interface -> inserir logs manualmente -> opção Node iniciar com hora como parametro

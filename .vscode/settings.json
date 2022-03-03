@@ -48,7 +48,8 @@
     "class_aluno.h": "c",
     "iomanip": "cpp",
     "ctime": "cpp",
-    "cstring": "cpp"
+    "cstring": "cpp",
+    "thread": "cpp"
   },
   "cmake.configureOnOpen": false,
   "cmake.sourceDirectory": "${workspaceFolder}/."
