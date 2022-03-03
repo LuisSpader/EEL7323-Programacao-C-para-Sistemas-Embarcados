@@ -77,9 +77,7 @@ void read_from_dht(dht_reading *result)
       data[j / 8] <<= 1;
       if (count > 46)
         data[j / 8] |= 1; // https://electronics.stackexchange.com/questions/552924/raspberry-pico-and-dht11-not-working-c-c
-                          // I also find out that the for this to work the sensor should be using a 4.7k Ohm resitance so since my board had an embedded resistance of 5.1k I had to had a 55k Ohm resistance in parallel to pull it down to 4.7k and now the code works!
-
-Many thanks for those that tried to help me!
+                          // I also find out that the for this to work the sensor should be using a 4.7k Ohm resitance so since my board had an embedded resistance of 5.1k I had to had a 55k Ohm resistance in parallel to pull it down to 4.7k and now the code works!Many thanks for those that tried to help me!
       j++;
     }
   }
