@@ -65,7 +65,7 @@ public:
   void listAll();
   void listInterval(string limit_inf, string limit_sup, string hr_init, string hr_end);
   void setID(int newID);
-  void TempoLigado();
+  string TempoLigado();
 };
 
 List_temp_fixa::List_temp_fixa(int newID)
@@ -126,7 +126,7 @@ void List_temp_fixa::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
       // exemplo:
       // B = &nó_1 (aponta para nó_1)
       // A = B (também aponta para nó_1)
-      // B = A->getNext(); (B apomta para quem nó_1 apontava, logo: nó_2)
+      // B = A->getNext(); (B aponta para quem nó_1 apontava, logo: nó_2)
     } // quando chegar no último nó (nó_N), B = 0
 
     A->setNext(new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, 0));
@@ -247,7 +247,7 @@ void List_temp_fixa::listAll()
   Node_temp_fixa *aux = head;
   cout << "---------------------------------------------------------------\n";
   cout << "========== Lista Completa ==========" << endl;
-  cout << "|" << setw(11) << centered("Data")
+  cout << "|" << setw(12) << centered("Data")
        << "|" << setw(10) << centered("Hora")
        << "|" << setw(10) << centered("ID")
        << "|" << setw(13) << centered("Temp. Externa")
@@ -258,7 +258,7 @@ void List_temp_fixa::listAll()
   {
 
     // cout << "|" << setw(21) << aux->get_DataHora()
-    cout << "|" << setw(11) << centered(aux->getCalendarString())
+    cout << "|" << setw(12) << centered(aux->getCalendarString())
          << "|" << setw(10) << centered(aux->getClockString())
          << "|" << setw(10) << centered(to_string(aux->get_ID()))
          << "|" << setw(13) << centered(to_string(aux->get_temp_ext()))
@@ -333,9 +333,41 @@ void List_temp_fixa::Ligar()
 
 void List_temp_fixa::Desligar()
 {
-  create_first_Node(1111, true);
+  insertAfterLast(1111, true);
+
+  // insertAfterLast(7777, true);
+
+  // Node_temp_fixa *aux = head;
+  // aux->changeNode_manual("Tempo ligado", TempoLigado(), ID, 0, true, aux->getNext()); // string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_temp_fixa *nxt
 }
 
-void List_temp_fixa::TempoLigado()
+string List_temp_fixa::TempoLigado()
 {
+  Node_temp_fixa *aux = head;
+  string h1, h2;
+
+  // cout << aux->get_temp_int();
+  while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
+  {
+    // cout << aux->get_temp_int() << endl;
+    if (aux->get_temp_int() == 9999) // List_temp_fixa::Ligar()
+    {
+      h1 = aux->hora;
+    }
+    else
+    {
+      if (aux->get_temp_int() == 1111) // List_temp_fixa::Desligar()
+      {
+        h2 = aux->hora;
+        break;
+      }
+    }
+    aux = aux->getNext();
+  }
+  // cout << "h1 " << h1 << endl;
+  // cout << "h2 " << h2 << endl;
+  // cout << "intervalo " << aux->ClockInterval(h1, h2);
+  // ClockCalendar::ClockInterval(h1,h2);
+  // return ("aux->ClockInterval(h1, h2)");
+  return (aux->ClockInterval(h1, h2));
 }

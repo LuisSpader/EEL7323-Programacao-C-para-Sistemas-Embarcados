@@ -29,10 +29,11 @@ public:
       stringstream str_hora;
       Clock(); // construtor
       void setTime(int hour, int minute, int second);
-      tuple<int, int, int> setStringToTime(string hour_buffer, int pm);
+      tuple<int, int, int> setStringToTime(string hour_buffer, bool pm);
       void readClock(); //
       void setClockString();
       void advance();
+      string ClockInterval(string h1, string h2);
 };
 
 Clock::Clock()
@@ -61,7 +62,7 @@ void Clock::setTime(int hour, int minute, int second)
       sec = second;
 }
 
-tuple<int, int, int> Clock::setStringToTime(string hour_buffer, int pm)
+tuple<int, int, int> Clock::setStringToTime(string hour_buffer, bool pm = 0)
 {
       string temp;
       int b_seg, b_min, b_hora;
@@ -125,6 +126,7 @@ void Clock::setClockString()
                << setw(2) << setfill('0') << min << ":"
                << setw(2) << setfill('0') << sec;
 }
+
 void Clock::advance()
 {
       sec++;
@@ -146,4 +148,32 @@ void Clock::advance()
                   }
             }
       }
+}
+
+string Clock::ClockInterval(string h1, string h2)
+{
+      tuple<int, int, int> buffer1, buffer2;
+      buffer1 = setStringToTime(h1, false);
+      buffer2 = setStringToTime(h2, false);
+      int h, m, s;
+      h = get<0>(buffer1) - get<0>(buffer2);
+      m = get<1>(buffer1) - get<1>(buffer2);
+      s = get<2>(buffer1) - get<2>(buffer2);
+
+      h = abs(h);
+      m = abs(m);
+      s = abs(s);
+
+      stringstream str;
+      str << h << ":" << m << ":" << s;
+      // return str.str();
+      string retorno = str.str();
+
+      // cout << get<0>(buffer1) << " - " << get<0>(buffer2) << endl;
+      // cout << get<1>(buffer1) << " - " << get<1>(buffer2) << endl;
+      // cout << get<2>(buffer1) << " - " << get<2>(buffer2) << endl;
+
+      // cout << h << ":" << m << ":" << s << endl;
+      // cout << retorno << endl;
+      return retorno;
 }

@@ -20,22 +20,22 @@ void interface_temp()
 {
 
   bool continuar = true;
-  int b_id, b_switch;
+  int b_temp, b_switch;
   float b_temp1, b_temp2;
-  interface_PC temperatura;
+  List_temp_fixa lista1(18250065);
 
   while (continuar == true)
   {
-    cout << "---------------------- Temperatura ----------------------------\n";
+    cout << "---------------------- Interface Computador ----------------------------\n";
 
-    cout << "Capacidade: " << N_TEMPERATURA << " registros; Leituras disponiveis para registro: " << temperatura.vagas << endl;
+    // cout << "Capacidade: " << N_TEMPERATURA << " registros; Leituras disponiveis para registro: " << lista1.vagas << endl;
 
     cout << "1 - Cadastrar evento" << endl;
-    cout << "2 - Listar todos os eventos" << endl;
-    cout << "3 - Listar eventos em intervalo de data " << endl;
-    cout << "4 - Lista IDs" << endl;
-    cout << "5 - Listar todas as leituras" << endl;
-    cout << "6 - Excluir " << endl;
+    cout << "2 - Excluir evento " << endl;
+    cout << "3 - Listar todos os eventos" << endl;
+    cout << "4 - Listar eventos em intervalo de data " << endl;
+    // cout << "5 - Lista IDs" << endl;
+    // cout << "6 - Listar todas as leituras" << endl;
     cout << "7 - Voltar " << endl;
 
     cout << "Digite a operacao desejada:";
@@ -43,48 +43,48 @@ void interface_temp()
 
     switch (b_switch)
     {
-      // --------------- Temperatura ---------------
-    case 1: // 1 - Cadastro de Sensor
+      // --------------- XXX ---------------
+    case 1: // 1 - Cadastro de evento
     {
-      cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_id;
-      temperatura.set_new_ID(b_id);
+      cout << "Digite a temperatura desejada (ºC): ";
+      cin >> b_temp;
+      lista1.insertAfterLast(b_temp, false);
       break;
     }
 
-    case 2: // 2 - Registo Leitura do Sensor
+    case 2: // 2 - Excluir evento
     {
       cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_id;
-      temperatura.set_NewLeitura(b_id);
+      cin >> b_temp;
+      lista1.set_NewLeitura(b_temp);
       break;
       // o valor de leitura já é realizado na classe 'Temperatura' que fornece um rand para o método setValor da classe 'Sensor'
       // a data tbm gera automatico -> pega do sistema operacional
     }
 
-    case 3: // 3 - Consultar
+    case 3: // 3 - Listar todos os eventos
     {
       cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_id;
+      cin >> b_temp;
 
-      cout << "Digite os limites do intervalo de temperatura (temp1 a temp2) em graus Celsius" << endl;
+      cout << "Digite os limites do intervalo de lista1 (temp1 a temp2) em graus Celsius" << endl;
       cout << "Temperatura 1: ";
       cin >> b_temp1;
       cout << "Temperatura 2: ";
       cin >> b_temp2;
 
-      temperatura.get_Consulta_temperatura(b_temp1, b_temp2);
+      lista1.get_Consulta_temperatura(b_temp1, b_temp2);
       break;
     }
 
-    case 4: // 4 - Listar IDs
+    case 4: // 4 - Listar eventos em intervalo de data
     {
-      temperatura.get_Lista_IDs();
+      lista1.get_Lista_IDs();
       break;
     }
     case 5: // 4 - Listar todas as leituras de 1 ID
     {
-      temperatura.get_Listagem_temperaturas();
+      lista1.get_Listagem_temperaturas();
       break;
     }
 
@@ -92,11 +92,11 @@ void interface_temp()
     {
 
       cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_id;
+      cin >> b_temp;
 
-      cout << "Digite a temperatura que deseja excluir: ";
+      cout << "Digite a lista1 que deseja excluir: ";
       cin >> b_temp1;
-      temperatura.Exclui_temperatura(b_id, b_temp1, false);
+      lista1.Exclui_temperatura(b_temp, b_temp1, false);
 
       break;
       // }

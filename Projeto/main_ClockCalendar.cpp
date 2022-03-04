@@ -25,7 +25,7 @@ int main()
     cout << "false";
   }
   cout << "-----" << endl;
-
+  // ----------------------------------------------
   string hora_teste = "22:24:37";
   cout << "Hora: " << obj_data_horario.hora << " eh menor que " << hora_teste << endl;
   if (obj_data_horario.Hora1EhMENORqueHora2(obj_data_horario.hora, hora_teste) == true)
@@ -37,4 +37,7 @@ int main()
     cout << "false";
   }
   cout << "-----" << endl;
+  // ----------------------------------------------
+  // obj_data_horario.ClockInterval(obj_data_horario.hora, hora_teste);
+  cout << obj_data_horario.ClockInterval(obj_data_horario.hora, obj_data_horario.hora);
 };

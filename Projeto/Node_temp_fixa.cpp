@@ -47,6 +47,7 @@ public:
   // --------- GET ---------
   int get_ID(); // Retorna valor salvo no Nodo
   // temperatura
+  int get_temp_int();
   int get_temp_ext();
   int get_new_temp_int();
 
@@ -55,6 +56,7 @@ public:
   void get_All_Data();
   // string get_All_DataString();
   Node_temp_fixa *getNext(); // retorna valor do ponteiro
+  void changeNode_manual(string new_data, string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_temp_fixa *nxt);
 };
 
 // Constructor - initializes the node
@@ -86,6 +88,22 @@ void Node_temp_fixa::setNext(Node_temp_fixa *nxt)
 {
   next = nxt;
 }
+
+void Node_temp_fixa::changeNode_manual(string new_data, string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_temp_fixa *nxt)
+{
+  data = new_data;
+  hora = new_hr;
+
+  // externos
+  ID = new_ID;
+  temp_int = new_temp_int;
+  automatico_ou_botao = new_automatico_ou_botao;
+  next = nxt;
+
+  // internos ao nó
+  temp_ext = 30;
+}
+
 // --------- GET ---------
 
 int Node_temp_fixa::get_ID()
@@ -96,6 +114,11 @@ int Node_temp_fixa::get_ID()
 int Node_temp_fixa::get_temp_ext()
 {
   return temp_ext;
+}
+
+int Node_temp_fixa::get_temp_int()
+{
+  return temp_int;
 }
 
 int Node_temp_fixa::get_new_temp_int()

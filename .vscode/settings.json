@@ -49,7 +49,9 @@
     "iomanip": "cpp",
     "ctime": "cpp",
     "cstring": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "chrono": "cpp",
+    "ratio": "cpp"
   },
   "cmake.configureOnOpen": false,
   "cmake.sourceDirectory": "${workspaceFolder}/."

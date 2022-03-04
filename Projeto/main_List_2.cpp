@@ -37,7 +37,9 @@ int main()
 
   lista1.listAll();
 
-  lista1.listInterval("01/01/2022", "02/04/2022", "08:00:00", "20:48:00");
+  lista1.listInterval("01/01/2022", "02/04/2022", "08:00:00", "22:48:00");
+
+  cout << "Tempo ligado: " << lista1.TempoLigado() << endl;
 
   cout << "Digite F para finalizar o programa" << endl;
 
