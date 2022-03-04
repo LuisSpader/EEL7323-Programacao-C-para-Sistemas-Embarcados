@@ -59,12 +59,22 @@ Fila:
   - função Liga (nó com temp específica) - OK
   - função Desliga (nó com temp específica) - OK
   - função para pegar lista inteira e apagá-la - OK (desconstrutor)
+  - função tempo ligado
 
+
+
+Log:
+  - listar todos os eventos ocorridos em um determinado intervalo de datas; -> PROBLEMA: intervalo hora está paralelo ao intervalo data (devem agir juntos)
+  - obter  o  tempo  total  (em  horas  e  minutos)  que  o  sistema  manteve  o  ar-condicionado alimentado, em um determinado intervalo de datas. 
+    - fazer interface -> inserir logs manualmente -> opção Node iniciar com hora como parametro
+  
 Interface PC:
   - inserção de 'nós' -> 'List' - OK
   - solicitação do log: pega de 'List'
+  - Serial UART recebimento: como será feito o teste??
 
-Log:
-  - listar todos os eventos ocorridos em um determinado intervalo de datas; - OK
-  - obter  o  tempo  total  (em  horas  e  minutos)  que  o  sistema  manteve  o  ar-condicionado alimentado, em um determinado intervalo de datas. 
-    - fazer interface -> inserir logs manualmente -> opção Node iniciar com hora como parametro
+ClockCalendar:
+  - Sobrecarga de operadores: 
+    - Data1 > data2 & ...
+    - Hora1 > hora2 & ...
+Documentação: 
