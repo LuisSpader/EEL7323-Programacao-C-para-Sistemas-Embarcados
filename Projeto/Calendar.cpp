@@ -21,6 +21,11 @@ public:
   void readCalendar();
   void setCalendarString();
   void advance();
+  bool Data1EhMAIORqueData2(string data1, string data2);
+  bool Data1EhMENORqueData2(string data1, string data2);
+
+  friend bool operator>=(string data1, string data2);
+  friend bool operator<=(string data1, string data2);
 };
 
 // ------------------- Construtor ------------------- //
@@ -151,3 +156,136 @@ void Calendar::advance()
     dia++;
   }
 }
+
+bool Calendar::Data1EhMAIORqueData2(string data1, string data2)
+{
+  Calendar obj_calendar;
+  tuple<int, int, int> buffer1, buffer2;         // tupla com os valores: dia, mes, ano
+  buffer1 = obj_calendar.setStringToDate(data1); // recebendo os valores
+  buffer2 = obj_calendar.setStringToDate(data2);
+  // get<0>: ano,  get<1>: mes,  get<2>: dia
+
+  // cout << "get0: " << get<0>(buffer1) << endl;
+  // cout << "get1: " << get<1>(buffer1) << endl;
+  // cout << "get2: " << get<2>(buffer1) << endl;
+
+  if (get<2>(buffer1) > get<2>(buffer2))
+  {
+    return true; // se ano eh maior, data ja eh maior
+  }
+  else // se ano eh igual ou menor, iremos analisar qual dos dois eh
+  {
+    // ano = (get2), mes = (get1), dia = (get0)
+    if (get<2>(buffer1) == get<2>(buffer2)) // se ano eh igual, iremos analisar pelo mes e dia
+    {
+      if (get<1>(buffer1) > get<1>(buffer2)) // ano igual, mes maior
+      {
+        return true; // se mes eh maior, data ja eh maior
+      }
+      else // mes igual ou menor
+      {
+        if (get<1>(buffer1) == get<1>(buffer2)) // ano igual, mes igual
+        {
+          if (get<0>(buffer1) > get<0>(buffer2)) // ano igual, mes igual, dia maior
+          {
+            return true;
+          }
+          else
+          { // ano igual, mes igual, dia menor ou igual
+            return false;
+          }
+        }
+        else // ano igual, mes menor
+        {
+          return false; // se mes eh maior, data ja eh maior
+        }
+      }
+    }
+    else // se ano eh menor, data ja eh menor
+    {
+      return false;
+    }
+  }
+}
+
+bool Calendar::Data1EhMENORqueData2(string data1, string data2)
+{
+  Calendar obj_calendar;
+  tuple<int, int, int> buffer1, buffer2;         // tupla com os valores: dia, mes, ano
+  buffer1 = obj_calendar.setStringToDate(data1); // recebendo os valores
+  buffer2 = obj_calendar.setStringToDate(data2);
+  // get<0>(buffer): ano,  get<1>(buffer): mes,  get<2>(buffer): dia
+
+  if (get<2>(buffer1) < get<2>(buffer2))
+  {
+    return true; // se ano eh menor, data ja eh menor
+  }
+  else // se ano eh igual ou maior, iremos analisar qual dos dois eh
+  {
+    // ano = (get2), mes = (get1), dia = (get0)
+    if (get<2>(buffer1) == get<2>(buffer2)) // se ano eh igual, iremos analisar pelo mes e dia
+    {
+      if (get<1>(buffer1) < get<1>(buffer2)) // ano igual, mes menor
+      {
+        return true; // se mes eh menor, data ja eh menor
+      }
+      else // mes igual ou maior
+      {
+        if (get<1>(buffer1) == get<1>(buffer2)) // ano igual, mes igual
+        {
+          if (get<0>(buffer1) < get<0>(buffer2)) // ano igual, mes igual, dia menor
+          {
+            return true;
+          }
+          else
+          { // ano igual, mes igual, dia maior
+            return false;
+          }
+        }
+        else // ano igual, mes maior
+        {
+          return false; // se mes eh maior, data ja eh maior
+        }
+      }
+    }
+    else // se ano eh maior, data ja eh maior
+    {
+      return false;
+    }
+  }
+  // else { return false; }
+}
+
+// -------------- Operadores para data --------------
+bool operator>(Calendar &c1, string c2)
+{
+  return c1.Data1EhMAIORqueData2(c1.str_data.str(), c2);
+}
+
+bool operator<(Calendar &c1, string c2)
+{
+  return c1.Data1EhMENORqueData2(c1.str_data.str(), c2);
+}
+
+// if (data > limit_inf)
+//   &&(data < limite_sup)
+//   {
+//     do
+//       1 ...
+//   }
+// else if (data == limite_inf)
+// {
+//   if (hora >= hora_init)
+//   {
+//     do
+//       1 ...
+//   }
+// }
+// else if (data == limite_sup)
+// {
+//   if (hora <= hora_end)
+//   {
+//     do
+//       1 ...
+//   }
+// }

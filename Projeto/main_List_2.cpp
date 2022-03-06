@@ -36,15 +36,72 @@ int main()
   lista1.Desligar();
 
   lista1.listAll();
+  string hora1_t, hora2_t, data1_t, data2_t;
 
-  lista1.listInterval("01/01/2022", "02/04/2022", "08:00:00", "22:48:00");
+  while (true)
+  {
+    cout << "-----" << endl;
+    cout << "hora init: ";
+    cin >> hora1_t;
+    cout << "hora end: ";
+    cin >> hora2_t;
+    cout << "data init: ";
+    cin >> data1_t;
+    cout << "data end: ";
+    cin >> data2_t;
+    lista1.listInterval(data1_t, data2_t, hora1_t, hora2_t);
+  }
+  // lista1.listInterval(lista1.ClockCalendar::data, "02/04/2022");
 
-  cout << "Tempo ligado: " << lista1.TempoLigado() << endl;
+  // cout << "Tempo ligado: " << lista1.TempoLigado() << endl;
 
-  cout << "Digite F para finalizar o programa" << endl;
+  // ----------
+
+  string data_t, hora_t;
+  cout << lista1.ClockCalendar::data << endl;
+  while (true) // data
+  {
+    cout << "-----" << endl;
+    cout << "data: ";
+    cin >> data_t;
+    if (data_t < lista1.ClockCalendar::data)
+    {
+      cout << data_t << " < " << lista1.ClockCalendar::data << endl;
+    }
+    else
+    {
+      cout << data_t << " > " << lista1.ClockCalendar::data << endl;
+    }
+
+    // ------
+    // if (data_t > lista1.ClockCalendar::data)
+    // {
+    //   cout << data_t << " > " << lista1.ClockCalendar::data << endl;
+    // }
+    // else
+    // {
+    //   cout << data_t << " < " << lista1.ClockCalendar::data << endl;
+    // }
+  }
+
+  // while (true) // hora
+  // {
+  //   cout << lista1.ClockCalendar::hora << endl;
+  //   cout << "hora:";
+  //   cin >> hora_t;
+
+  //   if (lista1.ClockCalendar::hora > hora_t)
+  //   {
+  //     cout << "true" << endl;
+  //   }
+  //   else
+  //   {
+  //     cout << "false" << endl;
+  //   }
+  // }
 
   cin >> saida;
-
+  cout << "Digite F para finalizar o programa" << endl;
   return 0;
 }
 

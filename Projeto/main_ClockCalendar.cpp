@@ -12,6 +12,7 @@ int main()
 {
   bool b_pm;
   string buffer_data_hora;
+  tuple<int, int> bf1;
 
   ClockCalendar obj_data_horario;
 
@@ -39,5 +40,7 @@ int main()
   cout << "-----" << endl;
   // ----------------------------------------------
   // obj_data_horario.ClockInterval(obj_data_horario.hora, hora_teste);
-  cout << obj_data_horario.ClockInterval(obj_data_horario.hora, obj_data_horario.hora);
+  bf1 = IntervaloData_emhoras("01/01/2021", obj_data_horario.data, "08:00:00", obj_data_horario.hora);
+
+  cout << "Intervalo: " << get<0>(bf1) << " horas e " << get<1>(bf1) << " minutos" << endl;
 };

@@ -121,7 +121,7 @@ int Node_temp_fixa::get_temp_int()
   return temp_int;
 }
 
-int Node_temp_fixa::get_new_temp_int()
+int Node_temp_fixa::get_new_temp_int() // APAGAR
 {
   return temp_int;
 }
