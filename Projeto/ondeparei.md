@@ -57,7 +57,7 @@ a) irá ter objeto ClockCalendar único -> dentro do OS do controlador em alguma
 - função para pegar lista inteira e apagá-la - OK (desconstrutor)
 - função tempo ligado
 
-# Log:
+# Log: - OK
 
 - listar todos os eventos ocorridos em um determinado intervalo de datas; -> PROBLEMA: intervalo hora está paralelo ao intervalo data (devem agir juntos) - OK
 
@@ -68,6 +68,8 @@ a) irá ter objeto ClockCalendar único -> dentro do OS do controlador em alguma
   \_\_[(ano2 - ano1)x365 + (mes2 - mes1)x30 + (dia2 - dia1)]*24\_\_ + (Hora2 - Hora1) -->
   - fazer interface -> inserir logs manualmente -> opção Node iniciar com hora como parametro
 
+# Serial:
+
 # Interface PC:
 
 - inserção de 'nós' -> 'List' - OK
@@ -77,7 +79,7 @@ a) irá ter objeto ClockCalendar único -> dentro do OS do controlador em alguma
 # ClockCalendar:
 
 - Sobrecarga de operadores:
-  - Data1 > data2 & ...
-  - Hora1 > hora2 & ...
+  - Data1 > data2 & ... - OK
+  - Hora1 > hora2 & ... - OK
 
 # Documentação:

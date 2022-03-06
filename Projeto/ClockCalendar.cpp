@@ -60,7 +60,7 @@ ClockCalendar::ClockCalendar()
   sec = ltm->tm_sec;
 
   dia = ltm->tm_mday;
-  mes = ltm->tm_mon;
+  mes = ltm->tm_mon + 1;
   ano = (ltm->tm_year) + 1900;
 
   Calendar::setCalendarString();  // salva data atual

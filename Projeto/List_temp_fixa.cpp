@@ -273,42 +273,6 @@ void List_temp_fixa::listAll()
   cout << "---------------------------------------------------------------\n";
 }
 
-// void List_temp_fixa::listInterval(string limit_inf, string limit_sup, string hr_init = "00:00:00", string hr_end = "23:59:59")
-// {
-//   Node_temp_fixa *aux = head;
-
-//   cout << "---------------------------------------------------------------\n";
-//   cout << "========== Lista Intervalo: " << limit_inf << " - " << limit_sup << " | " << hr_init << " - " << hr_end << "; ==========" << endl;
-//   cout << "|" << setw(11) << centered("Data")
-//        << "|" << setw(10) << centered("Hora")
-//        << "|" << setw(10) << centered("ID")
-//        << "|" << setw(13) << centered("Temp. Externa")
-//        << "|" << setw(18) << centered("Temp. Dispositivo")
-//        << "|" << setw(22) << centered("Acionamento (1 = aut.)")
-//        << "|" << endl;
-
-//   while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
-//   {
-//     if (aux->ClockCalendar::Data1EhMAIORqueData2(aux->data, limit_inf) == true && aux->ClockCalendar::Data1EhMENORqueData2(aux->data, limit_sup) == true)
-//     {
-
-//       if (aux->ClockCalendar::Hora1EhMAIORqueHora2(aux->hora, hr_init) == true && aux->ClockCalendar::Hora1EhMENORqueHora2(aux->hora, hr_end) == true)
-//       {
-//         cout << "|" << setw(11) << (aux->getCalendarString())
-//              << "|" << setw(10) << (aux->getClockString())
-//              << "|" << setw(10) << centered(to_string(aux->get_ID()))
-//              << "|" << setw(13) << centered(to_string(aux->get_temp_ext()))
-//              << "|" << setw(18) << centered(to_string(aux->get_new_temp_int()))
-//              << "|" << setw(22) << centered(to_string(aux->get_automatico_ou_botao()))
-//              << "|" << endl;
-//       }
-//     }
-//     aux = aux->getNext(); // o ponteiro do tipo 'Node_temp_fixa' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
-//                           // Resumindo, antes: aux apontava para &head
-//                           // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
-//   }
-//   cout << "---------------------------------------------------------------\n";
-// }
 void List_temp_fixa::listInterval(string limit_inf, string limit_sup, string hr_init = "00:00:00", string hr_end = "23:59:59")
 {
   Node_temp_fixa *aux = head;
@@ -326,14 +290,12 @@ void List_temp_fixa::listInterval(string limit_inf, string limit_sup, string hr_
   while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
   {
     if ((aux->data > limit_inf) && (aux->data < limit_sup))
-    // if (aux->ClockCalendar::Data1EhMAIORqueData2(aux->data, limit_inf) == true && aux->ClockCalendar::Data1EhMENORqueData2(aux->data, limit_sup) == true)
     {
-      // if ((aux->hora >= hr_init) && (aux->hora <= hr_end))
       printNode(aux);
     }
     else if (aux->data == limit_inf)
     {
-      if (aux->data >= hr_init)
+      if (aux->hora >= hr_init)
       {
         printNode(aux);
       }

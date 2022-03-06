@@ -38,13 +38,15 @@ int main()
   lista1.listAll();
   string hora1_t, hora2_t, data1_t, data2_t;
 
+  hora1_t = "08:00:00";
+  hora2_t = "22:00:00";
   while (true)
   {
     cout << "-----" << endl;
-    cout << "hora init: ";
-    cin >> hora1_t;
-    cout << "hora end: ";
-    cin >> hora2_t;
+    // cout << "hora init: ";
+    // cin >> hora1_t;
+    // cout << "hora end: ";
+    // cin >> hora2_t;
     cout << "data init: ";
     cin >> data1_t;
     cout << "data end: ";
