@@ -1,5 +1,5 @@
 /************************************************************
- * File RobotLinux.cpp - Implementation for the RobotLinux class
+ * File RobotLinux.h - Header for RobotLinux class
  *
  * This class has the implementation for virtual
  * methods from Robot.h (and Robot.cpp)
@@ -17,27 +17,35 @@
  *
  *************************************************************/
 
+#include "Uart.cpp"
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
+#include <iostream>
+#include <string.h>
 using namespace std;
 
-class Uart
+/************************************************************
+ * Class RobotLinux
+ * C++ header for the serial interface methods used to
+ * control FischerTechnik robots under linux O.S.
+ *************************************************************/
+class UartLinux : public Uart
 {
-  //
 private:
+  // char serial[11];           // serial port name (e.g. /dev/ttyS0, ...)
+  int fd; // handle to serial port (fd == -1, error!)
   //
-protected:
-  //
-  char motorWord; // word to be sent to robot
 public:
   //
-  virtual char sendCommand() = 0;
-  virtual void openSerial(int ser) = 0;
+  UartLinux(void);  // RobotLinux.cpp
+  ~UartLinux(void); // RobotLinux.cpp
   //
-  // void setMotor(char cmd);            // Robot.cpp
-  //
-  // void motorsOff();                   // Robot.cpp
-  //
+  char sendCommand();       // RobotLinux.cpp
+  void openSerial(int ser); // RobotLinux.cpp
 };
+
 /************************************************************
  * Constructor
  *************************************************************/
