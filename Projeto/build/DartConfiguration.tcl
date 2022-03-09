@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/luis/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto
-BuildDirectory: /home/luis/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto/build
+SourceDirectory: /home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto
+BuildDirectory: /home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -26,7 +26,7 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/luis/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto"
+ConfigureCommand: "/usr/bin/cmake" "/home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
@@ -63,7 +63,7 @@ UpdateType:
 
 # Compiler info
 Compiler: /usr/bin/c++
-CompilerVersion: 9.3.0
+CompilerVersion: 9.4.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 

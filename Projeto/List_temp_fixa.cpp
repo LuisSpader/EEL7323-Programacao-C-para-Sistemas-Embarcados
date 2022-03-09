@@ -313,6 +313,7 @@ void List_temp_fixa::listInterval(string limit_inf, string limit_sup, string hr_
   }
   cout << "---------------------------------------------------------------\n";
 }
+
 void List_temp_fixa::setID(int newID)
 {
   // Node_temp_fixa *aux = head; // ponteiro para o nodo 'head'

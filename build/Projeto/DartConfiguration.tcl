@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/luis/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados
-BuildDirectory: /home/luis/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/build
+SourceDirectory: /home/luis/pi/pico/pico-projects/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto
+BuildDirectory: /home/luis/pi/pico/pico-projects/EEL7323-Programacao-C-para-Sistemas-Embarcados/build/Projeto
 
 # Where to place the cost data store
 CostDataFile: 
@@ -14,7 +14,7 @@ CostDataFile:
 Site: luis-Aspire-E5-573G
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-x86_64-linux-gnu-g++-9
+BuildName: PICO-make
 
 # Subprojects
 LabelsForSubprojects: 
@@ -26,7 +26,7 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/luis/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados"
+ConfigureCommand: "/usr/bin/cmake" "/home/luis/pi/pico/pico-projects/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
@@ -57,13 +57,13 @@ P4UpdateOptions:
 P4UpdateCustom: 
 
 # Generic update command
-UpdateCommand: /usr/bin/git
+UpdateCommand: 
 UpdateOptions: 
-UpdateType: git
+UpdateType: 
 
 # Compiler info
-Compiler: /bin/x86_64-linux-gnu-g++-9
-CompilerVersion: 9.3.0
+Compiler: /usr/bin/arm-none-eabi-g++
+CompilerVersion: 9.2.1
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 

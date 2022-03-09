@@ -158,12 +158,12 @@ void Calendar::advance()
 }
 
 bool Calendar::Data1EhMAIORqueData2(string data1, string data2)
-{
+{ 
   Calendar obj_calendar;
   tuple<int, int, int> buffer1, buffer2;         // tupla com os valores: dia, mes, ano
   buffer1 = obj_calendar.setStringToDate(data1); // recebendo os valores
   buffer2 = obj_calendar.setStringToDate(data2);
-  // get<0>: ano,  get<1>: mes,  get<2>: dia
+  // get<0>: dia,  get<1>: mes,  get<2>: ano
 
   // cout << "get0: " << get<0>(buffer1) << endl;
   // cout << "get1: " << get<1>(buffer1) << endl;
@@ -257,6 +257,7 @@ bool Calendar::Data1EhMENORqueData2(string data1, string data2)
 }
 
 // -------------- Operadores para data --------------
+
 bool operator>(Calendar &c1, string c2)
 {
   return c1.Data1EhMAIORqueData2(c1.str_data.str(), c2);

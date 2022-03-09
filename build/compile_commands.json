@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/luis/EEL7323-Programacao-C-para-Sistemas-Embarcados/build",
-  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/cpp_ar_condicionado_project.dir/main.cpp.o -c /home/luis/EEL7323-Programacao-C-para-Sistemas-Embarcados/main.cpp",
-  "file": "/home/luis/EEL7323-Programacao-C-para-Sistemas-Embarcados/main.cpp"
-}
-]

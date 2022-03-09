@@ -52,6 +52,8 @@ int main()
     cout << "data end: ";
     cin >> data2_t;
     lista1.listInterval(data1_t, data2_t, hora1_t, hora2_t);
+    // lista1.listInterval(data1_t, data2_t);
+
   }
   // lista1.listInterval(lista1.ClockCalendar::data, "02/04/2022");
 
