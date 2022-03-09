@@ -1,0 +1,75 @@
+------- DIRETÓRIOS ------------
+~/pi/pico/pico-examples/build/blink
+~/pi/pico/pico-projects/EEL7323-Programacao-C-para-Sistemas-Embarcados
+~/pi/pico/pico-sdk
+
+~/pi/pico/test
+
+
+------- CONSERTANDO BUILD ------
+https://www.chrisclaxton.me.uk/chris-claxtons-blog/raspberry-pi-pico-vscode-and-macos
+From within the build directory I ran these commands to make it work again:
+
+rm -rf *
+export PICO_SDK_PATH=~/pi/pico/pico-sdk
+cmake ..
+cd blink
+make -j4
+
+
+------ COMPILANDO -------
+vai na pasta build do projeto
+cmake ..
+cd blink
+make -j4
+------ PASSANDO ARQUIVO PARA RASPBERRY ---------
+luis@luis-Aspire-E5-573G:~/pi/pico/pico-examples/build/blink$  cp blink.uf2 /media/luis/RPI-RP2
+------ EDITANDO PROGRAMA --------
+luis@luis-Aspire-E5-573G:~/pi/pico/pico-examples/blink$ nano blink.c
+(edita o código)
+Sair: Ctrl + X 
+-------- COMPILANDO --------------
+cd ~/pi/pico/pico-examples/build/blink
+make -j4
+----------- PASSANDO NOVAMENTE ---------
+Resetar a placa:
+	opção 1: - segura botão raspberry> curto entre pinos GND e RUN -> 28 e 30)
+	opção 2: desconecta o usb da placa> segura o botão raspberry> conecta o USB de volta
+Copia arquivo .uf2 para a placa:
+	cp blink.uf2 /media/luis/RPI-RP2
+	
+============= CRIANDO PRÓPRIO PROJETO ===========
+Go ahead and create a directory to house your test project sitting alongside the pico-sdk directory;
+Create test.c
+	nano test.c
+Create CMakeLists.txt file:
+	cmake_minimum_required(VERSION 3.13)
+
+	include(pico_sdk_import.cmake)
+
+	project(test_project C CXX ASM)
+	set(CMAKE_C_STANDARD 11)
+	set(CMAKE_CXX_STANDARD 17)
+	pico_sdk_init()
+
+	add_executable(test test.c)
+
+	set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+	set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+	include(CPack)
+
+	pico_enable_stdio_usb(test 1)
+	pico_enable_stdio_uart(test 1)
+
+	pico_add_extra_outputs(test)
+	target_link_libraries(test pico_stdlib)
+	---------------------
+Copy pico_skd_import.cmake:
+	cp ~/pi/pico/pico-sdk/external/pico_sdk_import.cmake .
+mkdir build
+cd build
+export PICO_SDK_PATH=~/pi/pico/pico-sdk
+cmake ..
+make
+
+
