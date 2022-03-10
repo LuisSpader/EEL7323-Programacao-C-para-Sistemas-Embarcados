@@ -66,7 +66,8 @@ void read_from_dht(dht_reading *result) {
 
         if ((i >= 4) && (i % 2 == 0)) {
             data[j / 8] <<= 1;
-            if (count > 16) data[j / 8] |= 1;
+            if (count >46) data[j / 8] |= 1;
+            //https://electronics.stackexchange.com/questions/552924/raspberry-pico-and-dht11-not-working-c-c
             j++;
         }
     }
@@ -90,3 +91,5 @@ void read_from_dht(dht_reading *result) {
         printf("Bad data\n");
     }
 }
+
+

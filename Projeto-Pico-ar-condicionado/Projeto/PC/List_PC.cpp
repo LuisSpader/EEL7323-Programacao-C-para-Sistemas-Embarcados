@@ -44,12 +44,11 @@ class List_PC : public ClockCalendar
 
   Node_temp_fixa *head; // ponteiro com tamanho de endereço de um 'Node_temp_fixa'
   int ID;
+  string hora, data;
 
 public:
   List_PC(int newID); // construtor -> ao construir cria objeto 'Node_temp_fixa': head = 0;
   ~List_PC();
-  void Ligar();
-  void Desligar();
 
   void create_first_Node(int new_temp, bool new_automatico_ou_botao);
 
@@ -73,7 +72,6 @@ List_PC::List_PC(int newID)
 {
   setID(newID);
   head = 0; // a classe Node_temp_fixa possui 2 argumentos, aqui estamos igualando ambos a 0?
-  Ligar();
 }
 
 List_PC::~List_PC()
@@ -330,21 +328,6 @@ void List_PC::setID(int newID)
     ID = newID;
   }
 };
-
-void List_PC::Ligar()
-{
-  create_first_Node(9999, true);
-}
-
-void List_PC::Desligar()
-{
-  insertAfterLast(1111, true);
-
-  // insertAfterLast(7777, true);
-
-  // Node_temp_fixa *aux = head;
-  // aux->changeNode_manual("Tempo ligado", TempoLigado(), ID, 0, true, aux->getNext()); // string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_temp_fixa *nxt
-}
 
 string List_PC::TempoLigado()
 {

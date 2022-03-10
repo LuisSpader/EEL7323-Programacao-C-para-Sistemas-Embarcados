@@ -63,7 +63,6 @@ public:
   int removeNode(int temp);
 
   void listAll();
-  void listInterval(string limit_inf, string limit_sup, string hr_init, string hr_end);
   void setID(int newID);
   string TempoLigado();
   void printNode(Node_temp_fixa *aux);
@@ -269,47 +268,6 @@ void List_pico::listAll()
     aux = aux->getNext(); // o ponteiro do tipo 'Node_temp_fixa' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
     // Resumindo, antes: aux apontava para &head
     // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
-  }
-  cout << "---------------------------------------------------------------\n";
-}
-
-void List_pico::listInterval(string limit_inf, string limit_sup, string hr_init = "00:00:00", string hr_end = "23:59:59")
-{
-  Node_temp_fixa *aux = head;
-
-  cout << "---------------------------------------------------------------\n";
-  cout << "========== Lista Intervalo: " << limit_inf << " - " << limit_sup << " | " << hr_init << " - " << hr_end << "; ==========" << endl;
-  cout << "|" << setw(11) << centered("Data")
-       << "|" << setw(10) << centered("Hora")
-       << "|" << setw(10) << centered("ID")
-       << "|" << setw(13) << centered("Temp. Externa")
-       << "|" << setw(18) << centered("Temp. Dispositivo")
-       << "|" << setw(22) << centered("Acionamento (1 = aut.)")
-       << "|" << endl;
-
-  while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
-  {
-    if ((aux->data > limit_inf) && (aux->data < limit_sup))
-    {
-      printNode(aux);
-    }
-    else if (aux->data == limit_inf)
-    {
-      if (aux->hora >= hr_init)
-      {
-        printNode(aux);
-      }
-    }
-    else if (aux->data == limit_sup)
-    {
-      if (aux->hora <= hr_end)
-      {
-        printNode(aux);
-      }
-    }
-    aux = aux->getNext(); // o ponteiro do tipo 'Node_temp_fixa' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
-                          // Resumindo, antes: aux apontava para &head
-                          // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
   }
   cout << "---------------------------------------------------------------\n";
 }

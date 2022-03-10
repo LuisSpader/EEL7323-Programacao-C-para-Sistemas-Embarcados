@@ -41,14 +41,13 @@ void Sensor_Temperatura_DHT11::ReadingLoop(){
   while (1) {
         dht_reading reading;
         read_from_dht(&reading);
-        float fahrenheit = (reading.temp_celsius * 9 / 5) + 32;
-        printf("Humidity = %.1f%%, Temperature = %.1fC (%.1fF)\n",
-               reading.humidity, reading.temp_celsius, fahrenheit);
+        // float fahrenheit = (reading.temp_celsius * 9 / 5) + 32;
+        // printf("Humidity = %.1f%%, Temperature = %.1fC (%.1fF)\n",
+        //        reading.humidity, reading.temp_celsius, fahrenheit);
 
         sleep_ms(2000);
     }
 }
-
 
 void Sensor_Temperatura_DHT11::read_from_dht(dht_reading *result) {
     int data[5] = {0, 0, 0, 0, 0};
@@ -75,7 +74,8 @@ void Sensor_Temperatura_DHT11::read_from_dht(dht_reading *result) {
 
         if ((i >= 4) && (i % 2 == 0)) {
             data[j / 8] <<= 1;
-            if (count > 16) data[j / 8] |= 1;
+            if (count >46) data[j / 8] |= 1;
+            //https://electronics.stackexchange.com/questions/552924/raspberry-pico-and-dht11-not-working-c-c
             j++;
         }
     }
