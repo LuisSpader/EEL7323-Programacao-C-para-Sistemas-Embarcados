@@ -21,13 +21,13 @@ using namespace std; // Esse comando é utilizado de forma a evitar a indicaçã
 class ClockCalendar : public Clock, public Calendar
 {
 private:
-  bool was_pm;
+  // bool was_pm;
 
 public:
   // string str_data_hora
   string data, hora;
 
-  void advance();
+  // void advance();
 
   ClockCalendar();
   void setClockCalendar_timelib();
@@ -35,6 +35,7 @@ public:
 
   string getClockString();
   string getCalendarString();
+  friend tuple<int, int> IntervaloData_emhoras(string data1, string data2, string hora1, string hora2);
   // bool Data1EhMAIORqueData2(string data1, string data2);
   // bool Data1EhMENORqueData2(string data1, string data2);
 
@@ -44,7 +45,6 @@ public:
   // friend bool operator>=(string hora1, string hora2);
   // friend bool operator<=(string hora1, string hora2);
 
-  friend tuple<int, int> IntervaloData_emhoras(string data1, string data2, string hora1, string hora2);
 };
 
 ClockCalendar::ClockCalendar()
@@ -68,18 +68,18 @@ ClockCalendar::ClockCalendar()
   set_fixo_ClockCalendarString(); // salva hora e data numa string só
 }
 
-void ClockCalendar::advance()
-{
-  int was_pm = is_pm; // variável 'is_pm' herdamos da classe Clock
-  // note que pegamos a variável antes de avançar o clock
-  // quando passamos da meia noite, fazemos is_pm: 1 -> 0
-  // logo teremos: was_pm = 1 e is_pm = 0
-  Clock::advance();
-  if (was_pm && !is_pm)
-  {
-    Calendar::advance();
-  }
-}
+// void ClockCalendar::advance()
+// {
+//   int was_pm = is_pm; // variável 'is_pm' herdamos da classe Clock
+//   // note que pegamos a variável antes de avançar o clock
+//   // quando passamos da meia noite, fazemos is_pm: 1 -> 0
+//   // logo teremos: was_pm = 1 e is_pm = 0
+//   Clock::advance();
+//   if (was_pm && !is_pm)
+//   {
+//     Calendar::advance();
+//   }
+// }
 
 void ClockCalendar::setClockCalendar_timelib()
 {

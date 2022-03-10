@@ -21,12 +21,12 @@ public:
   void setCalendar(int d, int mo, int a);
   void readCalendar();
   void setCalendarString();
-  void advance();
   bool Data1EhMAIORqueData2(string data1, string data2);
   bool Data1EhMENORqueData2(string data1, string data2);
 
   friend bool operator>=(string data1, string data2);
   friend bool operator<=(string data1, string data2);
+  // void advance();
 };
 
 // ------------------- Construtor ------------------- //
@@ -136,27 +136,27 @@ void Calendar::setCalendarString()
       << setw(4) << setfill('0') << ano;
 }
 
-void Calendar::advance()
-{
-  if (dia >= 30)
-  {
-    if (mes >= 12)
-    {
-      ano++;
-      mes = 0;
-      dia = 0;
-    }
-    else
-    {
-      mes++;
-      dia = 0;
-    }
-  }
-  else
-  {
-    dia++;
-  }
-}
+// void Calendar::advance()
+// {
+//   if (dia >= 30)
+//   {
+//     if (mes >= 12)
+//     {
+//       ano++;
+//       mes = 0;
+//       dia = 0;
+//     }
+//     else
+//     {
+//       mes++;
+//       dia = 0;
+//     }
+//   }
+//   else
+//   {
+//     dia++;
+//   }
+// }
 
 bool Calendar::Data1EhMAIORqueData2(string data1, string data2)
 { 

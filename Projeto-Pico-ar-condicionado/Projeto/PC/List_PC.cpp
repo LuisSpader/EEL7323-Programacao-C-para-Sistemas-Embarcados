@@ -1,9 +1,9 @@
 /*
-   File List_temp_fixa.cpp
+   File List_PC.cpp
 
-   Class List_temp_fixa stores Nodes (class Node_temp_fixa) in a linked list.
+   Class List_PC stores Nodes (class Node_temp_fixa) in a linked list.
 
-   This file has the implementation for class List_temp_fixa
+   This file has the implementation for class List_PC
 
    Class list is definition for a linked list, having the following operations:
 
@@ -36,18 +36,18 @@ using namespace std;
 #include "centered.cpp"
 #include <cassert>
 
-// #include "List_temp_fixa.h"
+// #include "List_PC.h"
 #include "Node_temp_fixa.cpp"
 
-class List_temp_fixa : public ClockCalendar
+class List_PC : public ClockCalendar
 {
 
   Node_temp_fixa *head; // ponteiro com tamanho de endereço de um 'Node_temp_fixa'
   int ID;
 
 public:
-  List_temp_fixa(int newID); // construtor -> ao construir cria objeto 'Node_temp_fixa': head = 0;
-  ~List_temp_fixa();
+  List_PC(int newID); // construtor -> ao construir cria objeto 'Node_temp_fixa': head = 0;
+  ~List_PC();
   void Ligar();
   void Desligar();
 
@@ -69,14 +69,14 @@ public:
   void printNode(Node_temp_fixa *aux);
 };
 
-List_temp_fixa::List_temp_fixa(int newID)
+List_PC::List_PC(int newID)
 {
   setID(newID);
   head = 0; // a classe Node_temp_fixa possui 2 argumentos, aqui estamos igualando ambos a 0?
   Ligar();
 }
 
-List_temp_fixa::~List_temp_fixa()
+List_PC::~List_PC()
 {
   Node_temp_fixa *cursor = head;
   while (head)
@@ -91,7 +91,7 @@ List_temp_fixa::~List_temp_fixa()
   head = 0; // Officially empty
 }
 
-void List_temp_fixa::create_first_Node(int new_temp, bool new_automatico_ou_botao)
+void List_PC::create_first_Node(int new_temp, bool new_automatico_ou_botao)
 {
   head = new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, head);
   // aqui criamos um novo nó: new Node_temp_fixa(...)
@@ -100,16 +100,16 @@ void List_temp_fixa::create_first_Node(int new_temp, bool new_automatico_ou_bota
   // a próxima vez que for criado um novo Node_temp_fixa, este apontará para o endereço armazenado anteriormente na variável head
 }
 
-void List_temp_fixa::insertBeforeFirst(int new_temp, bool new_automatico_ou_botao)
+void List_PC::insertBeforeFirst(int new_temp, bool new_automatico_ou_botao)
 {
   create_first_Node(new_temp, new_automatico_ou_botao); // ?? pq o 'new' aloca espaço de forma dinâmica??
 
-  // criando um novo Nodo com ponteiro 'next' =  'head', que foi inicializado no construtor da classe 'List_temp_fixa': head = 0 || (lembrando que 'head' é um ponteiro de 'Node_temp_fixa', ou seja, seu tamanho de endereço de memória é igual ao de um 'Node_temp_fixa')
+  // criando um novo Nodo com ponteiro 'next' =  'head', que foi inicializado no construtor da classe 'List_PC': head = 0 || (lembrando que 'head' é um ponteiro de 'Node_temp_fixa', ou seja, seu tamanho de endereço de memória é igual ao de um 'Node_temp_fixa')
   // e com valor 'temp' passado como argumento do método
   // após criar o novo Nodo, a variável 'head' que é do tipo 'Node_temp_fixa' receberá o endereço deste novo Nodo criado, assim na próxima vez qu for criado um novo 'Node_temp_fixa', o mesmo apontará para o 'Node_temp_fixa' criado anteriormente
 }
 
-void List_temp_fixa::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
+void List_PC::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
 {
   // declara 2 ponteiros do tipo 'Node_temp_fixa' e os mesmos serão iguais a outra 'Node_temp_fixa' chamado 'head', caso já exista algum 'nodo': head não apontará para o endereço 0
   Node_temp_fixa *A = head;
@@ -138,13 +138,13 @@ void List_temp_fixa::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
   }
 }
 
-int List_temp_fixa::readFirst()
+int List_PC::readFirst()
 {
   return head->get_ID();
   // return head->get_All_Data();
 }
 
-int List_temp_fixa::removeFirst()
+int List_PC::removeFirst()
 {
   int retval = 0;
   if (head != 0)
@@ -162,7 +162,7 @@ int List_temp_fixa::removeFirst()
   return retval;
 }
 
-void List_temp_fixa::insertionSort(int new_temp, bool new_automatico_ou_botao)
+void List_PC::insertionSort(int new_temp, bool new_automatico_ou_botao)
 {
   // função para inserir 'Nodo' em ordem crescente de seu valor 'value'
   Node_temp_fixa *A = head;
@@ -206,7 +206,7 @@ void List_temp_fixa::insertionSort(int new_temp, bool new_automatico_ou_botao)
   }
 }
 
-int List_temp_fixa::removeNode(int temp)
+int List_PC::removeNode(int temp)
 {
   Node_temp_fixa *A = head;
   Node_temp_fixa *B = head;
@@ -243,7 +243,7 @@ int List_temp_fixa::removeNode(int temp)
   return result;
 }
 
-void List_temp_fixa::listAll()
+void List_PC::listAll()
 {
   Node_temp_fixa *aux = head;
   cout << "---------------------------------------------------------------\n";
@@ -273,7 +273,7 @@ void List_temp_fixa::listAll()
   cout << "---------------------------------------------------------------\n";
 }
 
-void List_temp_fixa::listInterval(string limit_inf, string limit_sup, string hr_init = "00:00:00", string hr_end = "23:59:59")
+void List_PC::listInterval(string limit_inf, string limit_sup, string hr_init = "00:00:00", string hr_end = "23:59:59")
 {
   Node_temp_fixa *aux = head;
 
@@ -314,7 +314,7 @@ void List_temp_fixa::listInterval(string limit_inf, string limit_sup, string hr_
   cout << "---------------------------------------------------------------\n";
 }
 
-void List_temp_fixa::setID(int newID)
+void List_PC::setID(int newID)
 {
   // Node_temp_fixa *aux = head; // ponteiro para o nodo 'head'
 
@@ -331,12 +331,12 @@ void List_temp_fixa::setID(int newID)
   }
 };
 
-void List_temp_fixa::Ligar()
+void List_PC::Ligar()
 {
   create_first_Node(9999, true);
 }
 
-void List_temp_fixa::Desligar()
+void List_PC::Desligar()
 {
   insertAfterLast(1111, true);
 
@@ -346,7 +346,7 @@ void List_temp_fixa::Desligar()
   // aux->changeNode_manual("Tempo ligado", TempoLigado(), ID, 0, true, aux->getNext()); // string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_temp_fixa *nxt
 }
 
-string List_temp_fixa::TempoLigado()
+string List_PC::TempoLigado()
 {
   Node_temp_fixa *aux = head;
   string h1, h2;
@@ -355,13 +355,13 @@ string List_temp_fixa::TempoLigado()
   while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
   {
     // cout << aux->get_temp_int() << endl;
-    if (aux->get_temp_int() == 9999) // List_temp_fixa::Ligar()
+    if (aux->get_temp_int() == 9999) // List_PC::Ligar()
     {
       h1 = aux->hora;
     }
     else
     {
-      if (aux->get_temp_int() == 1111) // List_temp_fixa::Desligar()
+      if (aux->get_temp_int() == 1111) // List_PC::Desligar()
       {
         h2 = aux->hora;
         break;
@@ -382,7 +382,7 @@ string List_temp_fixa::TempoLigado()
 // Data1 = 01/01/2020; Hora1 = 10:00:00 -> Início
 // Data2 = 02/01/2020; Hora2 = 08:00:00 -> Fim
 
-void List_temp_fixa::printNode(Node_temp_fixa *aux)
+void List_PC::printNode(Node_temp_fixa *aux)
 {
   cout << "|" << setw(11) << (aux->getCalendarString())
        << "|" << setw(10) << (aux->getClockString())

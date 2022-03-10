@@ -70,6 +70,10 @@ a) irá ter objeto ClockCalendar único -> dentro do OS do controlador em alguma
 
 # Serial:
 
+# Embarcado:
+- Botões temperatura
+
+
 # Interface PC:
 
 - inserção de 'nós' -> 'List' - OK
