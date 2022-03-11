@@ -1,7 +1,7 @@
 /*
    File main.cpp
 
-   Test program for Node and List_temp_fixa classes.
+   Test program for Node and List_PC classes.
 
    Eduardo Augusto Bezerra <eduardo.bezerra@ufsc.br>
    Departamento de Engenharia Eletrica
@@ -11,33 +11,30 @@
 
 */
 
-// #include "List_temp_fixa.cpp"
-#include "List_temp_fixa.cpp"
+#include "List_PC.cpp"
 
 int main()
 {
 
-  List_temp_fixa lista1(18250065), lista2(18250066);
+  List_PC lista1(18250065), lista2(18250066);
   int saida;
 
-  lista1.insertAfterLast(27, false);
+  lista1.insertAfterLast("10/03/2021", "20:42:00", 27, false);
 
   // In Unix you can use usleep. In Windows there is Sleep.
   // #include <unistd.h>
   // unsigned int microseconds;
   // usleep(microseconds);
 
-  lista1.insertAfterLast(26, false);
-  lista1.insertBeforeFirst(28, false);
+  lista1.insertAfterLast("10/03/2021", "20:45:00",26, false);
+  lista1.insertBeforeFirst("10/03/2021", "20:47:00",28, false);
 
   cout << "Primeiro nodo contem: " << lista1.readFirst() << endl;
-
-  // lista1.insertionSort(20, false); // inclui '4' entre 0 e 5  -> 0,4,5,10
-  lista1.Desligar();
 
   lista1.listAll();
   string hora1_t, hora2_t, data1_t, data2_t;
 
+// teste 'listInterval()
   hora1_t = "08:00:00";
   hora2_t = "22:00:00";
   while (true)
@@ -55,36 +52,37 @@ int main()
     // lista1.listInterval(data1_t, data2_t);
 
   }
-  // lista1.listInterval(lista1.ClockCalendar::data, "02/04/2022");
+  // lista1.listInterval(data_fixa, "02/04/2022");
 
   // cout << "Tempo ligado: " << lista1.TempoLigado() << endl;
 
   // ----------
-
+  // lista1.
+  string data_fixa = "10/03/2022";
   string data_t, hora_t;
-  cout << lista1.ClockCalendar::data << endl;
+  cout << data_fixa << endl;
   while (true) // data
   {
     cout << "-----" << endl;
     cout << "data: ";
     cin >> data_t;
-    if (data_t < lista1.ClockCalendar::data)
+    if (data_t < data_fixa)
     {
-      cout << data_t << " < " << lista1.ClockCalendar::data << endl;
+      cout << data_t << " < " << data_fixa << endl;
     }
     else
     {
-      cout << data_t << " > " << lista1.ClockCalendar::data << endl;
+      cout << data_t << " > " << data_fixa << endl;
     }
 
     // ------
-    // if (data_t > lista1.ClockCalendar::data)
+    // if (data_t > data_fixa)
     // {
-    //   cout << data_t << " > " << lista1.ClockCalendar::data << endl;
+    //   cout << data_t << " > " << data_fixa << endl;
     // }
     // else
     // {
-    //   cout << data_t << " < " << lista1.ClockCalendar::data << endl;
+    //   cout << data_t << " < " << data_fixa << endl;
     // }
   }
 

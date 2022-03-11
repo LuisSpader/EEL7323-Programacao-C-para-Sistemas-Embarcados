@@ -1,6 +1,8 @@
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
 #include <iomanip>   // para usar setfill() e setw()
-#include "List_temp_fixa.cpp"
+#include "List_PC.cpp"
+#include <locale.h>
+// setlocale(LC_ALL, "pt_BR.UTF-8");
 
 // ============== DEFINIÇÃO DA CLASSE =========== //
 class interface_PC
@@ -22,11 +24,12 @@ void interface_temp()
   bool continuar = true;
   int b_temp, b_switch;
   float b_temp1, b_temp2;
-  List_temp_fixa lista1(18250065);
+  List_PC lista1(18250065);
 
   while (continuar == true)
   {
     cout << "---------------------- Interface Computador ----------------------------\n";
+    cout << " Bem vindo a interface Computador, nela voce tera";
 
     // cout << "Capacidade: " << N_TEMPERATURA << " registros; Leituras disponiveis para registro: " << lista1.vagas << endl;
 
@@ -36,7 +39,7 @@ void interface_temp()
     cout << "4 - Listar eventos em intervalo de data " << endl;
     // cout << "5 - Lista IDs" << endl;
     // cout << "6 - Listar todas as leituras" << endl;
-    cout << "7 - Voltar " << endl;
+    cout << "7 - Encerrar Programa " << endl;
 
     cout << "Digite a operacao desejada:";
     cin >> b_switch;

@@ -20,13 +20,13 @@ class UART_pico
 private:
     /* data */
 public:
-    UART_pico(/* args */);
+    UART_pico();
     ~UART_pico();
     void SendCommand(char *char_serial);
 
 };
 
-UART_pico::UART_pico(/* args */)
+UART_pico::UART_pico()
 {
     // Initialise UART 0
     uart_init(UART_ID, BAUD_RATE);

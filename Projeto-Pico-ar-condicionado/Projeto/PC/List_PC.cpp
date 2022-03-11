@@ -1,7 +1,7 @@
 /*
    File List_PC.cpp
 
-   Class List_PC stores Nodes (class Node_temp_fixa) in a linked list.
+   Class List_PC stores Nodes (class Node_PC) in a linked list.
 
    This file has the implementation for class List_PC
 
@@ -9,7 +9,7 @@
 
    1. Initialize the list to an empty list.
    2. Free the nodes of a list.
-   3. Determine whether a list is empty.
+   3. Determine whether a list is empty. ****************
    4. Add a node with a given value into the list following
       the first node with another given value.
    5. Add a node with a given value to the front of the list.
@@ -30,6 +30,7 @@
 // ID do controlador (cada equipamento possui um ID único);
 // data/hora do evento (usar o clock/calendar desenvolvido anteriormente).
 
+// ============ ESTA LISTA (PC) INCLUI A HORA E DATA MANUALMENTE NO NÓ, POIS RECEBERÁ ESTES DADOS DA UART
 #include <stdlib.h>
 using namespace std;
 #include <iomanip>
@@ -37,46 +38,47 @@ using namespace std;
 #include <cassert>
 
 // #include "List_PC.h"
-#include "Node_temp_fixa.cpp"
+#include "Node_PC.cpp"
 
-class List_PC : public ClockCalendar
+// class List_PC : public ClockCalendar
+class List_PC
 {
 
-  Node_temp_fixa *head; // ponteiro com tamanho de endereço de um 'Node_temp_fixa'
   int ID;
   string hora, data;
 
 public:
-  List_PC(int newID); // construtor -> ao construir cria objeto 'Node_temp_fixa': head = 0;
+  Node_PC *head; // ponteiro com tamanho de endereço de um 'Node_PC'
+  List_PC(int newID); // construtor -> ao construir cria objeto 'Node_PC': head = 0;
   ~List_PC();
 
-  void create_first_Node(int new_temp, bool new_automatico_ou_botao);
+  void create_first_Node(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao);
 
-  void insertBeforeFirst(int new_temp, bool new_automatico_ou_botao);
-  void insertAfterLast(int new_temp, bool new_automatico_ou_botao);
+  void insertBeforeFirst(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao);
+  void insertAfterLast(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao);
 
   int readFirst();
   int removeFirst();
 
-  void insertionSort(int new_temp, bool new_automatico_ou_botao);
+  void insertionSort(string new_data, string new_hora, int new_temp, bool new_automatico_ou_botao);
   int removeNode(int temp);
 
   void listAll();
   void listInterval(string limit_inf, string limit_sup, string hr_init, string hr_end);
   void setID(int newID);
   string TempoLigado();
-  void printNode(Node_temp_fixa *aux);
+  void printNode(Node_PC *aux);
 };
 
 List_PC::List_PC(int newID)
 {
   setID(newID);
-  head = 0; // a classe Node_temp_fixa possui 2 argumentos, aqui estamos igualando ambos a 0?
+  head = 0; // a classe Node_PC possui 2 argumentos, aqui estamos igualando ambos a 0?
 }
 
 List_PC::~List_PC()
 {
-  Node_temp_fixa *cursor = head;
+  Node_PC *cursor = head;
   while (head)
   {
     delete head;
@@ -89,32 +91,32 @@ List_PC::~List_PC()
   head = 0; // Officially empty
 }
 
-void List_PC::create_first_Node(int new_temp, bool new_automatico_ou_botao)
+void List_PC::create_first_Node(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao)
 {
-  head = new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, head);
-  // aqui criamos um novo nó: new Node_temp_fixa(...)
+  head = new Node_PC( new_data,  new_hora,ID, new_temp, new_automatico_ou_botao, head);
+  // aqui criamos um novo nó: new Node_PC(...)
   // e
-  // salvamos o endereço deste novo 'Node_temp_fixa' criado na variável de ponteiro 'head'
-  // a próxima vez que for criado um novo Node_temp_fixa, este apontará para o endereço armazenado anteriormente na variável head
+  // salvamos o endereço deste novo 'Node_PC' criado na variável de ponteiro 'head'
+  // a próxima vez que for criado um novo Node_PC, este apontará para o endereço armazenado anteriormente na variável head
 }
 
-void List_PC::insertBeforeFirst(int new_temp, bool new_automatico_ou_botao)
+void List_PC::insertBeforeFirst(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao)
 {
-  create_first_Node(new_temp, new_automatico_ou_botao); // ?? pq o 'new' aloca espaço de forma dinâmica??
+  create_first_Node(new_data, new_hora, new_temp, new_automatico_ou_botao); // ?? pq o 'new' aloca espaço de forma dinâmica??
 
-  // criando um novo Nodo com ponteiro 'next' =  'head', que foi inicializado no construtor da classe 'List_PC': head = 0 || (lembrando que 'head' é um ponteiro de 'Node_temp_fixa', ou seja, seu tamanho de endereço de memória é igual ao de um 'Node_temp_fixa')
+  // criando um novo Nodo com ponteiro 'next' =  'head', que foi inicializado no construtor da classe 'List_PC': head = 0 || (lembrando que 'head' é um ponteiro de 'Node_PC', ou seja, seu tamanho de endereço de memória é igual ao de um 'Node_PC')
   // e com valor 'temp' passado como argumento do método
-  // após criar o novo Nodo, a variável 'head' que é do tipo 'Node_temp_fixa' receberá o endereço deste novo Nodo criado, assim na próxima vez qu for criado um novo 'Node_temp_fixa', o mesmo apontará para o 'Node_temp_fixa' criado anteriormente
+  // após criar o novo Nodo, a variável 'head' que é do tipo 'Node_PC' receberá o endereço deste novo Nodo criado, assim na próxima vez qu for criado um novo 'Node_PC', o mesmo apontará para o 'Node_PC' criado anteriormente
 }
 
-void List_PC::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
+void List_PC::insertAfterLast(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao)
 {
-  // declara 2 ponteiros do tipo 'Node_temp_fixa' e os mesmos serão iguais a outra 'Node_temp_fixa' chamado 'head', caso já exista algum 'nodo': head não apontará para o endereço 0
-  Node_temp_fixa *A = head;
-  Node_temp_fixa *B = head;
+  // declara 2 ponteiros do tipo 'Node_PC' e os mesmos serão iguais a outra 'Node_PC' chamado 'head', caso já exista algum 'nodo': head não apontará para o endereço 0
+  Node_PC *A = head;
+  Node_PC *B = head;
 
   if (head == 0)                                          // verifica se lista está vazia
-    create_first_Node(new_temp, new_automatico_ou_botao); // se lista está vazia, cria um novo Nodo
+    create_first_Node(new_data, new_hora,new_temp, new_automatico_ou_botao); // se lista está vazia, cria um novo Nodo
   else                                                    // se lista não está vazia
   {
     while (B != 0) // se B for o 'último' da lista, apontará para '0'
@@ -128,7 +130,7 @@ void List_PC::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
       // B = A->getNext(); (B aponta para quem nó_1 apontava, logo: nó_2)
     } // quando chegar no último nó (nó_N), B = 0
 
-    A->setNext(new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, 0));
+    A->setNext(new Node_PC(new_data, new_hora, ID, new_temp, new_automatico_ou_botao, 0));
     // criamos um novo nó que apontará para '0' (final da lista)
     // porém precisamos alterar o 'antigo último nó da lista' aponte para o 'novo último nó'
     // e quem é o 'antigo último nó'? é o nó_N que tanto A quanto B finalizarm o loop apontando, então podemos usar os ponteiros para alterar o conteúdo deste último nó
@@ -153,23 +155,23 @@ int List_PC::removeFirst()
     cout << "A nova lista possui os seguintes valores: " << endl;
 
     retval = head->get_ID();
-    Node_temp_fixa *oldHead = head;
+    Node_PC *oldHead = head;
     head = head->getNext();
     delete oldHead;
   }
   return retval;
 }
 
-void List_PC::insertionSort(int new_temp, bool new_automatico_ou_botao)
+void List_PC::insertionSort(string new_data, string new_hora,int new_temp, bool new_automatico_ou_botao)
 {
   // função para inserir 'Nodo' em ordem crescente de seu valor 'value'
-  Node_temp_fixa *A = head;
-  Node_temp_fixa *B = head;
+  Node_PC *A = head;
+  Node_PC *B = head;
 
   if (head == 0)
   {
-    // head = new Node_temp_fixa(value, head);
-    create_first_Node(new_temp, new_automatico_ou_botao);
+    // head = new Node_PC(value, head);
+    create_first_Node(new_data, new_hora, new_temp, new_automatico_ou_botao);
     int i;
     i = head->get_ID();
   }
@@ -198,16 +200,16 @@ void List_PC::insertionSort(int new_temp, bool new_automatico_ou_botao)
     // --------------------------------------------------------------------------------------------------------------
 
     if (A == B)                                                                 // verifica se os ponteiros apontam para o mesmo lugar (lista vazia: campo 'next' do nodo 'head' apontaria para '0')
-      create_first_Node(new_temp, new_automatico_ou_botao);                     // inclui novo nodo
+      create_first_Node(new_data, new_hora, new_temp, new_automatico_ou_botao);                     // inclui novo nodo
     else                                                                        // caso lista não esteja vazia
-      A->setNext(new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, B)); // inclui novo nodo
+      A->setNext(new Node_PC(new_data, new_hora, ID, new_temp, new_automatico_ou_botao, B)); // inclui novo nodo
   }
 }
 
 int List_PC::removeNode(int temp)
 {
-  Node_temp_fixa *A = head;
-  Node_temp_fixa *B = head;
+  Node_PC *A = head;
+  Node_PC *B = head;
   int result;
 
   if (head == 0)
@@ -243,7 +245,7 @@ int List_PC::removeNode(int temp)
 
 void List_PC::listAll()
 {
-  Node_temp_fixa *aux = head;
+  Node_PC *aux = head;
   cout << "---------------------------------------------------------------\n";
   cout << "========== Lista Completa ==========" << endl;
   cout << "|" << setw(12) << centered("Data")
@@ -264,7 +266,7 @@ void List_PC::listAll()
          << "|" << setw(18) << centered(to_string(aux->get_new_temp_int()))
          << "|" << setw(22) << centered(to_string(aux->get_automatico_ou_botao()))
          << "|" << endl;
-    aux = aux->getNext(); // o ponteiro do tipo 'Node_temp_fixa' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
+    aux = aux->getNext(); // o ponteiro do tipo 'Node_PC' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
     // Resumindo, antes: aux apontava para &head
     // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
   }
@@ -273,7 +275,7 @@ void List_PC::listAll()
 
 void List_PC::listInterval(string limit_inf, string limit_sup, string hr_init = "00:00:00", string hr_end = "23:59:59")
 {
-  Node_temp_fixa *aux = head;
+  Node_PC *aux = head;
 
   cout << "---------------------------------------------------------------\n";
   cout << "========== Lista Intervalo: " << limit_inf << " - " << limit_sup << " | " << hr_init << " - " << hr_end << "; ==========" << endl;
@@ -305,7 +307,7 @@ void List_PC::listInterval(string limit_inf, string limit_sup, string hr_init = 
         printNode(aux);
       }
     }
-    aux = aux->getNext(); // o ponteiro do tipo 'Node_temp_fixa' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
+    aux = aux->getNext(); // o ponteiro do tipo 'Node_PC' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
                           // Resumindo, antes: aux apontava para &head
                           // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
   }
@@ -314,7 +316,7 @@ void List_PC::listInterval(string limit_inf, string limit_sup, string hr_init = 
 
 void List_PC::setID(int newID)
 {
-  // Node_temp_fixa *aux = head; // ponteiro para o nodo 'head'
+  // Node_PC *aux = head; // ponteiro para o nodo 'head'
 
   if (newID <= 0) // NewID > 0
   {
@@ -331,7 +333,7 @@ void List_PC::setID(int newID)
 
 string List_PC::TempoLigado()
 {
-  Node_temp_fixa *aux = head;
+  Node_PC *aux = head;
   string h1, h2;
 
   // cout << aux->get_temp_int();
@@ -365,7 +367,7 @@ string List_PC::TempoLigado()
 // Data1 = 01/01/2020; Hora1 = 10:00:00 -> Início
 // Data2 = 02/01/2020; Hora2 = 08:00:00 -> Fim
 
-void List_PC::printNode(Node_temp_fixa *aux)
+void List_PC::printNode(Node_PC *aux)
 {
   cout << "|" << setw(11) << (aux->getCalendarString())
        << "|" << setw(10) << (aux->getClockString())

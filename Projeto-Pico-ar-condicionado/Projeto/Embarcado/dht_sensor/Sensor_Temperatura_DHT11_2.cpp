@@ -22,8 +22,9 @@ private:
 
 
 public:
-  void ReadingLoop();
-  void read_from_dht(dht_reading *result);
+    Sensor_Temperatura_DHT11();
+    void ReadingLoop();
+    void read_from_dht(dht_reading *result);
 
 };
 

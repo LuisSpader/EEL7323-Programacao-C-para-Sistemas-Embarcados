@@ -18,7 +18,10 @@
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //No help, variable specified on the command line.
-CMAKE_C_COMPILER:FILEPATH=/bin/arm-none-eabi-gcc-9.2.1
+CMAKE_CXX_COMPILER:FILEPATH=/bin/x86_64-linux-gnu-g++-9
+
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:FILEPATH=/bin/x86_64-linux-gnu-gcc-9
 
 //No help, variable specified on the command line.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE

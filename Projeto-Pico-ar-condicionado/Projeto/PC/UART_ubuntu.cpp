@@ -17,7 +17,6 @@
  *
  *************************************************************/
 
-#include "Uart.cpp"
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -31,27 +30,26 @@ using namespace std;
  * C++ header for the serial interface methods used to
  * control FischerTechnik robots under linux O.S.
  *************************************************************/
-class UART_ubuntu : public Uart
+class UART_ubuntu
 {
 private:
   // char serial[11];           // serial port name (e.g. /dev/ttyS0, ...)
   int fd; // handle to serial port (fd == -1, error!)
-  //
+  char word; // word to be sent to robot
+  
 public:
-  //
-  UART_ubuntu(void);  // RobotLinux.cpp
-  ~UART_ubuntu(void); // RobotLinux.cpp
-  //
-  char sendCommand();       // RobotLinux.cpp
-  void openSerial(int ser); // RobotLinux.cpp
+  
+  UART_ubuntu(void);  
+  ~UART_ubuntu(void); 
+  
+  void openSerial(int ser);
+  char sendCommand();       
 };
 
-/************************************************************
- * Constructor
- *************************************************************/
-UART_ubuntu::UART_ubuntu(void)
+
+UART_ubuntu::UART_ubuntu(void) // construtor
 {
-  motorWord = 0;
+  word = 0;
   fd = -1;
 }
 /************************************************************
@@ -72,7 +70,6 @@ UART_ubuntu::~UART_ubuntu(void)
  *************************************************************/
 void UART_ubuntu::openSerial(int ser)
 {
-  // serial names
 
   struct termios options;
 
@@ -121,7 +118,7 @@ void UART_ubuntu::openSerial(int ser)
 }
 
 /************************************************************
- * char sendCommand(char motorWord)
+ * char sendCommand(char word)
  *
  * gets a full word representing all inputs (1..8)
  *************************************************************/
