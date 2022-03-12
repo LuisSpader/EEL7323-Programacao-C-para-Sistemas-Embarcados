@@ -1,6 +1,7 @@
 using namespace std; // Esse comando é utilizado de forma a evitar a indicação std:: antes de usar o comando cout, etc...
 #include <iomanip>   // para usar setfill() e setw()
 #include "List_PC.cpp"
+#include "UART_ubuntu.cpp"
 #include <locale.h>
 // setlocale(LC_ALL, "pt_BR.UTF-8");
 
@@ -22,24 +23,27 @@ void interface_temp()
 {
 
   bool continuar = true;
-  int b_temp, b_switch;
-  float b_temp1, b_temp2;
+  // bool b_bool;
+  int b_int1, b_switch;
+  float b_float1, b_float2;
+  string b_string1, b_string2, b_string3, b_string4;
   List_PC lista1(18250065);
 
   while (continuar == true)
   {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
     cout << "---------------------- Interface Computador ----------------------------\n";
-    cout << " Bem vindo a interface Computador, nela voce tera";
+    // cout << " Bem vindo a interface Computador";
 
     // cout << "Capacidade: " << N_TEMPERATURA << " registros; Leituras disponiveis para registro: " << lista1.vagas << endl;
-
+    cout << "0 - Comunicação Serial UART" << endl;
     cout << "1 - Cadastrar evento" << endl;
     cout << "2 - Excluir evento " << endl;
     cout << "3 - Listar todos os eventos" << endl;
     cout << "4 - Listar eventos em intervalo de data " << endl;
+    cout << "5 - Encerrar Programa " << endl;
     // cout << "5 - Lista IDs" << endl;
     // cout << "6 - Listar todas as leituras" << endl;
-    cout << "7 - Encerrar Programa " << endl;
 
     cout << "Digite a operacao desejada:";
     cin >> b_switch;
@@ -47,65 +51,61 @@ void interface_temp()
     switch (b_switch)
     {
       // --------------- XXX ---------------
-    case 1: // 1 - Cadastro de evento
+
+    case 0: // 0 - Serial UART
     {
-      cout << "Digite a temperatura desejada (ºC): ";
-      cin >> b_temp;
-      lista1.insertAfterLast(b_temp, false);
+      UART_ubuntu obj_UART;
+      obj_UART.RequestLogProcess();
+
       break;
     }
 
-    case 2: // 2 - Excluir evento
+    case 1: // 1 - Cadastro de evento - OK
     {
-      cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_temp;
-      lista1.set_NewLeitura(b_temp);
+      cout << "Digite a data (dd:mm:aaaa): ";
+      cin >> b_string1;
+      cout << "Digite a hora (hh:mm:ss): ";
+      cin >> b_string2;
+      cout << "Digite a temperatura desejada (ºC): ";
+      cin >> b_int1;
+      lista1.insertAfterLast(b_string1, b_string2, b_int1, false);
+      break;
+    }
+
+    case 2: // 2 - Excluir evento - OK
+    {
+      cout << "Digite a temperatura que deseja excluir (irá excluir todos os eventos de mesma temperatura)";
+      cin >> b_int1;
+      lista1.removeNode(b_int1);
       break;
       // o valor de leitura já é realizado na classe 'Temperatura' que fornece um rand para o método setValor da classe 'Sensor'
       // a data tbm gera automatico -> pega do sistema operacional
     }
 
-    case 3: // 3 - Listar todos os eventos
+    case 3: // 3 - Listar todos os eventos - OK
     {
-      cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_temp;
+      lista1.listAll();
 
-      cout << "Digite os limites do intervalo de lista1 (temp1 a temp2) em graus Celsius" << endl;
-      cout << "Temperatura 1: ";
-      cin >> b_temp1;
-      cout << "Temperatura 2: ";
-      cin >> b_temp2;
-
-      lista1.get_Consulta_temperatura(b_temp1, b_temp2);
       break;
     }
 
-    case 4: // 4 - Listar eventos em intervalo de data
+    case 4: // 4 - Listar eventos em intervalo de data - OK
     {
-      lista1.get_Lista_IDs();
+
+      cout << "Digite a data de início (dd/mm/aaaa):";
+      cin >> b_string1;
+      cout << "Digite a data final (dd/mm/aaaa):";
+      cin >> b_string2;
+
+      cout << "Digite a hora de início (hh/mm/ss):";
+      cin >> b_string3;
+      cout << "Digite a hora final (hh/mm/ss):";
+      cin >> b_string4;
+
+      lista1.listInterval(b_string1, b_string2, b_string3, b_string4);
       break;
     }
     case 5: // 4 - Listar todas as leituras de 1 ID
-    {
-      lista1.get_Listagem_temperaturas();
-      break;
-    }
-
-    case 6: // Excluir
-    {
-
-      cout << "Digite o numero de identificacao (ID): ";
-      cin >> b_temp;
-
-      cout << "Digite a lista1 que deseja excluir: ";
-      cin >> b_temp1;
-      lista1.Exclui_temperatura(b_temp, b_temp1, false);
-
-      break;
-      // }
-    }
-
-    case 7: // Sai Sensor
     {
       continuar = false;
     }

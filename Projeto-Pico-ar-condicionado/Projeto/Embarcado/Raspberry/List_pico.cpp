@@ -1,7 +1,7 @@
 /*
    File List_pico.cpp
 
-   Class List_pico stores Nodes (class Node_temp_fixa) in a linked list.
+   Class List_pico stores Nodes (class Node_pico) in a linked list.
 
    This file has the implementation for class List_pico
 
@@ -33,20 +33,19 @@
 #include <stdlib.h>
 using namespace std;
 #include <iomanip>
-#include "centered.cpp"
 #include <cassert>
 
 // #include "List_pico.h"
-#include "Node_temp_fixa.cpp"
+#include "Node_pico.cpp"
 
 class List_pico : public ClockCalendar
 {
 
-  Node_temp_fixa *head; // ponteiro com tamanho de endereço de um 'Node_temp_fixa'
   int ID;
 
 public:
-  List_pico(int newID); // construtor -> ao construir cria objeto 'Node_temp_fixa': head = 0;
+  Node_pico *head; // ponteiro com tamanho de endereço de um 'Node_pico'
+  List_pico(int newID); // construtor -> ao construir cria objeto 'Node_pico': head = 0;
   ~List_pico();
   void Ligar();
   void Desligar();
@@ -62,22 +61,23 @@ public:
   void insertionSort(int new_temp, bool new_automatico_ou_botao);
   int removeNode(int temp);
 
-  void listAll();
   void setID(int newID);
-  string TempoLigado();
-  void printNode(Node_temp_fixa *aux);
+  // string TempoLigado();
+  string SendNode(Node_pico *aux);
+  string SendAllNodes();
+  void RemoveAll();
 };
 
 List_pico::List_pico(int newID)
 {
   setID(newID);
-  head = 0; // a classe Node_temp_fixa possui 2 argumentos, aqui estamos igualando ambos a 0?
+  head = 0; // a classe Node_pico possui 2 argumentos, aqui estamos igualando ambos a 0?
   Ligar();
 }
 
 List_pico::~List_pico()
 {
-  Node_temp_fixa *cursor = head;
+  Node_pico *cursor = head;
   while (head)
   {
     delete head;
@@ -92,27 +92,27 @@ List_pico::~List_pico()
 
 void List_pico::create_first_Node(int new_temp, bool new_automatico_ou_botao)
 {
-  head = new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, head);
-  // aqui criamos um novo nó: new Node_temp_fixa(...)
+  head = new Node_pico(ID, new_temp, new_automatico_ou_botao, head);
+  // aqui criamos um novo nó: new Node_pico(...)
   // e
-  // salvamos o endereço deste novo 'Node_temp_fixa' criado na variável de ponteiro 'head'
-  // a próxima vez que for criado um novo Node_temp_fixa, este apontará para o endereço armazenado anteriormente na variável head
+  // salvamos o endereço deste novo 'Node_pico' criado na variável de ponteiro 'head'
+  // a próxima vez que for criado um novo Node_pico, este apontará para o endereço armazenado anteriormente na variável head
 }
 
 void List_pico::insertBeforeFirst(int new_temp, bool new_automatico_ou_botao)
 {
   create_first_Node(new_temp, new_automatico_ou_botao); // ?? pq o 'new' aloca espaço de forma dinâmica??
 
-  // criando um novo Nodo com ponteiro 'next' =  'head', que foi inicializado no construtor da classe 'List_pico': head = 0 || (lembrando que 'head' é um ponteiro de 'Node_temp_fixa', ou seja, seu tamanho de endereço de memória é igual ao de um 'Node_temp_fixa')
+  // criando um novo Nodo com ponteiro 'next' =  'head', que foi inicializado no construtor da classe 'List_pico': head = 0 || (lembrando que 'head' é um ponteiro de 'Node_pico', ou seja, seu tamanho de endereço de memória é igual ao de um 'Node_pico')
   // e com valor 'temp' passado como argumento do método
-  // após criar o novo Nodo, a variável 'head' que é do tipo 'Node_temp_fixa' receberá o endereço deste novo Nodo criado, assim na próxima vez qu for criado um novo 'Node_temp_fixa', o mesmo apontará para o 'Node_temp_fixa' criado anteriormente
+  // após criar o novo Nodo, a variável 'head' que é do tipo 'Node_pico' receberá o endereço deste novo Nodo criado, assim na próxima vez qu for criado um novo 'Node_pico', o mesmo apontará para o 'Node_pico' criado anteriormente
 }
 
 void List_pico::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
 {
-  // declara 2 ponteiros do tipo 'Node_temp_fixa' e os mesmos serão iguais a outra 'Node_temp_fixa' chamado 'head', caso já exista algum 'nodo': head não apontará para o endereço 0
-  Node_temp_fixa *A = head;
-  Node_temp_fixa *B = head;
+  // declara 2 ponteiros do tipo 'Node_pico' e os mesmos serão iguais a outra 'Node_pico' chamado 'head', caso já exista algum 'nodo': head não apontará para o endereço 0
+  Node_pico *A = head;
+  Node_pico *B = head;
 
   if (head == 0)                                          // verifica se lista está vazia
     create_first_Node(new_temp, new_automatico_ou_botao); // se lista está vazia, cria um novo Nodo
@@ -129,7 +129,7 @@ void List_pico::insertAfterLast(int new_temp, bool new_automatico_ou_botao)
       // B = A->getNext(); (B aponta para quem nó_1 apontava, logo: nó_2)
     } // quando chegar no último nó (nó_N), B = 0
 
-    A->setNext(new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, 0));
+    A->setNext(new Node_pico(ID, new_temp, new_automatico_ou_botao, 0));
     // criamos um novo nó que apontará para '0' (final da lista)
     // porém precisamos alterar o 'antigo último nó da lista' aponte para o 'novo último nó'
     // e quem é o 'antigo último nó'? é o nó_N que tanto A quanto B finalizarm o loop apontando, então podemos usar os ponteiros para alterar o conteúdo deste último nó
@@ -154,7 +154,7 @@ int List_pico::removeFirst()
     cout << "A nova lista possui os seguintes valores: " << endl;
 
     retval = head->get_ID();
-    Node_temp_fixa *oldHead = head;
+    Node_pico *oldHead = head;
     head = head->getNext();
     delete oldHead;
   }
@@ -164,12 +164,12 @@ int List_pico::removeFirst()
 void List_pico::insertionSort(int new_temp, bool new_automatico_ou_botao)
 {
   // função para inserir 'Nodo' em ordem crescente de seu valor 'value'
-  Node_temp_fixa *A = head;
-  Node_temp_fixa *B = head;
+  Node_pico *A = head;
+  Node_pico *B = head;
 
   if (head == 0)
   {
-    // head = new Node_temp_fixa(value, head);
+    // head = new Node_pico(value, head);
     create_first_Node(new_temp, new_automatico_ou_botao);
     int i;
     i = head->get_ID();
@@ -201,21 +201,21 @@ void List_pico::insertionSort(int new_temp, bool new_automatico_ou_botao)
     if (A == B)                                                                 // verifica se os ponteiros apontam para o mesmo lugar (lista vazia: campo 'next' do nodo 'head' apontaria para '0')
       create_first_Node(new_temp, new_automatico_ou_botao);                     // inclui novo nodo
     else                                                                        // caso lista não esteja vazia
-      A->setNext(new Node_temp_fixa(ID, new_temp, new_automatico_ou_botao, B)); // inclui novo nodo
+      A->setNext(new Node_pico(ID, new_temp, new_automatico_ou_botao, B)); // inclui novo nodo
   }
 }
 
 int List_pico::removeNode(int temp)
 {
-  Node_temp_fixa *A = head;
-  Node_temp_fixa *B = head;
+  Node_pico *A = head;
+  Node_pico *B = head;
   int result;
 
   if (head == 0)
     result = 0;
   else
   {
-    while ((B != 0) && (B->get_ID() != temp))
+    while ((B != 0) && (B->get_temp_int() != temp))
     { // Error!! the addresses will always be different!
       A = B;
       B = A->getNext();
@@ -224,13 +224,13 @@ int List_pico::removeNode(int temp)
     {
       if (B == head)
       { // it is the first node
-        result = B->get_ID();
+        result = B->get_temp_int();
         head = B->getNext();
         delete B;
       }
       else
       { // the node is in the middle
-        result = B->get_ID();
+        result = B->get_temp_int();
         A->setNext(B->getNext());
         delete B;
       }
@@ -242,39 +242,9 @@ int List_pico::removeNode(int temp)
   return result;
 }
 
-void List_pico::listAll()
-{
-  Node_temp_fixa *aux = head;
-  cout << "---------------------------------------------------------------\n";
-  cout << "========== Lista Completa ==========" << endl;
-  cout << "|" << setw(12) << centered("Data")
-       << "|" << setw(10) << centered("Hora")
-       << "|" << setw(10) << centered("ID")
-       << "|" << setw(13) << centered("Temp. Externa")
-       << "|" << setw(18) << centered("Temp. Dispositivo")
-       << "|" << setw(22) << centered("Acionamento (1 = aut.)")
-       << "|" << endl;
-  while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
-  {
-
-    // cout << "|" << setw(21) << aux->get_DataHora()
-    cout << "|" << setw(12) << centered(aux->getCalendarString())
-         << "|" << setw(10) << centered(aux->getClockString())
-         << "|" << setw(10) << centered(to_string(aux->get_ID()))
-         << "|" << setw(13) << centered(to_string(aux->get_temp_ext()))
-         << "|" << setw(18) << centered(to_string(aux->get_new_temp_int()))
-         << "|" << setw(22) << centered(to_string(aux->get_automatico_ou_botao()))
-         << "|" << endl;
-    aux = aux->getNext(); // o ponteiro do tipo 'Node_temp_fixa' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
-    // Resumindo, antes: aux apontava para &head
-    // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
-  }
-  cout << "---------------------------------------------------------------\n";
-}
-
 void List_pico::setID(int newID)
 {
-  // Node_temp_fixa *aux = head; // ponteiro para o nodo 'head'
+  // Node_pico *aux = head; // ponteiro para o nodo 'head'
 
   if (newID <= 0) // NewID > 0
   {
@@ -300,53 +270,75 @@ void List_pico::Desligar()
 
   // insertAfterLast(7777, true);
 
-  // Node_temp_fixa *aux = head;
-  // aux->changeNode_manual("Tempo ligado", TempoLigado(), ID, 0, true, aux->getNext()); // string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_temp_fixa *nxt
+  // Node_pico *aux = head;
+  // aux->changeNode_manual("Tempo ligado", TempoLigado(), ID, 0, true, aux->getNext()); // string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_pico *nxt
 }
 
-string List_pico::TempoLigado()
-{
-  Node_temp_fixa *aux = head;
-  string h1, h2;
-
-  // cout << aux->get_temp_int();
-  while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
-  {
-    // cout << aux->get_temp_int() << endl;
-    if (aux->get_temp_int() == 9999) // List_pico::Ligar()
-    {
-      h1 = aux->hora;
-    }
-    else
-    {
-      if (aux->get_temp_int() == 1111) // List_pico::Desligar()
-      {
-        h2 = aux->hora;
-        break;
-      }
-    }
-    aux = aux->getNext();
-  }
-  // cout << "h1 " << h1 << endl;
-  // cout << "h2 " << h2 << endl;
-  // cout << "intervalo " << aux->ClockInterval(h1, h2);
-  // ClockCalendar::ClockInterval(h1,h2);
-  // return ("aux->ClockInterval(h1, h2)");
-  stringstream str;
-  str << get<0>(aux->ClockInterval(h1, h2)) << ":" << get<1>(aux->ClockInterval(h1, h2)) << ":" << get<2>(aux->ClockInterval(h1, h2));
-  return (str.str());
-}
+// string List_pico::TempoLigado()
+// {
+//   Node_pico *aux = head;
+//   string h1, h2;
+//   // cout << aux->get_temp_int();
+//   while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
+//   {
+//     // cout << aux->get_temp_int() << endl;
+//     if (aux->get_temp_int() == 9999) // List_pico::Ligar()
+//     {
+//       h1 = aux->hora;
+//     }
+//     else
+//     {
+//       if (aux->get_temp_int() == 1111) // List_pico::Desligar()
+//       {
+//         h2 = aux->hora;
+//         break;
+//       }
+//     }
+//     aux = aux->getNext();
+//   }
+//   // cout << "h1 " << h1 << endl;
+//   // cout << "h2 " << h2 << endl;
+//   // cout << "intervalo " << aux->ClockInterval(h1, h2);
+//   // ClockCalendar::ClockInterval(h1,h2);
+//   // return ("aux->ClockInterval(h1, h2)");
+//   stringstream str;
+//   str << get<0>(aux->ClockInterval(h1, h2)) << ":" << get<1>(aux->ClockInterval(h1, h2)) << ":" << get<2>(aux->ClockInterval(h1, h2));
+//   return (str.str());
+// }
 
 // Data1 = 01/01/2020; Hora1 = 10:00:00 -> Início
 // Data2 = 02/01/2020; Hora2 = 08:00:00 -> Fim
 
-void List_pico::printNode(Node_temp_fixa *aux)
+string List_pico::SendNode(Node_pico *aux)
 {
-  cout << "|" << setw(11) << (aux->getCalendarString())
-       << "|" << setw(10) << (aux->getClockString())
-       << "|" << setw(10) << centered(to_string(aux->get_ID()))
-       << "|" << setw(13) << centered(to_string(aux->get_temp_ext()))
-       << "|" << setw(18) << centered(to_string(aux->get_new_temp_int()))
-       << "|" << setw(22) << centered(to_string(aux->get_automatico_ou_botao()))
-       << "|" << endl;
+  stringstream buffer;
+    buffer << aux->getCalendarString()
+         <<  aux->getClockString()
+         << to_string(aux->get_ID())
+         << to_string(aux->get_temp_ext())
+         << to_string(aux->get_new_temp_int())
+         << to_string(aux->get_automatico_ou_botao())
+         << endl;
+    return buffer.str();
+}
+
+string List_pico::SendAllNodes()
+{
+  Node_pico *aux = head;
+  while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
+  {
+    SendNode(aux);
+
+    aux = aux->getNext(); // o ponteiro do tipo 'Node_pico' que a 1ª iteração apontava para 'head', agora aponta para o endereço que o campo 'next' já apontava .
+    // Resumindo, antes: aux apontava para &head
+    // Agora: aux aponta para o valor do campo 'next' do nodo 'head' -> head(temp = valor1, next = &nodo2) QUE É O ENDEREÇO DO PRÓXIMO NODO
+  }
+}
+
+void List_pico::RemoveAll(){
+  Node_pico *aux = head;
+  while (aux != 0){ // enquanto não chega no último nodo (que aponta para '0')
+    delete aux;
+    aux = aux->getNext(); 
+  }
 }

@@ -1,5 +1,0 @@
-/home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto-Pico-ar-condicionado/Projeto/Embarcado/UART/build/elf2uf2/CMakeFiles/rebuild_cache.dir
-/home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto-Pico-ar-condicionado/Projeto/Embarcado/UART/build/elf2uf2/CMakeFiles/edit_cache.dir
-/home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto-Pico-ar-condicionado/Projeto/Embarcado/UART/build/elf2uf2/CMakeFiles/elf2uf2.dir
-/home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto-Pico-ar-condicionado/Projeto/Embarcado/UART/build/elf2uf2/boot_uf2_headers/CMakeFiles/rebuild_cache.dir
-/home/luis/pi/pico/EEL7323-Programacao-C-para-Sistemas-Embarcados/Projeto-Pico-ar-condicionado/Projeto/Embarcado/UART/build/elf2uf2/boot_uf2_headers/CMakeFiles/edit_cache.dir
