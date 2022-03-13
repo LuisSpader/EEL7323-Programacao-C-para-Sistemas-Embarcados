@@ -35,14 +35,14 @@ class Node_PC : public ClockCalendar
   Node_PC *next; // ponteiro para próximo Nodo
 
 public:
-  Node_PC(string new_data, string new_hora, int new_ID, int new_temp, bool new_automatico_ou_botao, Node_PC *nxt); // construtor do Nodo
+  Node_PC(string new_data, string new_hora, int new_ID, int new_temp_ext, int new_temp_int, bool new_automatico_ou_botao, Node_PC *nxt); // construtor do Nodo
   // Node_PC(int new_ID, int new_temp, bool new_automatico_ou_botao, Node_PC *nxt); // construtor do Nodo
 
   // string getClockCalendar();
 
   // --------- SET ---------
   void set_ID(int new_ID); // atualiza ID do Nodo
-  void set_temp_ext(int new_temp);
+  // void set_temp_ext(int new_temp);
   void set_automatico_ou_botao(bool new_automatico_ou_botao);
   void setNext(Node_PC *nxt); // atualiza ponteiro
 
@@ -62,7 +62,7 @@ public:
 };
 
 // Constructor - initializes the node
-Node_PC::Node_PC(string new_data, string new_hora, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_PC *nxt): ClockCalendar(new_data, new_hora)
+Node_PC::Node_PC(string new_data, string new_hora, int new_ID, int new_temp_ext, int new_temp_int, bool new_automatico_ou_botao, Node_PC *nxt): ClockCalendar(new_data, new_hora)
 { // externos
   ID = new_ID;
   temp_int = new_temp_int;
@@ -70,7 +70,7 @@ Node_PC::Node_PC(string new_data, string new_hora, int new_ID, int new_temp_int,
   next = nxt;
 
   // internos ao nó
-  temp_ext = 30;
+  temp_ext = new_temp_ext;
   
   ClockCalendar(new_data, new_hora);
   // ClockCalendar();
@@ -94,7 +94,7 @@ void Node_PC::setNext(Node_PC *nxt)
   next = nxt;
 }
 
-void Node_PC::changeNode_manual(string new_data, string new_hr, int new_ID, int new_temp_int, bool new_automatico_ou_botao, Node_PC *nxt)
+void Node_PC::changeNode_manual(string new_data, string new_hr, int new_ID, int new_temp_ext, int new_temp_int, bool new_automatico_ou_botao, Node_PC *nxt)
 {
   data = new_data;
   hora = new_hr;
@@ -106,7 +106,7 @@ void Node_PC::changeNode_manual(string new_data, string new_hr, int new_ID, int 
   next = nxt;
 
   // internos ao nó
-  temp_ext = 30;
+  temp_ext = new_temp_ext;
 }
 
 // --------- GET ---------

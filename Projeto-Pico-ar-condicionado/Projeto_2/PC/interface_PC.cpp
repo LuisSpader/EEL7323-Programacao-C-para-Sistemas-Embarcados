@@ -36,12 +36,12 @@ void interface_PC()
     // cout << " Bem vindo a interface Computador";
 
     // cout << "Capacidade: " << N_TEMPERATURA << " registros; Leituras disponiveis para registro: " << lista1.vagas << endl;
-    cout << "0 - Comunicação Serial UART" << endl;
+    cout << "0 - Aquisição de log" << endl;
     cout << "1 - Cadastrar evento" << endl;
-    cout << "2 - Excluir evento " << endl;
+    cout << "2 - Excluir eventos" << endl;
     cout << "3 - Listar todos os eventos" << endl;
-    cout << "4 - Listar eventos em intervalo de data " << endl;
-    cout << "5 - Encerrar Programa " << endl;
+    cout << "4 - Listar eventos em intervalo de data" << endl;
+    cout << "5 - Encerrar Programa" << endl;
     // cout << "5 - Lista IDs" << endl;
     // cout << "6 - Listar todas as leituras" << endl;
 

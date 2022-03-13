@@ -54,5 +54,6 @@
     "ratio": "cpp"
   },
   "cmake.configureOnOpen": false,
-  "cmake.sourceDirectory": "${workspaceFolder}/."
+  "cmake.sourceDirectory": "${workspaceFolder}/.",
+  "C_Cpp.default.compilerPath": ""
 }
