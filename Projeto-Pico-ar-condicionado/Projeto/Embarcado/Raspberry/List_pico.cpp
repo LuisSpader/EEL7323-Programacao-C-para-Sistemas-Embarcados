@@ -314,11 +314,11 @@ string List_pico::SendNode(Node_pico *aux)
   stringstream buffer;
     buffer << aux->getCalendarString()
          <<  aux->getClockString()
-         << to_string(aux->get_ID())
-         << to_string(aux->get_temp_ext())
-         << to_string(aux->get_new_temp_int())
+         << setw(8) << setfill('0') << to_string(aux->get_ID())
+         << setw(2) << setfill('0') << to_string(aux->get_temp_ext())
+         << setw(2) << setfill('0') << to_string(aux->get_new_temp_int())
          << to_string(aux->get_automatico_ou_botao())
-         << endl;
+         << " " << endl;
     return buffer.str();
 }
 
