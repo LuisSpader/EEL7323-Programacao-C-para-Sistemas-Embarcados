@@ -85,7 +85,7 @@ void interface_PC()
 
     case 2: // 2 - Excluir evento - OK
     {
-      cout << "Digite a temperatura que deseja excluir (irá excluir todos os eventos de mesma temperatura)";
+      cout << "Digite a temperatura que deseja excluir (irá excluir todos os eventos de mesma temperatura):";
       cin >> b_int1;
       lista1.removeNode(b_int1);
       break;
