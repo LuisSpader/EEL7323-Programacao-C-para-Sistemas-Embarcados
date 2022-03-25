@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <SOLibPaths />
+  <AndroidLibPaths />
+  <OObjPaths />
+  <Configuration />
+  <Platform />
+  <AndroidArchitecture />
+  <!--links to other recipe files-->
+  <RecipeFiles>C:\Users\luisa\Documents\Programming\EEL7323-Programacao-C-para-Sistemas-Embarcados\Projeto-Pico-ar-condicionado\Projeto_entrega4\Smartphone\App\Android1\x64\Debug\libAndroid1.so.recipe</RecipeFiles>
+</project>

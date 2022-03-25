@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <SOLibPaths>C:\Users\luisa\Documents\Programming\EEL7323-Programacao-C-para-Sistemas-Embarcados\Projeto-Pico-ar-condicionado\Projeto_entrega4\Smartphone\App\Android1\x64\Debug\libAndroid1.so;C:\Microsoft\AndroidNDK\android-ndk-r21e\prebuilt\android-x86_64\gdbserver\gdbserver;C:\Microsoft\AndroidNDK\android-ndk-r21e\sources\cxx-stl\llvm-libc++\libs\x86_64\libc++_static.a;C:\Microsoft\AndroidNDK\android-ndk-r21e\sources\cxx-stl\llvm-libc++\libs\x86_64\libc++abi.a</SOLibPaths>
+  <AndroidLibPaths />
+  <OObjPaths>C:\Users\luisa\Documents\Programming\EEL7323-Programacao-C-para-Sistemas-Embarcados\Projeto-Pico-ar-condicionado\Projeto_entrega4\Smartphone\App\Android1\Android1.NativeActivity\x64\Debug</OObjPaths>
+  <Configuration>Debug</Configuration>
+  <Platform>x64</Platform>
+  <AndroidArchitecture>x86_64</AndroidArchitecture>
+  <!--links to other recipe files-->
+  <RecipeFiles />
+</project>

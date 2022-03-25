@@ -15,7 +15,7 @@
 
 #define DATA_BITS 8
 #define STOP_BITS 1
-#define PARITY    UART_PARITY_NONE
+#define PARITY UART_PARITY_NONE
 
 class UART_pico : virtual protected List_pico
 {
@@ -29,7 +29,6 @@ public:
     ~UART_pico();
     void SendCommand(char *char_serial);
     void SendLog();
-
 };
 
 UART_pico::UART_pico()
@@ -37,21 +36,21 @@ UART_pico::UART_pico()
     // head = 0;
     // Initialise UART 0
     uart_init(UART_ID, BAUD_RATE);
- 
+
     // Set the GPIO pin mux to the UART - 0 is TX, 1 is RX
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
 
     // Set our data format
     uart_set_format(UART_ID, DATA_BITS, STOP_BITS, PARITY);
-
 }
 
 UART_pico::~UART_pico()
 {
 }
 
-void UART_pico::SendCommand(char *char_serial){
+void UART_pico::SendCommand(char *char_serial)
+{
     uart_puts(UART_ID, char_serial);
 
     // // Send out a character without any conversions
@@ -61,12 +60,11 @@ void UART_pico::SendCommand(char *char_serial){
     // uart_putc(UART_ID, 'B');
 }
 
-
-void UART_pico::SendLog(){
+void UART_pico::SendLog()
+{
     end_log = false;
 
     Node_pico *aux = head;
-
 
     while (aux != 0) // enquanto não chega no último nodo (que aponta para '0')
     {
@@ -76,13 +74,11 @@ void UART_pico::SendLog(){
 
         uart_puts(UART_ID, SendNode(aux));
 
-        aux = aux->getNext(); 
+        aux = aux->getNext();
     }
 
     uart_puts(UART_ID, "Envio de log finalizado");
     sleep_ms(50);
     uart_puts(UART_ID, "Stop");
     end_log = true;
-
-
 }

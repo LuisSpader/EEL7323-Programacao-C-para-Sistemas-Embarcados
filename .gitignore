@@ -33,3 +33,4 @@
 
 .vscode/settings.json
 build/CMakeCache.txt
+*.tlog
